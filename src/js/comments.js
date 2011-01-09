@@ -30,15 +30,30 @@ if (commentsElement) {
 			var clist = element.querySelector('ul.hentry');
 
 			if (!clist) {
+				// не нашли списка вложенных комментариев
 				return;
 			}
 
+			// пробуем найти абзац с кнопкой "ответить"
 			var preply = element.querySelector('p.reply');
 
 			if (!preply) {
-				return;
+				// если не нашли - значит мы не зарегистрированы,
+				// придется создать
+				var ec = element.querySelector('div.entry-content');
+
+				if (!ec) {
+					return;
+				}
+
+				preply = document.createElement('p');
+				preply['classList'].add('reply');
+				// для того, чтобы убрать отступ слева
+				preply['classList'].add('unreg');
+				ec.appendChild(preply);
 			}
 
+			// счетчик вложенных комментариев
 			var commentCount = 0;
 
 			for (var i = 0; i < clist.childNodes.length; i++) {
@@ -46,6 +61,9 @@ if (commentsElement) {
 
 				if (node.nodeName === 'LI') {
 					++commentCount;
+
+					// рекурсия - вложенные комментарии тоже нужно
+					// сложить
 					prepareCommentsTree(node, true);
 				}
 			}
