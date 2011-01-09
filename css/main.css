@@ -1,0 +1,28 @@
+/* поднимаем логотип */
+.header .logo {
+	margin-top: -50px !important;
+	}
+
+/* убираем сайдбар */
+#sidebar {
+	display: none;
+	}
+
+/* расширяем контент */
+#viva-la-w3c {
+	width: auto !important;
+	}
+
+#main-content {
+	width: 95% !important;
+	}
+
+/* нет больше минусам */
+.vote_minus {
+	display: none !important;
+	}
+
+.entry-info-wrap .published,
+.entry-info-wrap .informative {
+	margin-left: -18px !important;
+	}

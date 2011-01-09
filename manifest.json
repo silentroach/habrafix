@@ -1,0 +1,19 @@
+{
+	"name"            : "habrafix",
+	"description"     : "Сделаем Хабрахабр лучше",
+	"version"         : "0.1",
+	"content_scripts" : [ {
+		"matches" : [
+			"http://*.habrahabr.ru/",
+			"http://*.habrahabr.ru/*",
+			"http://habrahabr.ru/*"
+		],
+		"css"     : [
+			"css/main.css"
+		],
+		"js"      : [
+			"js/utils.js",
+			"js/cleaner.js"
+		]
+	} ]
+}
