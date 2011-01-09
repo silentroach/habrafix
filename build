@@ -1,0 +1,56 @@
+#!/usr/bin/env php
+<?php
+
+define('DS', DIRECTORY_SEPARATOR);
+$root = dirname(__FILE__) . DS . 'src' . DS;
+
+$path_gcc    = escapeshellarg(trim(`find ./ -name 'gcc.jar'`));
+$path_yui    = escapeshellarg(trim(`find ./ -name 'yui.jar'`));
+
+$manifest = file_get_contents($root . 'manifest.json');
+
+$manifestObject = json_decode($manifest, true);
+
+$scripts =& $manifestObject['content_scripts'][0];
+
+$compiler = 'java -jar ' . $path_yui;
+foreach($scripts['css'] as $css) {
+	$compiler .= ' ' . escapeshellarg($root . $css);
+}
+
+$css = shell_exec($compiler);
+
+$compiler = 'java -jar ' . $path_gcc . ' --compilation_level ADVANCED_OPTIMIZATIONS ' .
+	'--warning_level QUIET';
+
+foreach($scripts['js'] as $js) {
+	$compiler .= ' --js ' . escapeshellarg($root . $js);
+}
+
+$js = shell_exec($compiler);
+
+$scripts['js']  = array('habrafix.js');
+$scripts['css'] = array('habrafix.css');
+
+$tmppath = sys_get_temp_dir() . DS . 'habrafix' . DS;
+mkdir($tmppath);
+
+$manifestOut = json_encode($manifestObject);
+$manifestOut = str_replace('\/', '/', $manifestOut);
+
+file_put_contents($tmppath . 'manifest.json', $manifestOut);
+file_put_contents($tmppath . 'habrafix.js', $js);
+file_put_contents($tmppath . 'habrafix.css', $css);
+
+shell_exec('cp -R ' . escapeshellarg($root . 'icons') . ' ' . escapeshellarg($tmppath));
+
+$cwd = getcwd();
+
+chdir($tmppath);
+
+$cmd = 'zip -9 -r ' . escapeshellarg($cwd . DS . 'ext.zip') . ' ./';
+shell_exec($cmd);
+
+chdir($cwd);
+
+shell_exec('rm -rf ' . escapeshellarg($tmppath));
