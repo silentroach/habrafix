@@ -13,7 +13,8 @@
 		],
 		"js"      : [
 			"js/utils.js",
-			"js/cleaner.js"
+			"js/cleaner.js",
+			"js/comments.js"
 		]
 	} ]
 }
