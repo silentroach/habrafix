@@ -19,18 +19,55 @@ if (commentsElement) {
 
 	console.info('Количество комментариев: ' + commentCount);
 
-	var prepareCommentsTree = function(element, collapse) {
-		var commentElements = element.querySelectorAll('ul.hentry > li.comment_holder');
+	var expandCommentsNode = function() {
+		var top = this.parentNode;
 
-		for (var i = 0; i < commentElements.length; i++) {
-			var commentElement = commentElements[i];
+		var ul = top.parentNode.parentNode.querySelector('ul.hentry.collapsed');
 
-			console.info(commentElement);
-
-			prepareCommentsTree(commentElement, true);
+		if (ul) {
+			ul.classList.remove('collapsed');
 		}
+
+		top.removeChild(this);
 	};
 
+	var prepareCommentsTree = function(element, collapse) {
+		var clist = element.querySelector('ul.hentry');
+
+		if (!clist) {
+			return;
+		}
+
+		var preply = element.querySelector('p.reply');
+
+		if (!preply) {
+			return;
+		}
+
+		var commentCount = 0;
+
+		for (var i = 0; i < clist.childNodes.length; i++) {
+			var node = clist.childNodes[i];
+
+			if (node.nodeName === 'LI') {
+				++commentCount;
+				prepareCommentsTree(node, true);
+			}
+		}
+
+		if (collapse) {
+			var expanderElement = document.createElement('a');
+			expanderElement.innerText = '+ развернуть ' + commentCount + ' ' + 
+				commentCount.plural(['ответ', 'ответа', 'ответов']);
+			expanderElement.classList.add('js-serv');
+			expanderElement.classList.add('expander');
+			expanderElement.onclick = expandCommentsNode;
+
+			preply.appendChild(expanderElement);
+
+			clist.classList.add('collapsed');
+		}
+	}
 
 	prepareCommentsTree(commentsElement, false);
 }

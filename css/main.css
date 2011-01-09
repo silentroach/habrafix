@@ -26,3 +26,12 @@
 .entry-info-wrap .informative {
 	margin-left: -18px !important;
 	}
+
+/* скрытые комментарии */
+ul.hentry.collapsed {
+	display: none;
+	}
+
+	li.comment_holder .expander {
+		margin-left: 1em;
+		}
