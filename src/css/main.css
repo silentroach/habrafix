@@ -1,3 +1,9 @@
+/* скрываем flash, чуть позже в js 
+ * мы покажем то, что не реклама */
+object {
+	display: none;
+	}
+
 /* поднимаем логотип */
 .header .logo {
 	margin-top: -50px !important;

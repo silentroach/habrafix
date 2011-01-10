@@ -1,7 +1,7 @@
 {
 	"name"            : "habrafix",
 	"description"     : "Хабрахабр, только немного лучше",
-	"version"         : "0.13",
+	"version"         : "0.14",
 	"icons"           : {
 		"128" : "icons/128.png",
 		"64"  : "icons/64.png",
@@ -20,6 +20,7 @@
 		],
 		"js"      : [
 			"js/utils.js",
+			"js/adblock.js",
 			"js/cleaner.js",
 			"js/comments.js"
 		]
