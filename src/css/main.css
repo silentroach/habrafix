@@ -9,8 +9,12 @@
 	}
 
 /* расширяем контент */
-#viva-la-w3c, .profile-header {
+#viva-la-w3c {
 	width: auto !important;
+	}
+
+.profile-header {
+	width: 90% !important;
 	}
 
 #main-content {
