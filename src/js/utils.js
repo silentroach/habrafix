@@ -1,3 +1,7 @@
+var removeElement = function(element) {
+	element.parentNode.removeChild(element);
+}
+
 var seekAndDestroy = function(selector) {
 	var 
 		elements = document.querySelectorAll(selector),
@@ -7,7 +11,7 @@ var seekAndDestroy = function(selector) {
 		console.info('removed ' + selector);
 
 		element = elements[i];
-		element.parentNode.removeChild(element);
+		removeElement(element);
 	}
 };
 

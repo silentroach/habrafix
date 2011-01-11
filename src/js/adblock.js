@@ -1,3 +1,18 @@
+var elements = document.querySelectorAll('#main-page > *');
+
+for (var i = 0; i < elements.length; i++) {
+	var element = elements[i];
+
+	if (
+		element.nodeName == 'DIV'
+		&& element.className == 'header'
+	) {
+		break;
+	}
+
+	removeElement(element);
+}
+
 var objects = document.querySelectorAll('object');
 
 for (var i = 0; i < objects.length; i++) {
