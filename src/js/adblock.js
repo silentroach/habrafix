@@ -1,4 +1,4 @@
-// óäàëÿåì âñå ýëåìåíòû â #main-page äî div.header
+// ÑƒÐ´Ð°Ð»ÑÐµÐ¼ Ð²ÑÐµ ÑÐ»ÐµÐ¼ÐµÐ½Ñ‚Ñ‹ Ð² #main-page Ð´Ð¾ div.header
 
 var elements = document.querySelectorAll('#main-page > *');
 
@@ -15,8 +15,8 @@ for (var i = 0; i < elements.length; i++) {
 	removeElement(element);
 }
 
-// ïîêàçûâàåì ðàíåå ñêðûòûå â css object, åñëè â íèõ íå ñîäåðæèòñÿ
-// ðîëèê ñ pink.habralab.*
+// Ð¿Ð¾ÐºÐ°Ð·Ñ‹Ð²Ð°ÐµÐ¼ Ñ€Ð°Ð½ÐµÐµ ÑÐºÑ€Ñ‹Ñ‚Ñ‹Ðµ Ð² css object, ÐµÑÐ»Ð¸ Ð² Ð½Ð¸Ñ… Ð½Ðµ ÑÐ¾Ð´ÐµÑ€Ð¶Ð¸Ñ‚ÑÑ
+// Ñ€Ð¾Ð»Ð¸Ðº Ñ pink.habralab.*
 
 var objects = document.querySelectorAll('object');
 
