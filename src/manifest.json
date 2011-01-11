@@ -2,6 +2,7 @@
 	"name" : "habrafix",
 	"description" : "Хабрахабр, только немного лучше",
 	"version" : "0.15",
+	"update_url" : "http://clients2.google.com/service/update2/crx",	
 	"icons" : {
 		"128" : "icons/128.png",
 		"64"  : "icons/64.png",
