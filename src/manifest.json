@@ -1,24 +1,25 @@
 {
-	"name"            : "habrafix",
-	"description"     : "Хабрахабр, только немного лучше",
-	"version"         : "0.15",
-	"icons"           : {
+	"name" : "habrafix",
+	"description" : "Хабрахабр, только немного лучше",
+	"version" : "0.15",
+	"icons" : {
 		"128" : "icons/128.png",
 		"64"  : "icons/64.png",
 		"48"  : "icons/48.png",
 		"32"  : "icons/32.png",
 		"16"  : "icons/16.png"
 	},
+	"options_page" : "options.html",
 	"content_scripts" : [ {
 		"matches" : [
 			"http://*.habrahabr.ru/",
 			"http://*.habrahabr.ru/*",
 			"http://habrahabr.ru/*"
 		],
-		"css"     : [
+		"css" : [
 			"css/main.css"
 		],
-		"js"      : [
+		"js" : [
 			"js/utils.js",
 			"js/adblock.js",
 			"js/cleaner.js",

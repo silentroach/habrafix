@@ -1,0 +1,15 @@
+body {
+	font-size: 10pt !important;
+}
+
+h1 {
+	font-size: 12pt;
+}
+
+fieldset {
+	padding: 1em;
+}
+
+#options {
+	width: 40%;
+}
