@@ -1,3 +1,5 @@
+// удаляем все элементы в #main-page до div.header
+
 var elements = document.querySelectorAll('#main-page > *');
 
 for (var i = 0; i < elements.length; i++) {
@@ -12,6 +14,9 @@ for (var i = 0; i < elements.length; i++) {
 
 	removeElement(element);
 }
+
+// показываем ранее скрытые в css object, если в них не содержится
+// ролик с pink.habralab.*
 
 var objects = document.querySelectorAll('object');
 

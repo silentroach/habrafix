@@ -1,14 +1,16 @@
+// удаление элемента
 var removeElement = function(element) {
 	element.parentNode.removeChild(element);
 }
 
+// найти элемент(ы) и удалить
 var seekAndDestroy = function(selector) {
 	var 
 		elements = document.querySelectorAll(selector),
 		element = null;
 
 	for (var i = 0; i < elements.length; i++) {
-		console.info('removed ' + selector);
+		//console.info('removed ' + selector);
 
 		element = elements[i];
 		removeElement(element);
