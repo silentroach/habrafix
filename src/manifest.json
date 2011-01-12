@@ -1,7 +1,7 @@
 {
 	"name" : "Habrafix",
 	"description" : "Хабрахабр, только немного лучше",
-	"version" : "0.15",
+	"version" : "0.16",
 	"update_url" : "http://clients2.google.com/service/update2/crx",	
 	"icons" : {
 		"128" : "icons/128.png",
@@ -10,7 +10,6 @@
 		"32"  : "icons/32.png",
 		"16"  : "icons/16.png"
 	},
-	"options_page" : "options.html",
 	"content_scripts" : [ {
 		"matches" : [
 			"http://*.habrahabr.ru/",
