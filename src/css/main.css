@@ -45,7 +45,3 @@ ul.hentry.collapsed {
 	li.comment_holder .expander {
 		margin-left: 1em;
 		}
-
-	li.comment_holder .unreg .expander {
-		margin-left: 0px;
-		}

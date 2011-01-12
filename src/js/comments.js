@@ -30,26 +30,29 @@ if (commentsElement) {
 			var clist = element.querySelector('ul.hentry');
 
 			if (!clist) {
-				// не нашли списка вложенных комментариев
+				// внезапно не нашли списка вложенных комментариев
 				return;
 			}
+			
+			// авторизованы или не (используется для отступа в ссылке раскрытия комментариев)?
+			var authorized = true;
 
 			// пробуем найти абзац с кнопкой "ответить"
 			var preply = element.querySelector('p.reply');
 
 			if (!preply) {
-				// если не нашли - значит мы не зарегистрированы,
-				// придется создать
+				// если не нашли - значит мы не авторизованы
+				authorized = false;
+				
+				// так что придется создать лишний блок в .entry-content
 				var ec = element.querySelector('div.entry-content');
 
 				if (!ec) {
 					return;
 				}
-
+				
 				preply = document.createElement('p');
 				preply['classList'].add('reply');
-				// для того, чтобы убрать отступ слева
-				preply['classList'].add('unreg');
 				ec.appendChild(preply);
 			}
 
@@ -70,11 +73,20 @@ if (commentsElement) {
 
 			if (collapse) {
 				var expanderElement = document.createElement('a');
+				
 				expanderElement.innerText = '+ развернуть ' + commentCount + ' ' + 
 					commentCount.plural(['ответ', 'ответа', 'ответов']);
-				expanderElement['classList'].add('js-serv');
-				expanderElement['classList'].add('expander');
+					
 				expanderElement.onclick = expandCommentsNode;
+				
+				// добавляем отступ, но только для авторизированных
+				// для остальных он не нужен - слева будет пусто
+				if (authorized) {
+					expanderElement['classList'].add('expander');
+				}
+				
+				// делаем ссылку похожей на ссылку "ответить"
+				expanderElement['classList'].add('js-serv');				
 
 				preply.appendChild(expanderElement);
 
