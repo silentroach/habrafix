@@ -94,7 +94,6 @@
 			// добавляем отступ, но только для авторизированных
 			// для остальных он не нужен - слева будет пусто
 			if (authorized) {
-				console.log('ololo');
 				expanderElement['classList'].add('expander');
 			}
 			
