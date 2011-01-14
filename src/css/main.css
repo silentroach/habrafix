@@ -42,6 +42,6 @@ ul.hentry.collapsed {
 	display: none;
 	}
 
-	li.comment_holder .expander {
+	li.comment_holder .expander.extra {
 		margin-left: 1em;
 		}

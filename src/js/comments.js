@@ -160,8 +160,10 @@
 			// добавляем отступ, но только для авторизированных
 			// для остальных он не нужен - слева будет пусто
 			if (authorized) {
-				expanderElement['classList'].add('expander');
+				expanderElement['classList'].add('extra');
 			}
+			
+			expanderElement['classList'].add('expander');
 			
 			// делаем ссылку похожей на ссылку "ответить"
 			expanderElement['classList'].add('js-serv');				
