@@ -23,7 +23,8 @@
 			"js/utils.js",
 			"js/adblock.js",
 			"js/cleaner.js",
-			"js/comments.js"
+			"js/comments.js",
+			"js/backup.js"
 		]
 	} ]
 }
