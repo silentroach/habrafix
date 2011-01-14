@@ -36,12 +36,12 @@ object {
 .entry-info-wrap .informative {
 	margin-left: -18px !important;
 	}
+	
+.hf_extra_left {
+	margin-left: 1em;
+}
 
 /* скрытые комментарии */
-ul.hentry.collapsed {
+ul.hentry.hf_collapsed {
 	display: none;
 	}
-
-	li.comment_holder .expander.extra {
-		margin-left: 1em;
-		}

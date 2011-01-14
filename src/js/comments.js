@@ -1,6 +1,9 @@
 ( function() {
 
-	var commentsElement = document.querySelector('#comments');
+	var 
+		commentsElement = document.querySelector('#comments'),
+		hiddenCommentsCount = 0,
+		expandAllElement = null;
 
 	// отрабатываем ветку только если на странице есть комментарии
 	if (!commentsElement) {
@@ -46,26 +49,23 @@
 		
 		var list = element.querySelector('ul.hentry');
 		
-		if (list) {
-		console.info(list['classList']);
-		}
-
 		// если вложенные комментарии уже раскрыты, то все ок
 		if (
 			!list
-			|| !list['classList'].contains('collapsed')
+			|| !list['classList'].contains('hf_collapsed')
 		) {
 			if (id in commentParents) {
 				delete commentParents[id];
+				--hiddenCommentsCount;
 			}
 		
 			return false;
 		}
 		
-		var expander = element.querySelector('.expander');
+		var expander = element.querySelector('.hf_expander');
 		
 		// раскрываем список
-		list['classList'].remove('collapsed');
+		list['classList'].remove('hf_collapsed');
 		
 		// удаляем разворачиватель
 		if (expander) {
@@ -78,6 +78,15 @@
 			
 			// приберемся за собой немного
 			delete commentParents[id];
+			--hiddenCommentsCount;
+		}
+		
+		if (
+			expandAllElement
+			&& hiddenCommentsCount == 0
+		) {
+			expandAllElement.parentNode.removeChild(expandAllElement);
+			expandAllElement = null;
 		}
 	};
 	
@@ -89,6 +98,34 @@
 		if (id) {
 			expandCommentsNode(id);
 		}		
+	}
+	
+	// раскрываем все ветки обсуждений
+	var expandAll = function() {
+		// раскрываем все списки
+		var collapsed = document.querySelectorAll('.hf_collapsed');
+		
+		for (var i = 0; i < collapsed.length; i++) {
+			var element = collapsed[i];
+			
+			element['classList'].remove('hf_collapsed');
+		}
+		
+		// убираем все раскрыватели
+		var expanders = document.querySelectorAll('.hf_expander');
+		
+		for (var i = 0; i < expanders.length; i++) {
+			var element = expanders[i];
+			
+			element.parentNode.removeChild(element);
+		}		
+		
+		// скрываем ссылку для разворота
+		expandAllElement.parentNode.removeChild(expandAllElement);		
+		
+		// обнуляем служебное
+		hiddenCommentsCount = 0;
+		delete commentParents;
 	}
 
 	// подготавливаем ветку
@@ -103,6 +140,7 @@
 			&& parentId
 		) {
 			commentParents[id] = parentId;
+			++hiddenCommentsCount;
 		}
 	
 		// ищем вложенные комментарии, без них нет смысла продолжать выполнение
@@ -160,17 +198,17 @@
 			// добавляем отступ, но только для авторизированных
 			// для остальных он не нужен - слева будет пусто
 			if (authorized) {
-				expanderElement['classList'].add('extra');
+				expanderElement['classList'].add('hf_extra_left');
 			}
 			
-			expanderElement['classList'].add('expander');
+			expanderElement['classList'].add('hf_expander');
 			
 			// делаем ссылку похожей на ссылку "ответить"
 			expanderElement['classList'].add('js-serv');				
 
 			preply.appendChild(expanderElement);
 
-			clist['classList'].add('collapsed');
+			clist['classList'].add('hf_collapsed');
 		}
 	}
 
@@ -199,5 +237,20 @@
 	hashExpand();
 	
 	//window.onhashchange = hashExpand;	
+	
+	// есть сложенные комментарии? тогда покажем ссылку "развернуть все"
+	if (hiddenCommentsCount > 0) {
+		var headerElement = commentsElement.querySelector('.comments-header');
+		
+		if (headerElement) {
+			expandAllElement = document.createElement('a');
+			expandAllElement['classList'].add('js-serv');
+			expandAllElement['classList'].add('hf_extra_left');
+			expandAllElement.innerText = 'развернуть все';
+			expandAllElement.onclick = expandAll;
+			
+			headerElement.appendChild(expandAllElement);
+		}
+	}
 
 } )();
