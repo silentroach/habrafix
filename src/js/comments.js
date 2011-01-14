@@ -23,25 +23,92 @@
 		return;
 	}
 	
-	// раскрываем ветку
-	var expandCommentsNode = function() {
-		var top = this.parentNode;
-
-		var ul = top.parentNode.parentNode.querySelector('ul.hentry.collapsed');
-
-		if (ul) {
-			ul['classList'].remove('collapsed');
+	// предки комментариев
+	var commentParents = {};
+	
+	var extractCommentId = function(element) {
+		var tmp = element.id.match(/(\d+)/g);
+		
+		if (!tmp) {
+			return false;
+		}
+		
+		return tmp[0];
+	}
+	
+	// раскрываем ветку по идентификатору
+	var expandCommentsNode = function(id) {
+		var element = commentsElement.querySelector('#comment_' + id);
+		
+		if (!element) {
+			return false;
+		}
+		
+		var list = element.querySelector('ul.hentry');
+		
+		if (list) {
+		console.info(list['classList']);
 		}
 
-		top.removeChild(this);
+		// если вложенные комментарии уже раскрыты, то все ок
+		if (
+			!list
+			|| !list['classList'].contains('collapsed')
+		) {
+			if (id in commentParents) {
+				delete commentParents[id];
+			}
+		
+			return false;
+		}
+		
+		var expander = element.querySelector('.expander');
+		
+		// раскрываем список
+		list['classList'].remove('collapsed');
+		
+		// удаляем разворачиватель
+		if (expander) {
+			expander.parentNode.removeChild(expander);
+		}
+	
+		// проверяем предков
+		if (id in commentParents) {
+			expandCommentsNode(commentParents[id]);
+			
+			// приберемся за собой немного
+			delete commentParents[id];
+		}
 	};
+	
+	// раскрываем ветку
+	var onExpandCommentClick = function() {
+		// FIXME опасносте, три parent'а
+		var id = extractCommentId(this.parentNode.parentNode.parentNode);
+		
+		if (id) {
+			expandCommentsNode(id);
+		}		
+	}
 
 	// подготавливаем ветку
-	var prepareCommentsTree = function(element, collapse) {
+	var prepareCommentsTree = function(element, parentId) {
+		// ищем идентификатор комментария
+		var id  = extractCommentId(element);	
+		
+		// если у нас есть идентификатор и идентификатор предка,
+		// то добавляем это дело в хэш
+		if (
+			id
+			&& parentId
+		) {
+			commentParents[id] = parentId;
+		}
+	
+		// ищем вложенные комментарии, без них нет смысла продолжать выполнение
 		var clist = element.querySelector('ul.hentry');
 
 		if (!clist) {
-			// не нашли списка вложенных комментариев
 			return;
 		}
 		
@@ -77,19 +144,18 @@
 			if (node.nodeName === 'LI') {
 				++commentCount;
 
-				// рекурсия - вложенные комментарии тоже нужно
-				// сложить
-				prepareCommentsTree(node, true);
+				// рекурсия - вложенные комментарии тоже нужно сложить
+				prepareCommentsTree(node, id);
 			}
 		}
 
-		if (collapse) {
+		if (element != commentsElement) {
 			var expanderElement = document.createElement('a');
 			
 			expanderElement.innerText = '+ развернуть ' + commentCount + ' ' + 
 				commentCount.plural(['ответ', 'ответа', 'ответов']);
 				
-			expanderElement.onclick = expandCommentsNode;
+			expanderElement.onclick = onExpandCommentClick;
 			
 			// добавляем отступ, но только для авторизированных
 			// для остальных он не нужен - слева будет пусто
@@ -107,5 +173,29 @@
 	}
 
 	prepareCommentsTree(commentsElement, false);
+	
+	// функция для раскрытия комментария, если мы переходим к нему по хэшу
+	var hashExpand = function() {
+		var 
+			hash = location.hash,
+			tmp = hash.match(/(\d+)/g);
+		
+		if (!tmp) {
+			return;
+		}
+		
+		var id = tmp[0];
+		
+		if (id in commentParents) {
+			expandCommentsNode(commentParents[id]);
+		}
+		
+		// передергиваем location для того чтобы перейти к комментарию
+		location = location;
+	}
+	
+	hashExpand();
+	
+	//window.onhashchange = hashExpand;	
 
 } )();
