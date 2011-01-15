@@ -5,7 +5,7 @@
 		tforms = [];
 	
 	var storagePath = function(element) {
-		return location.pathname + '#' + element.name;
+		return 'backup_' + location.pathname + '#' + element.name;
 	}
 	
 	for (var i = 0; i < textareas.length; i++) {
