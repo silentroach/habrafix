@@ -31,9 +31,11 @@
 	// для выхода из режима печати используем кнопку Esc
 	document.onkeydown = function(e) {
 		if (
-			e.keyCode = 27
+			e.keyCode == 27
 			&& h.utils.hasClass(body, 'hf_printmode')
 		) {
+			console.dir(e);
+
 			togglePrintMode();
 		}
 	};
