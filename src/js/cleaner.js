@@ -1,5 +1,9 @@
-// чистим dom от уже скрытых в css элементов
-seekAndDestroy('#sidebar');
+( function(h) {
 
-// будто и не было, правда?
-seekAndDestroy('.vote_minus');
+	// чистим dom от уже скрытых в css элементов
+	h.utils.seekAndDestroy('#sidebar');
+
+	// будто и не было, правда?
+	h.utils.seekAndDestroy('.vote_minus');
+	
+} )(habrafix);

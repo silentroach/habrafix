@@ -1,7 +1,7 @@
-( function() {
+( function(h) {
 
 	// функция печати должна быть доступна только из топика
-	if (!location.pathname.match(/^\/blogs/)) {
+	if (!location.pathname.match(/\/blog[s\/|\/]/)) {
 		return;
 	}
 
@@ -10,15 +10,15 @@
 		place = document.querySelector('.entry-info .twitter');
 
 	var togglePrintMode = function() {
-		toggleClass(body, 'hf_printmode');
+		h.utils.toggleClass(body, 'hf_printmode');
 
-		if (hasClass(body, 'hf_printmode')) {
+		if (h.utils.hasClass(body, 'hf_printmode')) {
 			window.scroll(0, 0);
 		}
 	};
 
 	var printDiv = document.createElement('div');
-	addClass(printDiv, 'hf_print');
+	h.utils.addClass(printDiv, 'hf_print');
 
 	var printLink = document.createElement('a');
 	printLink.title = 'распечатать';
@@ -32,10 +32,10 @@
 	document.onkeydown = function(e) {
 		if (
 			e.keyCode = 27
-			&& hasClass(body, 'hf_printmode')
+			&& h.utils.hasClass(body, 'hf_printmode')
 		) {
 			togglePrintMode();
 		}
 	};
 
-} )();
+} )(habrafix);

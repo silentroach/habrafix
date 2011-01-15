@@ -1,4 +1,4 @@
-( function() {
+( function(h) {
 
 	var 
 		textareas = document.querySelectorAll('textarea[name]'),
@@ -45,4 +45,4 @@
 	
 	delete tforms;
 
-} )();
+} )(habrafix);

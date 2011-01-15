@@ -7,7 +7,8 @@ body.hf_printmode #xsidebar,
 body.hf_printmode ul.tags, 
 body.hf_printmode .entry-info,
 body.hf_printmode #comments,
-body.hf_printmode #footer {
+body.hf_printmode #footer,
+body.hf_printmode .profile-header {
 	display: none;
 	}
 

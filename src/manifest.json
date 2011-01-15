@@ -21,6 +21,7 @@
 			"css/print.css"
 		],
 		"js" : [
+			"js/init.js",
 			"js/utils.js",
 			"js/adblock.js",
 			"js/cleaner.js",

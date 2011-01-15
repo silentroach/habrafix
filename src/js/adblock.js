@@ -1,50 +1,54 @@
-// удаляем все элементы в #main-page до div.header
+( function(h) {
 
-var elements = document.querySelectorAll('#main-page > *');
+	// удаляем все элементы в #main-page до div.header
 
-for (var i = 0; i < elements.length; i++) {
-	var element = elements[i];
+	var elements = document.querySelectorAll('#main-page > *');
 
-	if (
-		element.nodeName == 'DIV'
-		&& element.className == 'header'
-	) {
-		break;
+	for (var i = 0; i < elements.length; i++) {
+		var element = elements[i];
+
+		if (
+			element.nodeName == 'DIV'
+			&& element.className == 'header'
+		) {
+			break;
+		}
+
+		h.utils.removeElement(element);
 	}
 
-	removeElement(element);
-}
+	// показываем ссылки, если они не на pink.habralab
 
-// показываем ссылки, если они не на pink.habralab
+	var links = document.querySelectorAll('a[target=_top]');
 
-var links = document.querySelectorAll('a[target=_top]');
+	for (var i = 0; i < links.length; i++) {
+		var link = links[i];
 
-for (var i = 0; i < links.length; i++) {
-	var link = links[i];
-
-	if (!link.href.match(/http:\/\/pink.habralab/)) {
-		link.style.display = 'block';
-	} else {
-		removeElement(link);
+		if (!link.href.match(/http:\/\/pink.habralab/)) {
+			h.utils.show(link);
+		} else {
+			h.utils.removeElement(link);
+		}
 	}
-}
 
-// показываем ранее скрытые в css object, если в них не содержится
-// ролик с pink.habralab.*
+	// показываем ранее скрытые в css object, если в них не содержится
+	// ролик с pink.habralab.*
 
-var objects = document.querySelectorAll('object');
+	var objects = document.querySelectorAll('object');
 
-for (var i = 0; i < objects.length; i++) {
-	var obj = objects[i];
+	for (var i = 0; i < objects.length; i++) {
+		var obj = objects[i];
 
-	var embed = obj.querySelector('embed[src]');
+		var embed = obj.querySelector('embed[src]');
 
-	if (
-		!embed
-		|| !embed.src.match(/http:\/\/pink.habralab/)
-	) {
-		obj.style.display = 'block';
-	} else {
-		removeElement(obj);
+		if (
+			!embed
+			|| !embed.src.match(/http:\/\/pink.habralab/)
+		) {
+			h.utils.show(obj);
+		} else {
+			h.utils.removeElement(obj);
+		}
 	}
-}
+
+} )(habrafix);

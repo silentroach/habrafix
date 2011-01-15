@@ -1,4 +1,4 @@
-( function() {
+( function(h) {
 
 	var 
 		commentsElement = document.querySelector('#comments'),
@@ -52,7 +52,7 @@
 		// если вложенные комментарии уже раскрыты, то все ок
 		if (
 			!list
-			|| !hasClass(list, 'hf_collapsed')
+			|| !h.utils.hasClass(list, 'hf_collapsed')
 		) {
 			if (id in commentParents) {
 				delete commentParents[id];
@@ -65,7 +65,7 @@
 		var expander = element.querySelector('.hf_expander');
 		
 		// раскрываем список
-		removeClass(list, 'hf_collapsed');
+		h.utils.removeClass(list, 'hf_collapsed');
 		
 		// удаляем разворачиватель
 		if (expander) {
@@ -108,7 +108,7 @@
 		for (var i = 0; i < collapsed.length; i++) {
 			var element = collapsed[i];
 			
-			removeClass(element, 'hf_collapsed');
+			h.utils.removeClass(element, 'hf_collapsed');
 		}
 		
 		// убираем все раскрыватели
@@ -169,7 +169,7 @@
 			}
 			
 			preply = document.createElement('p');
-			addClass(preply, 'reply');
+			h.utils.addClass(preply, 'reply');
 			ec.appendChild(preply);
 		}
 
@@ -191,24 +191,24 @@
 			var expanderElement = document.createElement('a');
 			
 			expanderElement.innerText = '+ развернуть ' + commentCount + ' ' + 
-				commentCount.plural(['ответ', 'ответа', 'ответов']);
+				h.utils.getPluralForm(commentCount, ['ответ', 'ответа', 'ответов']);
 				
 			expanderElement.onclick = onExpandCommentClick;
 			
 			// добавляем отступ, но только для авторизированных
 			// для остальных он не нужен - слева будет пусто
 			if (authorized) {
-				addClass(expanderElement, 'hf_extra_left');
+				h.utils.addClass(expanderElement, 'hf_extra_left');
 			}
 			
-			addClass(expanderElement, 'hf_expander');
+			h.utils.addClass(expanderElement, 'hf_expander');
 			
 			// делаем ссылку похожей на ссылку "ответить"
-			addClass(expanderElement, 'js-serv');				
+			h.utils.addClass(expanderElement, 'js-serv');				
 
 			preply.appendChild(expanderElement);
 
-			addClass(clist, 'hf_collapsed');
+			h.utils.addClass(clist, 'hf_collapsed');
 		}
 	}
 
@@ -247,8 +247,8 @@
 		
 		if (headerElement) {
 			expandAllElement = document.createElement('a');
-			addClass(expandAllElement, 'js-serv');
-			addClass(expandAllElement, 'hf_extra_left');
+			h.utils.addClass(expandAllElement, 'js-serv');
+			h.utils.addClass(expandAllElement, 'hf_extra_left');
 			expandAllElement.innerText = 'развернуть все';
 			expandAllElement.onclick = expandAll;
 			
@@ -256,4 +256,4 @@
 		}
 	}
 
-} )();
+} )(habrafix);
