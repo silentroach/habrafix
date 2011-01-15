@@ -5,6 +5,9 @@ define('DS', DIRECTORY_SEPARATOR);
 $root = dirname(__FILE__) . DS . 'src' . DS;
 $toolspath = dirname($root) . DS . 'tools' . DS;
 
+$tmppath = sys_get_temp_dir() . DS . 'habrafix' . DS;
+mkdir($tmppath);
+
 if ('' == exec('find ' . escapeshellarg($toolspath) . ' -name gcc.jar')) {
 	echo "Tools not found. Preparing...\n";
 
@@ -25,12 +28,20 @@ $manifestObject = json_decode($manifest, true);
 $scripts =& $manifestObject['content_scripts'][0];
 
 $compiler = 'java -jar ' . $path_yui;
+
+$cssContent = '';
 foreach($scripts['css'] as $css) {
-	$compiler .= ' ' . escapeshellarg($root . $css);
+	$cssContent .= file_get_contents($root . $css);
 }
+
+file_put_contents($tmppath . 'temp.css', $cssContent);
+
+$compiler .= ' ' . escapeshellarg($tmppath . 'temp.css');
 
 echo "Compressing .css\n";
 $css = shell_exec($compiler);
+
+unlink($tmppath . 'temp.css');
 
 $compiler = 'java -jar ' . $path_gcc . ' --compilation_level ADVANCED_OPTIMIZATIONS ' .
 	'--warning_level QUIET';
@@ -44,9 +55,6 @@ $js = shell_exec($compiler);
 
 $scripts['js']  = array('habrafix.js');
 $scripts['css'] = array('habrafix.css');
-
-$tmppath = sys_get_temp_dir() . DS . 'habrafix' . DS;
-mkdir($tmppath);
 
 $manifestOut = json_encode($manifestObject);
 $manifestOut = str_replace('\/', '/', $manifestOut);

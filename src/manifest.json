@@ -1,7 +1,7 @@
 {
 	"name" : "Habrafix",
 	"description" : "Хабрахабр, только немного лучше",
-	"version" : "0.19",
+	"version" : "0.20",
 	"update_url" : "http://clients2.google.com/service/update2/crx",	
 	"icons" : {
 		"128" : "icons/128.png",
@@ -17,14 +17,16 @@
 			"http://habrahabr.ru/*"
 		],
 		"css" : [
-			"css/main.css"
+			"css/main.css",
+			"css/print.css"
 		],
 		"js" : [
 			"js/utils.js",
 			"js/adblock.js",
 			"js/cleaner.js",
 			"js/comments.js",
-			"js/backup.js"
+			"js/backup.js",
+			"js/print.js"
 		]
 	} ]
 }

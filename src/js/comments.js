@@ -52,7 +52,7 @@
 		// если вложенные комментарии уже раскрыты, то все ок
 		if (
 			!list
-			|| !list['classList'].contains('hf_collapsed')
+			|| !hasClass(list, 'hf_collapsed')
 		) {
 			if (id in commentParents) {
 				delete commentParents[id];
@@ -65,7 +65,7 @@
 		var expander = element.querySelector('.hf_expander');
 		
 		// раскрываем список
-		list['classList'].remove('hf_collapsed');
+		removeClass(list, 'hf_collapsed');
 		
 		// удаляем разворачиватель
 		if (expander) {
@@ -108,7 +108,7 @@
 		for (var i = 0; i < collapsed.length; i++) {
 			var element = collapsed[i];
 			
-			element['classList'].remove('hf_collapsed');
+			removeClass(element, 'hf_collapsed');
 		}
 		
 		// убираем все раскрыватели
@@ -169,7 +169,7 @@
 			}
 			
 			preply = document.createElement('p');
-			preply['classList'].add('reply');
+			addClass(preply, 'reply');
 			ec.appendChild(preply);
 		}
 
@@ -198,17 +198,17 @@
 			// добавляем отступ, но только для авторизированных
 			// для остальных он не нужен - слева будет пусто
 			if (authorized) {
-				expanderElement['classList'].add('hf_extra_left');
+				addClass(expanderElement, 'hf_extra_left');
 			}
 			
-			expanderElement['classList'].add('hf_expander');
+			addClass(expanderElement, 'hf_expander');
 			
 			// делаем ссылку похожей на ссылку "ответить"
-			expanderElement['classList'].add('js-serv');				
+			addClass(expanderElement, 'js-serv');				
 
 			preply.appendChild(expanderElement);
 
-			clist['classList'].add('hf_collapsed');
+			addClass(clist, 'hf_collapsed');
 		}
 	}
 
@@ -244,8 +244,8 @@
 		
 		if (headerElement) {
 			expandAllElement = document.createElement('a');
-			expandAllElement['classList'].add('js-serv');
-			expandAllElement['classList'].add('hf_extra_left');
+			addClass(expandAllElement, 'js-serv');
+			addClass(expandAllElement, 'hf_extra_left');
 			expandAllElement.innerText = 'развернуть все';
 			expandAllElement.onclick = expandAll;
 			

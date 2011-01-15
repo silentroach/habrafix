@@ -10,12 +10,34 @@ var seekAndDestroy = function(selector) {
 		element = null;
 
 	for (var i = 0; i < elements.length; i++) {
-		//console.info('removed ' + selector);
-
 		element = elements[i];
 		removeElement(element);
 	}
 };
+
+var hasClass = function(element, className) {
+	return element['classList'].contains(className);
+}
+
+var removeClass = function(element, className) {
+	if (hasClass(element, className)) {
+		element['classList'].remove(className);
+	}
+}
+
+var addClass = function(element, className) {
+	if (!hasClass(element, className)) {
+		element['classList'].add(className);
+	}
+}
+
+var toggleClass = function(element, className) {
+	if (hasClass(element, className)) {
+		removeClass(element, className);
+	} else {
+		addClass(element, className);
+	}
+}
 
 // [яблоко, яблока, яблок]
 Number.prototype.plural = function(endings) {

@@ -1,0 +1,46 @@
+/* режим печати */
+body.hf_printmode .header,
+body.hf_printmode .page-navigation,
+body.hf_printmode .yandex-direct,
+body.hf_printmode #viva-la-w3c,
+body.hf_printmode #xsidebar,
+body.hf_printmode ul.tags, 
+body.hf_printmode .entry-info,
+body.hf_printmode #comments,
+body.hf_printmode #footer {
+	display: none;
+	}
+
+body.hf_printmode h2.entry-title,
+body.hf_printmode h2.single-entry-title {
+	padding-left: 0px !important;
+	padding-right: 0px !important;
+	}
+
+body.hf_printmode #wrapper {
+	width: 100% !important;
+	}
+
+body.hf_printmode .hentry {
+	margin-bottom: 1em !important;
+	padding-left: 1em !important;
+	}
+
+	body.hf_printmode .hentry .content {
+		margin-bottom: 0px !important;
+		margin-left: 0px !important;
+		}
+
+/* значок */
+.entry-info .hf_print {
+	width: 12px;
+	}
+
+	/* спасибо Turbomilk за iconza.com */
+	.entry-info .hf_print a {
+		background-image: url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAABt0lEQVQ4jZWTS0sCUQCFB9z1B/pJ/Y+ijdBzUstoEfagNHpZYZRBRRZFNWq2SRFbaCG4UHcamGEWmpM6bk9zLhRok9CFA8M933fncueOJHUMi9WWWttwwyjsOvlfY2FxCaXSK97e31GtVqGqn2g0GtA0Dez+FGWLLbW6vgn79IyAW62WCJ+bzSY+63XRkSH7a4FZxzyulACGR8ZQ1+FarYZKpYJyuYzn4gvyT0+iI0O2TY5EIr3yhBVHxz70DwwinkggFrvHXTiMm9AtLq+uceI7FR0ZsnR+ZH8gUNz3HuD84hLbO7tdQ2Zv3ws6YpFrRSnG4wmxXVVVxRu6hQxZOnQl3+kZcrkcCoWCfvolHB4eQ5YthmFHhiwduhK3ns1mkU6nkclkRJHP5w3DjgxZOnQl99Y2ksmkfmixf4UOXcnpciEajSIYDEJRFJjN5q4hQ5YOXWnZ6ap59a2EQiGRAf1TJR4eDcPum6NDV/L7/X0Ox5w6ZZ8GMzQ8iurHB/T5tnCO3TdHh27bhfJ4POu2Sbu4wp0LcI6dzvj+/B9MJlMPr6mmtQzDjkzXv3FsXE45V1ZhFHad/BdNsHEK05f/ZAAAAABJRU5ErkJggg==);
+		display: inline-block;
+		height: 16px;
+		width: 16px;
+		cursor: pointer;
+		}

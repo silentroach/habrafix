@@ -24,6 +24,8 @@ for (var i = 0; i < links.length; i++) {
 
 	if (!link.href.match(/http:\/\/pink.habralab/)) {
 		link.style.display = 'block';
+	} else {
+		removeElement(link);
 	}
 }
 
@@ -42,5 +44,7 @@ for (var i = 0; i < objects.length; i++) {
 		|| !embed.src.match(/http:\/\/pink.habralab/)
 	) {
 		obj.style.display = 'block';
+	} else {
+		removeElement(obj);
 	}
 }
