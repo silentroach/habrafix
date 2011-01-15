@@ -22,12 +22,15 @@
 		],
 		"js" : [
 			"js/init.js",
+			"js/user.js",
+			"js/options.js",
 			"js/utils.js",
 			"js/adblock.js",
 			"js/cleaner.js",
 			"js/comments.js",
 			"js/backup.js",
-			"js/print.js"
+			"js/print.js",
+			"js/debug.js"
 		]
 	} ]
 }

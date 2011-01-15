@@ -10,16 +10,33 @@ habrafix.utils = ( function() {
 			element.parentNode.removeChild(element);
 		},
 
-		// найти элемент(ы) и удалить
-		seekAndDestroy: function(selector) {
+		// найти и что-то сделать с элементами
+		seekAndCallback: function(selector, callback) {
 			var 
 				elements = document.querySelectorAll(selector),
 				element = null;
 
 			for (var i = 0; i < elements.length; i++) {
-				element = elements[i];
-				this.removeElement(element);
-			}
+				callback(elements[i]);
+			}			
+		},
+
+		// найти элемент(ы) и удалить
+		seekAndDestroy: function(selector) {
+			var utils = this;
+		
+			utils.seekAndCallback(selector, function(element) {
+				utils.removeElement(element);
+			} );
+		},
+		
+		// найти элемент(ы) и показать
+		seekAndShow: function(selector) {
+			var utils = this;
+		
+			utils.seekAndCallback(selector, function(element) {
+				utils.show(element);
+			} );
 		},
 		
 		// скрываем элемент

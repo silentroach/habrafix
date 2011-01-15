@@ -47,6 +47,11 @@ $compiler = 'java -jar ' . $path_gcc . ' --compilation_level ADVANCED_OPTIMIZATI
 	'--warning_level QUIET';
 
 foreach($scripts['js'] as $js) {
+	if ($js == 'js/debug.js') {
+		continue;
+	}
+
+	echo $js . "\n";
 	$compiler .= ' --js ' . escapeshellarg($root . $js);
 }
 
