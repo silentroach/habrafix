@@ -231,7 +231,10 @@
 		}
 		
 		// передергиваем location для того чтобы перейти к комментарию
-		location = location;
+		// с небольшой вынужденной задержкой
+		setTimeout( function() {
+			location = location;
+		}, 200);
 	}
 	
 	hashExpand();
