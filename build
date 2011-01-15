@@ -51,7 +51,6 @@ foreach($scripts['js'] as $js) {
 		continue;
 	}
 
-	echo $js . "\n";
 	$compiler .= ' --js ' . escapeshellarg($root . $js);
 }
 
