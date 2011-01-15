@@ -234,7 +234,7 @@
 		// с небольшой вынужденной задержкой
 		setTimeout( function() {
 			location = location;
-		}, 200);
+		}, 100);
 	}
 	
 	hashExpand();
