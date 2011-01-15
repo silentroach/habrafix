@@ -34,8 +34,6 @@
 			e.keyCode == 27
 			&& h.utils.hasClass(body, 'hf_printmode')
 		) {
-			console.dir(e);
-
 			togglePrintMode();
 		}
 	};
