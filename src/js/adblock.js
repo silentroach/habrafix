@@ -15,6 +15,18 @@ for (var i = 0; i < elements.length; i++) {
 	removeElement(element);
 }
 
+// показываем ссылки, если они не на pink.habralab
+
+var links = document.querySelectorAll('a[target=_top]');
+
+for (var i = 0; i < links.length; i++) {
+	var link = links[i];
+
+	if (!link.href.match(/http:\/\/pink.habralab/)) {
+		link.style.display = 'block';
+	}
+}
+
 // показываем ранее скрытые в css object, если в них не содержится
 // ролик с pink.habralab.*
 

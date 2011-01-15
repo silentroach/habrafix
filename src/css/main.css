@@ -4,6 +4,10 @@ object {
 	display: none;
 	}
 
+a[target=_top] {
+	display: none;
+	}
+
 /* поднимаем логотип */
 .header .logo {
 	margin-top: -50px !important;
