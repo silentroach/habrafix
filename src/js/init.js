@@ -1,9 +1,15 @@
 var habrafix = ( function() {
 
-	var habraElement = document.querySelector('a.habrauser');
+	var 
+		habraElement = document.querySelector('a.habrauser'),
+		userName = habraElement ? habraElement.innerHTML : false;
+
+	if (userName) {
+		localStorage.setItem('user', userName);
+	}
 
 	return {
-		user: habraElement ? habraElement.innerHTML : false
+		user: userName
 	};
 	
 } )();
