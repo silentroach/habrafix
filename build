@@ -3,10 +3,21 @@
 
 define('DS', DIRECTORY_SEPARATOR);
 $root = dirname(__FILE__) . DS . 'src' . DS;
+$toolspath = dirname($root) . DS . 'tools' . DS;
+
+if ('' == exec('find ' . escapeshellarg($toolspath) . ' -name gcc.jar')) {
+	echo "Tools not found. Preparing...\n";
+
+	$cwd = getcwd();
+	chdir($toolspath);
+	system('./prepare');
+	chdir($cwd);
+}
 
 $path_gcc    = escapeshellarg(trim(`find ./ -name 'gcc.jar'`));
 $path_yui    = escapeshellarg(trim(`find ./ -name 'yui.jar'`));
 
+echo "Parsing manifest.json\n";
 $manifest = file_get_contents($root . 'manifest.json');
 
 $manifestObject = json_decode($manifest, true);
@@ -18,6 +29,7 @@ foreach($scripts['css'] as $css) {
 	$compiler .= ' ' . escapeshellarg($root . $css);
 }
 
+echo "Compressing .css\n";
 $css = shell_exec($compiler);
 
 $compiler = 'java -jar ' . $path_gcc . ' --compilation_level ADVANCED_OPTIMIZATIONS ' .
@@ -27,6 +39,7 @@ foreach($scripts['js'] as $js) {
 	$compiler .= ' --js ' . escapeshellarg($root . $js);
 }
 
+echo "Compressing .js\n";
 $js = shell_exec($compiler);
 
 $scripts['js']  = array('habrafix.js');
@@ -48,9 +61,12 @@ $cwd = getcwd();
 
 chdir($tmppath);
 
+echo "Compressing extension\n";
 $cmd = 'zip -9 -r ' . escapeshellarg($cwd . DS . 'ext.zip') . ' ./';
 shell_exec($cmd);
 
 chdir($cwd);
 
 shell_exec('rm -rf ' . escapeshellarg($tmppath));
+
+echo "Done\n";
