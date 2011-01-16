@@ -1,1 +1,3 @@
-var habrafix = {};
+var habrafix = {
+	name: 'habrafix'
+};

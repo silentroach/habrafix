@@ -10,6 +10,7 @@
 		"32"  : "icons/32.png",
 		"16"  : "icons/16.png"
 	},
+	"background_page" : "background.html",
 	"content_scripts" : [ {
 		"matches" : [
 			"http://*.habrahabr.ru/",
@@ -19,7 +20,8 @@
 		"css" : [
 			"css/main.css",
 			"css/comments.css",
-			"css/print.css"
+			"css/print.css",
+			"css/tags.css"
 		],
 		"js" : [
 			"js/init.js",
@@ -31,7 +33,13 @@
 			"js/comments.js",
 			"js/backup.js",
 			"js/print.js",
+			"js/contags.js",
 			"js/debug.js"
 		]
-	} ]
+	} ],
+	"permissions": [
+		"contextMenus",
+		"unlimitedStorage",
+		"notifications"
+	]
 }

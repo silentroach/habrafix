@@ -1,0 +1,9 @@
+a[rel=tag].hf_subscribed {
+	background-color: #d1f4b7;
+	padding: 6px;
+	}
+	
+.hentry.hf_subscribed {
+	border-left: 2px solid #d1f4b7;
+	margin-left: -2px;
+	}
