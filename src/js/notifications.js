@@ -7,6 +7,7 @@ habrafix.notify = function(title, description) {
 
 	notification.show();
 
+	// скрываем уведомление через 3 секунды после его появления
 	setTimeout( function() {
 		if (notification) {
 			notification.cancel();

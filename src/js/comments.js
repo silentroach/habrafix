@@ -1,5 +1,10 @@
 ( function(h) {
 
+	// отрабатываем только на странице с топиком
+	if (!h.location.topic) {
+		return;
+	}
+
 	var 
 		commentsElement = document.querySelector('#comments'),
 		hiddenCommentsCount = 0,

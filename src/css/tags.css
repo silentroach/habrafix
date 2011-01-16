@@ -4,7 +4,19 @@ a[rel=tag].hf_subscribed {
 	padding: 6px;
 	}
 	
+a[rel=tag].hf_tag {
+	background: #fff url(/i/bg-tags2.gif) no-repeat 0 50%;
+	padding-left: 16px;
+	font: normal normal normal 92.4%/1.5em arial;
+	color: #666;
+	}
+	
 .hentry.hf_subscribed {
 	border-left: 2px solid #d1f4b7;
 	margin-left: -2px;
 	}
+	
+.hf_taglist li {
+	display: inline-block;
+	margin-right: 1em;
+}

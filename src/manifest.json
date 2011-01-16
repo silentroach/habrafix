@@ -1,7 +1,7 @@
 {
 	"name" : "Habrafix",
 	"description" : "Хабрахабр, только немного лучше",
-	"version" : "0.26",
+	"version" : "0.27",
 	"update_url" : "http://clients2.google.com/service/update2/crx",	
 	"icons" : {
 		"128" : "icons/128.png",
@@ -26,6 +26,7 @@
 		"js" : [
 			"js/init.js",
 			"js/user.js",
+			"js/location.js",
 			"js/options.js",
 			"js/utils.js",
 			"js/adblock.js",

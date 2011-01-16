@@ -1,7 +1,7 @@
 ( function(h) {
 
 	// функция печати должна быть доступна только из топика
-	if (!location.pathname.match(/\/blog[s\/|\/]/)) {
+	if (!h.location.topic) {
 		return;
 	}
 
