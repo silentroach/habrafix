@@ -62,8 +62,6 @@ habrafix.tags = ( function(h) {
 
 					callback(tags);
 				} );
-			}, function(e) {
-				console.dir(e);
 			} );
 		}
 	};
