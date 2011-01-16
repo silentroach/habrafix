@@ -199,7 +199,8 @@
 				return;
 			}
 			
-			ec.appendChild(preplyBase.cloneNode());
+			preply = preplyBase.cloneNode();
+			ec.appendChild(preply);
 		}
 
 		// счетчик вложенных комментариев
