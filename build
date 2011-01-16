@@ -56,6 +56,10 @@ foreach($scripts['js'] as $js) {
 	$compiler .= ' --js ' . escapeshellarg($root . $js);
 }
 
+foreach($externs as $extern) {
+	$compiler .= ' --externs ' . escapeshellarg($extern);
+}
+
 echo "Compressing .js\n";
 $js = shell_exec($compiler);
 

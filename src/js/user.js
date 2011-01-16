@@ -1,6 +1,6 @@
 ( function(h) {
 
-	var habraElement = document.querySelector('a.habrauser');
+	var habraElement = document.querySelector('.panel-personal a.habrauser');
 	
 	h.user = habraElement ? habraElement.innerHTML : false;
 

@@ -1,11 +1,11 @@
 ( function(h) {
 
 	h.globalMenu = chrome.contextMenus.create( {
-		title: 'Выделение топиков с тегом',
-		contexts: [
+		'title': 'Выделение топиков с тегом',
+		'contexts': [
 			'link'
 		],
-		onclick: function(info, tab) {
+		'onclick': function(info, tab) {
 			var tagPart = info.linkUrl.match(/\/tag\/(.*?)\//);
 
 			if (tagPart) {
@@ -14,12 +14,12 @@
 				h.tags.toggleSubscription(tag);
 			}
 		},
-		documentUrlPatterns: [
+		'documentUrlPatterns': [
 			'http://*.habrahabr.ru/*',
 			'http://habrahabr.ru/*',
 			'http://habrahabr.ru/'
 		],
-		targetUrlPatterns: [
+		'targetUrlPatterns': [
 			'http://*.habrahabr.ru/tag/*',
 			'http://habrahabr.ru/tag/*'
 		]
