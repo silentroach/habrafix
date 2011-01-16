@@ -26,8 +26,12 @@
 		return;
 	}
 	
-	// предки комментариев
-	var commentParents = {};
+	var
+		// ищем автора топика для подсветки его комментариев
+		authorElement   = document.querySelector('.vcard.author a span'),
+		author = authorElement ? authorElement.innerText : false,
+		// предки комментариев
+		commentParents = {};
 	
 	var extractCommentId = function(element) {
 		var tmp = element.id.match(/(\d+)/g);
@@ -35,7 +39,7 @@
 		if (!tmp) {
 			return false;
 		}
-		
+
 		return tmp[0];
 	}
 	
@@ -127,6 +131,24 @@
 		hiddenCommentsCount = 0;
 		delete commentParents;
 	}
+	
+	// создаем заранее p.reply
+	var preplyBase = document.createElement('p');
+	h.utils.addClass(preplyBase, 'reply');
+
+	// создаем заранее разворачиватель
+	var expanderElementBase = document.createElement('a');
+			
+	// добавляем отступ, но только для авторизированных
+	// для остальных он не нужен - слева будет пусто
+	if (h.user) {
+		h.utils.addClass(expanderElementBase, 'hf_extra_left');
+	}
+
+	h.utils.addClass(expanderElementBase, 'hf_expander');
+			
+	// делаем ссылку похожей на ссылку "ответить"
+	h.utils.addClass(expanderElementBase, 'js-serv');				
 
 	// подготавливаем ветку
 	var prepareCommentsTree = function(element, parentId) {
@@ -142,6 +164,22 @@
 			commentParents[id] = parentId;
 			++hiddenCommentsCount;
 		}
+		
+		if (id) {
+			// автор этого комментария случаем не автор топика?
+			var metaElement = element.querySelector('.msg-meta');
+			
+			if (metaElement) {
+				var nickElement = metaElement.querySelector('.nickname a');
+				
+				if (
+					nickElement
+					&& nickElement.innerText == author
+				) {
+					h.utils.addClass(metaElement, 'hf_author_reply');
+				}
+			}
+		}
 	
 		// ищем вложенные комментарии, без них нет смысла продолжать выполнение
 		var clist = element.querySelector('ul.hentry');
@@ -149,18 +187,11 @@
 		if (!clist) {
 			return;
 		}
-		
-		// авторизованы или не? (используется для отступа в ссылке раскрытия комментариев)
-		// FIXME вынести куда-нибудь
-		var authorized = true;
 
 		// пробуем найти абзац с кнопкой "ответить"
 		var preply = element.querySelector('p.reply');
 
-		if (!preply) {
-			// если не нашли - значит мы не авторизованы
-			authorized = false;
-			
+		if (!preply) {			
 			// так что придется создать лишний блок в .entry-content
 			var ec = element.querySelector('div.entry-content');
 
@@ -168,9 +199,7 @@
 				return;
 			}
 			
-			preply = document.createElement('p');
-			h.utils.addClass(preply, 'reply');
-			ec.appendChild(preply);
+			ec.appendChild(preplyBase.cloneNode());
 		}
 
 		// счетчик вложенных комментариев
@@ -188,23 +217,12 @@
 		}
 
 		if (element != commentsElement) {
-			var expanderElement = document.createElement('a');
+			var expanderElement = expanderElementBase.cloneNode();
 			
 			expanderElement.innerText = '+ развернуть ' + commentCount + ' ' + 
 				h.utils.getPluralForm(commentCount, ['ответ', 'ответа', 'ответов']);
 				
 			expanderElement.onclick = onExpandCommentClick;
-			
-			// добавляем отступ, но только для авторизированных
-			// для остальных он не нужен - слева будет пусто
-			if (authorized) {
-				h.utils.addClass(expanderElement, 'hf_extra_left');
-			}
-			
-			h.utils.addClass(expanderElement, 'hf_expander');
-			
-			// делаем ссылку похожей на ссылку "ответить"
-			h.utils.addClass(expanderElement, 'js-serv');				
 
 			preply.appendChild(expanderElement);
 

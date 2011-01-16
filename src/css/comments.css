@@ -1,0 +1,8 @@
+/* скрытые комментарии */
+ul.hentry.hf_collapsed {
+	display: none;
+	}
+	
+.msg-meta.hf_author_reply {
+	background-color: #eeffe1;
+	}
