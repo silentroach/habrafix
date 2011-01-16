@@ -9,7 +9,7 @@ habrafix.location = ( function(h) {
 		};
 	
 	// топик
-	if (location.pathname.match(/\/blog[\/|s\/]/)) {
+	if (location.pathname.match(/\/blog[\/|s\/][^$]/)) {
 		obj.topic = true;
 		return obj;
 	}
