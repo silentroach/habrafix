@@ -7,7 +7,12 @@
 	var 
 		textareas = document.querySelectorAll('textarea[name]'),
 		tforms = [];
-	
+
+	/**
+	 * Название элемента в localStorage
+	 * @param {HTMLElement} element HTML элемент
+	 * @return {string}
+	 */
 	var storagePath = function(element) {
 		return 'backup_' + location.pathname + '#' + element.name;
 	}
