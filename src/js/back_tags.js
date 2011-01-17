@@ -6,6 +6,9 @@ habrafix.tags = ( function(h) {
 
 	var 
 		subscriptionTitle = 'Подписки',
+		tagsChangedNotification = {
+			'notification': 'tagsChanged'
+		},
 		cache = [],
 		cached = false;
 		
@@ -58,6 +61,8 @@ habrafix.tags = ( function(h) {
 			], function(t, r) {
 				if (r.rowsAffected > 0) {
 					h.notify(subscriptionTitle, 'Выделение по тегу [' + tag + '] добавлено');
+
+					h.requests.broadcast( tagsChangedNotification );
 				}
 			} );
 		} );
@@ -79,6 +84,8 @@ habrafix.tags = ( function(h) {
 			], function(t, r) {
 				if (r.rowsAffected > 0) {
 					h.notify(subscriptionTitle, 'Выделение по тегу [' + tag + '] убрано');
+
+					h.requests.broadcast( tagsChangedNotification );
 				}
 			} );
 		} );

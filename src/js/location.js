@@ -7,9 +7,9 @@ habrafix.location = ( function(h) {
 	var 
 		m,
 		obj = {
-			tag: false,
-			profile: false,
-			topic: false
+			/** @type {string|boolean} */ tag: false,
+			/** @type {string|boolean} */ profile: false,
+			/** @type {string|boolean} */ topic: false
 		};
 	
 	// топик
