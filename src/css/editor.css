@@ -1,0 +1,14 @@
+.hf_editor {
+	border: 1px solid black;
+	min-height: 5em;
+	padding: 2px;
+	width: 100%;
+	}
+	
+	.hf_editor ul,
+	.hf_editor ol,
+	.hf_editor li {
+		list-style: disc;
+		padding: auto !important;
+		margin: auto !important;
+		}
