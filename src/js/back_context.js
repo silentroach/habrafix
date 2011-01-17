@@ -1,10 +1,30 @@
 ( function(h) {
 
+	/* оставим на будущее, когда будет много пунктов или появится поддержка
+	   иконок при создании меню в расширениях 
 	h.globalMenu = chrome.contextMenus.create( {
-		'title': 'Выделение топиков с тегом',
+		'title': h.name,
 		'contexts': [
 			'link'
 		],
+		'documentUrlPatterns': [
+			'http://*.habrahabr.ru/*',
+			'http://habrahabr.ru/*',
+			'http://habrahabr.ru/'
+		],
+		'targetUrlPatterns': [
+			'http://*.habrahabr.ru/tag/*',
+			'http://habrahabr.ru/tag/*'
+		]		
+	} );
+	*/
+
+	h.globalMenu = chrome.contextMenus.create( {
+		'title': 'Выделять топики с тегом',
+		'contexts': [
+			'link'
+		],
+		//'parentId': h.globalMenu,
 		'onclick': function(info, tab) {
 			var tagPart = info.linkUrl.match(/\/tag\/(.*?)\//);
 
