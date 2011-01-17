@@ -77,7 +77,12 @@ habrafix.utils = ( function() {
 			}
 		},
 		
-		// склоняем [яблоко, яблока, яблок]
+		/**
+		 * Склоняем в зависимости от числа спереди
+		 * @param {number} number Число
+		 * @param {Array.<string>} endings Склонения (например: [яблоко, яблока, яблок])
+		 * @return {string} Результат
+		 */
 		getPluralForm: function(number, endings) {
 			var
 				mod10  = number % 10,

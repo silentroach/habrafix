@@ -85,6 +85,10 @@ habrafix.tags = ( function(h) {
 	};
 
 	return {
+		/**
+		 * Применяем/отменяем подписку на тег
+		 * @param {string} tag Тег
+		 */
 		toggleSubscription: function(tag) {
 			tag = tag.toLowerCase();
 		
@@ -96,6 +100,10 @@ habrafix.tags = ( function(h) {
 				}
 			} )
 		},
+		/**
+		 * Получение списка тегов
+		 * @param {function(Array.<string>)} callback Callback-функция со списком
+		 */
 		list: function(callback) {
 			tagList(callback);
 		}
