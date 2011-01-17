@@ -9,11 +9,17 @@
 		body  = document.querySelector('body'),
 		place = document.querySelector('.entry-info .twitter');
 
-	var togglePrintMode = function() {
+	var togglePrintMode = function(comments) {
 		h.utils.toggleClass(body, 'hf_printmode');
 
 		if (h.utils.hasClass(body, 'hf_printmode')) {
 			window.scroll(0, 0);
+			
+			if (comments) {
+				h.utils.addClass(body, 'hf_printmode_comments');
+			}
+		} else {
+			h.utils.removeClass(body, 'hf_printmode_comments');
 		}
 	};
 
@@ -22,8 +28,22 @@
 
 	var printLink = document.createElement('a');
 	printLink.title = 'распечатать';
-	printLink.onclick = togglePrintMode; 
+	printLink.onclick = function(e) {
+		e.stopPropagation();	
+		togglePrintMode(false);
+	};
+	
+	var printWithCommentsLink = document.createElement('a');
+	printWithCommentsLink.innerText = '+ комментарии';
+	printWithCommentsLink.title = 'распечатать с комментариями';
+	printWithCommentsLink.onclick = function(e) {
+		e.stopPropagation();
+		togglePrintMode(true);
+	};
+	h.utils.addClass(printWithCommentsLink, 'hf_print_comments');
 
+	printLink.appendChild(printWithCommentsLink);
+	
 	printDiv.appendChild(printLink);
 
 	place.parentNode.insertBefore(printDiv, place);
@@ -34,7 +54,7 @@
 			e.keyCode == 27
 			&& h.utils.hasClass(body, 'hf_printmode')
 		) {
-			togglePrintMode();
+			togglePrintMode(true);
 		}
 	};
 
