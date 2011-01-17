@@ -34,7 +34,7 @@
 			"js/comments.js",
 			"js/backup.js",
 			"js/print.js",
-			"js/contags.js",
+			"js/tags.js",
 			"js/debug.js"
 		]
 	} ],

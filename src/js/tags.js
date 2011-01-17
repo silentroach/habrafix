@@ -1,69 +1,95 @@
-habrafix.tags = ( function(h) {
+( function(h) {
 
-	var subscriptionTitle = 'Подписки';
+	// если мы на странице с тегами - ничего не делаем
+	if (h.location.tag) {
+		return;
+	}
 
-	// проверяем подписку, результат идет в callback
-	var checkSubscription = function(tag, callback) {
-		h.db.readTransaction( function(t) {
-			t.executeSql('select tag from tags_subscribe where tag = ? limit 1;', [
-				tag
-			], function(t, r) {
-				callback(r.rows.length > 0);
-			} );
-		} );
-	};
-	
-	// подписка
-	var subscribe = function(tag) {
-		h.db.transaction( function(t) {
-			t.executeSql('insert into tags_subscribe (tag) select ?;', [
-				tag
-			], function(t, r) {
-				if (r.rowsAffected > 0) {
-					h.notify(subscriptionTitle, 'Добавлено выделение топиков с тегом ' + tag);
-				}
-			} );
-		} );
-	};
-	
-	// отписка
-	var unsubscribe = function(tag) {
-		h.db.transaction( function(t) {
-			t.executeSql('delete from tags_subscribe where tag = ?;', [
-				tag
-			], function(t, r) {
-				if (r.rowsAffected > 0) {
-					h.notify(subscriptionTitle, 'Убрано выделение топиков с тегом ' + tag);
-				}
-			} );
-		} );
-	};
-
-	return {
-		toggleSubscription: function(tag) {
-			tag = tag.toLowerCase();
+	// запрашиваем у background список тегов
+	chrome.extension.sendRequest( {
+		'method': 'getTags'
+	}, function(tags) {
+		// нет тегов - извините
+		if (tags.length == 0) {
+			return;
+		};
 		
-			checkSubscription(tag, function(result) {
-				if (result) {
-					unsubscribe(tag);
-				} else {
-					subscribe(tag);
-				}
-			} )
-		},
-		list: function(callback) {
-			h.db.readTransaction( function(t) {
-				t.executeSql('select tag from tags_subscribe', [], function(t, r) {
-					var tags = [];
-
-					for (var i = 0; i < r.rows.length; i++) {
-						tags.push(r.rows.item(i)['tag']);
+		if (
+			h.location.profile
+			&& h.user
+			&& h.location.profile == h.user
+		) {
+			// показываем подписанные теги на странице своего профиля
+			var firstWrap = document.querySelector('.dl_logic_wrap');
+			
+			if (!firstWrap) {
+				// извините
+				return;
+			}
+			
+			// FIXME вот это ж лапша
+			var wrap = document.createElement('div');
+			h.utils.addClass(wrap, 'dl_logic_wrap');
+			
+			var dl = document.createElement('dl');
+			
+			var dt = document.createElement('dt');
+			dt.innerText = 'Интересующие теги:';
+			
+			dl.appendChild(dt);
+			
+			var dd = document.createElement('dd');
+			
+			var ul = document.createElement('ul');
+			h.utils.addClass(ul, 'hf_taglist');
+			
+			for (var i = 0; i < tags.length; i++) {
+				var tag = tags[i];
+				
+				var li = document.createElement('li');
+				
+				var a = document.createElement('a');
+				a.rel = 'tag';
+				a.href = 'http://habrahabr.ru/tag/' + encodeURIComponent(tag) + '/';
+				a.innerText = tag;
+				
+				h.utils.addClass(a, 'hf_tag');
+				
+				li.appendChild(a);
+				
+				ul.appendChild(li);
+			}
+			
+			dd.appendChild(ul);
+			
+			dl.appendChild(dd);
+			
+			wrap.appendChild(dl);
+			
+			firstWrap.parentNode.insertBefore(wrap, firstWrap);
+		} else {		
+			var entries = document.querySelectorAll('#main-content .hentry');
+		
+			for (var i = 0; i < entries.length; i++) {
+				var 
+					entry = entries[i],
+					tagElements = entry.querySelectorAll('a[rel=tag]');
+		
+				for (var n = 0; n < tagElements.length; n++) {
+					var element = tagElements[n];
+			
+					if (tags.indexOf(element.innerText.toLowerCase()) >= 0) {
+						h.utils.addClass(element, 'hf_subscribed');
+						
+						// если мы находимся в списке топиков, то подсвечиваем его
+						if (!h.location.topic) {
+							h.utils.addClass(entry, 'hf_subscribed');
+						}
 					}
-
-					callback(tags);
-				} );
-			} );
+				}
+			}
 		}
-	};
+
+	} );
 
 } )(habrafix);
