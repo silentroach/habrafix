@@ -13,6 +13,10 @@
 		body  = document.querySelector('body'),
 		place = document.querySelector('.entry-info .twitter');
 
+	/**
+	 * Переключиться в/из режима печати
+	 * @param {boolean} comments Отображать комментарии?
+	 */
 	var togglePrintMode = function(comments) {
 		h.utils.toggleClass(body, 'hf_printmode');
 

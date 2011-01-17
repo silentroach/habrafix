@@ -41,7 +41,12 @@
 		author = authorElement ? authorElement.innerText : false,
 		// предки комментариев
 		commentParents = {};
-	
+
+	/**
+	 * Получаем идентификатор комментария
+	 * @param {HTMLElement} element HTML элемент
+	 * @return {number|boolean}
+	 */
 	var extractCommentId = function(element) {
 		var tmp = element.id.match(/(\d+)/g);
 		
@@ -52,7 +57,10 @@
 		return tmp[0];
 	}
 	
-	// раскрываем ветку по идентификатору
+	/**
+	 * Раскрываем ветку по идентификатору
+	 * @param {number} id Идентификатор комментария
+	 */
 	var expandCommentsNode = function(id) {
 		var element = commentsElement.querySelector('#comment_' + id);
 		
@@ -148,7 +156,11 @@
 	// делаем ссылку похожей на ссылку "ответить"
 	h.utils.addClass(expanderElementBase, 'js-serv');				
 
-	// подготавливаем ветку
+	/**
+	 * Подготавливаем ветку комментариев
+	 * @param {HTMLElement} element HTML элемент
+	 * @param {number|boolean} parentId Идентификатор предка
+	 */
 	var prepareCommentsTree = function(element, parentId) {
 		// ищем идентификатор комментария
 		var id  = extractCommentId(element);	

@@ -13,6 +13,11 @@ habrafix.db = ( function(h) {
 		}
 	};
 
+	/**
+	 * Миграция
+	 * @param {Database} db База данных
+	 * @param {string} ver Исходная версия
+	 */
 	var migrate = function(db, ver) {
 		var version = (ver == '') ? '0' : ver;
 
