@@ -77,7 +77,7 @@
 		
 		// удаляем разворачиватель
 		if (expander) {
-			expander.parentNode.removeChild(expander);
+			h.utils.removeElement(expander);
 			--expanderCount;
 		}
 	
@@ -93,7 +93,7 @@
 			expandAllElement
 			&& expanderCount == 0
 		) {
-			expandAllElement.parentNode.removeChild(expandAllElement);
+			h.utils.removeElement(expandAllElement);
 			expandAllElement = null;
 		}
 	};
@@ -111,25 +111,15 @@
 	// раскрываем все ветки обсуждений
 	var expandAll = function() {
 		// раскрываем все списки
-		var collapsed = document.querySelectorAll('.hf_collapsed');
-		
-		for (var i = 0; i < collapsed.length; i++) {
-			var element = collapsed[i];
-			
+		h.utils.seekAndCallback('.hf_collapsed', function(element) {
 			h.utils.removeClass(element, 'hf_collapsed');
-		}
+		} );
 		
 		// убираем все раскрыватели
-		var expanders = document.querySelectorAll('.hf_expander');
-		
-		for (var i = 0; i < expanders.length; i++) {
-			var element = expanders[i];
-			
-			element.parentNode.removeChild(element);
-		}		
+		h.utils.seekAndDestroy('.hf_expander');
 		
 		// скрываем ссылку для разворота
-		expandAllElement.parentNode.removeChild(expandAllElement);		
+		h.utils.removeElement(expandAllElement);
 		
 		// обнуляем служебное
 		expanderCount = 0;

@@ -19,26 +19,18 @@
 
 	// показываем ссылки, если они не на pink.habralab
 
-	var links = document.querySelectorAll('a[target=_top]');
-
-	for (var i = 0; i < links.length; i++) {
-		var link = links[i];
-
+	h.utils.seekAndCallback('a[target=_top]', function(link) {
 		if (!link.href.match(/http:\/\/pink.habralab/)) {
 			h.utils.show(link);
 		} else {
 			h.utils.removeElement(link);
 		}
-	}
+	} );
 
 	// показываем ранее скрытые в css object, если в них не содержится
 	// ролик с pink.habralab.*
 
-	var objects = document.querySelectorAll('object');
-
-	for (var i = 0; i < objects.length; i++) {
-		var obj = objects[i];
-
+	h.utils.seekAndCallback('object', function(obj) {
 		var embed = obj.querySelector('embed[src]');
 
 		if (
@@ -49,6 +41,6 @@
 		} else {
 			h.utils.removeElement(obj);
 		}
-	}
+	} );
 
 } )(habrafix);
