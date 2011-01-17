@@ -45,13 +45,16 @@ body.hf_printmode.hf_printmode_comments #comments {
 		}
 		
 body.hf_printmode.hf_printmode_comments #comments .comments-header a,
-body.hf_printmode.hf_printmode_comments #comments ul.hentry.hf_collapsed,
 body.hf_printmode.hf_printmode_comments #comments li.comment_holder .entry-content p.reply,
 body.hf_printmode.hf_printmode_comments #comments li.comment_holder .msg-meta .bookmark,
 body.hf_printmode.hf_printmode_comments #comments li.comment_holder .msg-meta .to-favs,
 body.hf_printmode.hf_printmode_comments #comments li.comment_holder .msg-meta ul.vote .buttons,
 body.hf_printmode.hf_printmode_comments #comments .add-comment {
 	display: none;
+	}
+	
+body.hf_printmode.hf_printmode_comments #comments ul.hentry.hf_collapsed {
+	display: block;
 	}
 
 /* значок */
