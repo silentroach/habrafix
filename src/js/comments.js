@@ -7,7 +7,7 @@
 
 	var 
 		commentsElement = document.querySelector('#comments'),
-		hiddenCommentsCount = 0,
+		expanderCount = 0,
 		expandAllElement = null;
 
 	// отрабатываем ветку только если на странице есть комментарии
@@ -65,7 +65,6 @@
 		) {
 			if (id in commentParents) {
 				delete commentParents[id];
-				--hiddenCommentsCount;
 			}
 		
 			return false;
@@ -79,6 +78,7 @@
 		// удаляем разворачиватель
 		if (expander) {
 			expander.parentNode.removeChild(expander);
+			--expanderCount;
 		}
 	
 		// проверяем предков
@@ -87,12 +87,11 @@
 			
 			// приберемся за собой немного
 			delete commentParents[id];
-			--hiddenCommentsCount;
 		}
 		
 		if (
 			expandAllElement
-			&& hiddenCommentsCount == 0
+			&& expanderCount == 0
 		) {
 			expandAllElement.parentNode.removeChild(expandAllElement);
 			expandAllElement = null;
@@ -133,7 +132,7 @@
 		expandAllElement.parentNode.removeChild(expandAllElement);		
 		
 		// обнуляем служебное
-		hiddenCommentsCount = 0;
+		expanderCount = 0;
 		delete commentParents;
 	}
 	
@@ -167,7 +166,6 @@
 			&& parentId
 		) {
 			commentParents[id] = parentId;
-			++hiddenCommentsCount;
 		}
 		
 		if (id) {
@@ -231,6 +229,7 @@
 			expanderElement.onclick = onExpandCommentClick;
 
 			preply.appendChild(expanderElement);
+			++expanderCount;
 
 			h.utils.addClass(clist, 'hf_collapsed');
 		}
@@ -266,7 +265,7 @@
 	//window.onhashchange = hashExpand;	
 	
 	// есть сложенные комментарии? тогда покажем ссылку "развернуть все"
-	if (hiddenCommentsCount > 0) {
+	if (expanderCount > 0) {
 		var headerElement = commentsElement.querySelector('.comments-header');
 		
 		if (headerElement) {
