@@ -1,3 +1,7 @@
+/**
+ * Kalashnikov Igor <igor.kalashnikov@gmail.com>
+ * Creative Commons Attribution-NonCommercial-ShareAlike 3.0 Unported
+ */
 habrafix.notify = function(title, description) {
 	var notification = webkitNotifications.createNotification(
 		'icons/48.png',
