@@ -6,7 +6,7 @@
 
 	// удаляем все элементы в #main-page до div.header
 
-	var elements = document.querySelectorAll('#main-page > *');
+	var elements = $('#main-page > *').all();
 
 	for (var i = 0; i < elements.length; i++) {
 		var element = elements[i];

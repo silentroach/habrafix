@@ -31,7 +31,7 @@
 				&& h.location.profile == h.user
 			) {
 				// показываем подписанные теги на странице своего профиля
-				var firstWrap = document.querySelector('.dl_logic_wrap');
+				var firstWrap = $('.dl_logic_wrap').first();
 			
 				if (!firstWrap) {
 					// извините
@@ -80,12 +80,12 @@
 			
 				firstWrap.parentNode.insertBefore(wrap, firstWrap);
 			} else {		
-				var entries = document.querySelectorAll('#main-content .hentry');
+				var entries = $('#main-content .hentry').all();
 		
 				for (var i = 0; i < entries.length; i++) {
 					var 
 						entry = entries[i],
-						tagElements = entry.querySelectorAll('a[rel=tag]');
+						tagElements = $('a[rel=tag]', entry).all();
 		
 					for (var n = 0; n < tagElements.length; n++) {
 						var element = tagElements[n];

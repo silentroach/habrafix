@@ -10,7 +10,7 @@
 	}
 
 	var 
-		commentsElement = document.querySelector('#comments'),
+		commentsElement = $('#comments').first(),
 		expanderCount = 0,
 		expandAllElement = null;
 
@@ -21,7 +21,7 @@
 	
 	var
 		commentCount = 0,
-		elCount = commentsElement.querySelector('.js-comments-count');
+		elCount = $('.js-comments-count', commentsElement).first();
 
 	if (
 		elCount
@@ -37,7 +37,7 @@
 	
 	var
 		// ищем автора топика для подсветки его комментариев
-		authorElement   = document.querySelector('.vcard.author a span'),
+		authorElement   = $('.vcard.author a span').first(),
 		author = authorElement ? authorElement.innerText : false,
 		// проверять ли комментарии на авторство (если мы - автор, то не за чем)
 		checkAuthor = author && author !== h.user,
@@ -64,13 +64,13 @@
 	 * @param {number} id Идентификатор комментария
 	 */
 	var expandCommentsNode = function(id) {
-		var element = commentsElement.querySelector('#comment_' + id);
+		var element = $('#comment_' + id, commentsElement).first();
 		
 		if (!element) {
 			return false;
 		}
 		
-		var list = element.querySelector('ul.hentry');
+		var list = $('ul.hentry', element).first();
 		
 		// если вложенные комментарии уже раскрыты, то все ок
 		if (
@@ -84,7 +84,7 @@
 			return false;
 		}
 		
-		var expander = element.querySelector('.hf_expander');
+		var expander = $('.hf_expander', element).first();
 		
 		// раскрываем список
 		h.utils.removeClass(list, 'hf_collapsed');
@@ -181,10 +181,10 @@
 			&& checkAuthor
 		) {
 			// автор этого комментария случаем не автор топика?
-			var metaElement = element.querySelector('.msg-meta');
+			var metaElement = $('.msg-meta', element).first();
 			
 			if (metaElement) {
-				var nickElement = metaElement.querySelector('.nickname a');
+				var nickElement = $('.nickname a', metaElement).first();
 				
 				if (
 					nickElement
@@ -196,18 +196,18 @@
 		}
 	
 		// ищем вложенные комментарии, без них нет смысла продолжать выполнение
-		var clist = element.querySelector('ul.hentry');
+		var clist = $('ul.hentry', element).first();
 
 		if (!clist) {
 			return;
 		}
 
 		// пробуем найти абзац с кнопкой "ответить"
-		var preply = element.querySelector('p.reply');
+		var preply = $('p.reply', element).first();
 
 		if (!preply) {			
 			// так что придется создать лишний блок в .entry-content
-			var ec = element.querySelector('div.entry-content');
+			var ec = $('div.entry-content', element).first();
 
 			if (!ec) {
 				return;
@@ -285,7 +285,7 @@
 	
 	// есть сложенные комментарии? тогда покажем ссылку "развернуть все"
 	if (expanderCount > 0) {
-		var headerElement = commentsElement.querySelector('.comments-header');
+		var headerElement = $('.comments-header', commentsElement).first();
 		
 		if (headerElement) {
 			expandAllElement = document.createElement('a');

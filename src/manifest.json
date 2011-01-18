@@ -24,6 +24,7 @@
 			"css/tags.css"
 		],
 		"js" : [
+			"js/dom.js",		
 			"js/init.js",
 			"js/user.js",
 			"js/location.js",

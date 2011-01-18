@@ -25,7 +25,7 @@ habrafix.utils = ( function() {
 		 */
 		seekAndCallback: function(selector, callback) {
 			var 
-				elements = document.querySelectorAll(selector),
+				elements = $(selector).all(),
 				element = null;
 
 			for (var i = 0; i < elements.length; i++) {

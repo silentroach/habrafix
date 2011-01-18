@@ -10,8 +10,8 @@
 	}
 
 	var
-		body  = document.querySelector('body'),
-		place = document.querySelector('.entry-info .twitter');
+		body  = $('body').first(),
+		place = $('.entry-info .twitter').first();
 
 	/**
 	 * Переключиться в/из режима печати

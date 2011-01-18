@@ -4,7 +4,7 @@
  */
 ( function(h) {
 
-	var habraElement = document.querySelector('.panel-personal a.habrauser');
+	var habraElement = $('.panel-personal a.habrauser').first();
 	
 	h.user = habraElement ? habraElement.innerHTML : false;
 
