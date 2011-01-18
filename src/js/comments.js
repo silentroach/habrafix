@@ -39,6 +39,8 @@
 		// ищем автора топика для подсветки его комментариев
 		authorElement   = document.querySelector('.vcard.author a span'),
 		author = authorElement ? authorElement.innerText : false,
+		// проверять ли комментарии на авторство (если мы - автор, то не за чем)
+		checkAuthor = author && author !== h.user,
 		// предки комментариев
 		commentParents = {};
 
@@ -174,7 +176,10 @@
 			commentParents[id] = parentId;
 		}
 		
-		if (id) {
+		if (
+			id
+			&& checkAuthor
+		) {
 			// автор этого комментария случаем не автор топика?
 			var metaElement = element.querySelector('.msg-meta');
 			
