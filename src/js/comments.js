@@ -10,7 +10,7 @@
 	}
 
 	var 
-		commentsElement = $('#comments').first(),
+		commentsElement = h.dom('#comments').first(),
 		expanderCount = 0,
 		expandAllElement = null;
 
@@ -21,13 +21,13 @@
 	
 	var
 		commentCount = 0,
-		elCount = $('.js-comments-count', commentsElement).first();
-
+		elCount = h.dom('.js-comments-count', commentsElement).html();
+	
 	if (
 		elCount
-		&& elCount.innerText.match(/^(\d+)$/g)
+		&& elCount.match(/^(\d+)$/g)
 	) {
-		commentCount = parseInt(elCount.innerText);
+		commentCount = parseInt(elCount);
 	}
 
 	// нет комментариев - не обрабатываем
@@ -37,8 +37,7 @@
 	
 	var
 		// ищем автора топика для подсветки его комментариев
-		authorElement   = $('.vcard.author a span').first(),
-		author = authorElement ? authorElement.innerText : false,
+		author = h.dom('.vcard.author a span').html() || false,
 		// проверять ли комментарии на авторство (если мы - автор, то не за чем)
 		checkAuthor = author && author !== h.user,
 		// предки комментариев
@@ -52,11 +51,7 @@
 	var extractCommentId = function(element) {
 		var tmp = element.id.match(/(\d+)/g);
 		
-		if (!tmp) {
-			return false;
-		}
-
-		return tmp[0];
+		return !tmp ? false : tmp[0];
 	}
 	
 	/**
@@ -64,13 +59,13 @@
 	 * @param {number} id Идентификатор комментария
 	 */
 	var expandCommentsNode = function(id) {
-		var element = $('#comment_' + id, commentsElement).first();
+		var element = h.dom('#comment_' + id).first();
 		
 		if (!element) {
 			return false;
 		}
 		
-		var list = $('ul.hentry', element).first();
+		var list = h.dom('ul.hentry', element).first();
 		
 		// если вложенные комментарии уже раскрыты, то все ок
 		if (
@@ -84,7 +79,7 @@
 			return false;
 		}
 		
-		var expander = $('.hf_expander', element).first();
+		var expander = h.dom('.hf_expander', element).first();
 		
 		// раскрываем список
 		h.utils.removeClass(list, 'hf_collapsed');
@@ -125,12 +120,10 @@
 	// раскрываем все ветки обсуждений
 	var expandAll = function() {
 		// раскрываем все списки
-		h.utils.seekAndCallback('.hf_collapsed', function(element) {
-			h.utils.removeClass(element, 'hf_collapsed');
-		} );
+		h.dom('.hf_collapsed').removeClass('hf_collapsed');
 		
 		// убираем все раскрыватели
-		h.utils.seekAndDestroy('.hf_expander');
+		h.dom('.hf_expander').remove();
 		
 		// скрываем ссылку для разворота
 		h.utils.removeElement(expandAllElement);
@@ -181,33 +174,28 @@
 			&& checkAuthor
 		) {
 			// автор этого комментария случаем не автор топика?
-			var metaElement = $('.msg-meta', element).first();
+			var metaElement = h.dom('.msg-meta', element).first();
 			
 			if (metaElement) {
-				var nickElement = $('.nickname a', metaElement).first();
-				
-				if (
-					nickElement
-					&& nickElement.innerText == author
-				) {
+				if (h.dom('.nickname a').html() === author) {
 					h.utils.addClass(metaElement, 'hf_author_reply');
 				}
 			}
 		}
 	
 		// ищем вложенные комментарии, без них нет смысла продолжать выполнение
-		var clist = $('ul.hentry', element).first();
+		var clist = h.dom('ul.hentry', element).first();
 
 		if (!clist) {
 			return;
 		}
 
 		// пробуем найти абзац с кнопкой "ответить"
-		var preply = $('p.reply', element).first();
+		var preply = h.dom('p.reply', element).first();
 
 		if (!preply) {			
 			// так что придется создать лишний блок в .entry-content
-			var ec = $('div.entry-content', element).first();
+			var ec = h.dom('div.entry-content', element).first();
 
 			if (!ec) {
 				return;
@@ -285,7 +273,7 @@
 	
 	// есть сложенные комментарии? тогда покажем ссылку "развернуть все"
 	if (expanderCount > 0) {
-		var headerElement = $('.comments-header', commentsElement).first();
+		var headerElement = h.dom('.comments-header', commentsElement).first();
 		
 		if (headerElement) {
 			expandAllElement = document.createElement('a');

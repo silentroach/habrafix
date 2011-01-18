@@ -31,7 +31,7 @@
 				&& h.location.profile == h.user
 			) {
 				// показываем подписанные теги на странице своего профиля
-				var firstWrap = $('.dl_logic_wrap').first();
+				var firstWrap = h.dom('.dl_logic_wrap').first();
 			
 				if (!firstWrap) {
 					// извините
@@ -80,15 +80,11 @@
 			
 				firstWrap.parentNode.insertBefore(wrap, firstWrap);
 			} else {		
-				var entries = $('#main-content .hentry').all();
-		
-				for (var i = 0; i < entries.length; i++) {
-					var 
-						entry = entries[i],
-						tagElements = $('a[rel=tag]', entry).all();
-		
-					for (var n = 0; n < tagElements.length; n++) {
-						var element = tagElements[n];
+				h.dom('#main-content .hentry').each( function() {
+					var entry = this;
+					
+					h.dom('a[rel=tag]', entry).each( function() {
+						var element = this;
 			
 						if (tags.indexOf(element.innerText.toLowerCase()) >= 0) {
 							h.utils.addClass(element, subscribedClassName);
@@ -98,8 +94,8 @@
 								h.utils.addClass(entry, subscribedClassName);
 							}
 						}
-					}
-				}
+					} );
+				} );
 			}
 
 		} );
@@ -115,7 +111,7 @@
 			sendResponse({});
 			
 			// если мы в профиле - удаляем список интересующих тегов
-			h.utils.seekAndDestroy('#hf_taglist');
+			h.dom('#hf_taglist').remove();
 		
 			// в остальных местах убираем выделяющий класс
 			h.utils.seekAndCallback('.' + subscribedClassName, function(element) {

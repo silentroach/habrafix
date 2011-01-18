@@ -5,9 +5,9 @@
 ( function(h) {
 
 	// чистим dom от уже скрытых в css элементов
-	h.utils.seekAndDestroy('#sidebar');
+	h.dom('#sidebar').remove();
 
 	// будто и не было, правда?
-	h.utils.seekAndDestroy('.vote_minus');
+	h.dom('.vote_minus').remove();
 	
 } )(habrafix);

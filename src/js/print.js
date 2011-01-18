@@ -10,24 +10,24 @@
 	}
 
 	var
-		body  = $('body').first(),
-		place = $('.entry-info .twitter').first();
+		body  = h.dom('body'),
+		place = h.dom('.entry-info .twitter').first();
 
 	/**
 	 * Переключиться в/из режима печати
 	 * @param {boolean} comments Отображать комментарии?
 	 */
 	var togglePrintMode = function(comments) {
-		h.utils.toggleClass(body, 'hf_printmode');
+		body.toggleClass('hf_printmode');
 
-		if (h.utils.hasClass(body, 'hf_printmode')) {
+		if (body.hasClass('hf_printmode')) {
 			window.scroll(0, 0);
 			
 			if (comments) {
-				h.utils.addClass(body, 'hf_printmode_comments');
+				body.addClass('hf_printmode_comments');
 			}
 		} else {
-			h.utils.removeClass(body, 'hf_printmode_comments');
+			body.removeClass('hf_printmode_comments');
 		}
 	};
 
@@ -60,7 +60,7 @@
 	document.onkeydown = function(e) {
 		if (
 			e.keyCode == 27
-			&& h.utils.hasClass(body, 'hf_printmode')
+			&& body.hasClass('hf_printmode')
 		) {
 			togglePrintMode(true);
 		}

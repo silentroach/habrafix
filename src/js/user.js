@@ -4,9 +4,7 @@
  */
 ( function(h) {
 
-	var habraElement = $('.panel-personal a.habrauser').first();
-	
-	h.user = habraElement ? habraElement.innerHTML : false;
+	h.user = h.dom('.panel-personal a.habrauser').html() || false;
 
 	if (h.user) {
 		localStorage.setItem('user', h.user);
