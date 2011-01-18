@@ -9,7 +9,8 @@ habrafix.location = ( function(h) {
 		obj = {
 			/** @type {string|boolean} */ tag: false,
 			/** @type {string|boolean} */ profile: false,
-			/** @type {string|boolean} */ topic: false
+			/** @type {boolean} */ topic: false,
+			/** @type {boolean} */ mailer: false
 		};
 	
 	// топик
@@ -26,6 +27,12 @@ habrafix.location = ( function(h) {
 			obj.profile = m.pop();
 			return obj;
 		}
+	}
+	
+	// почтовик
+	if (location.pathname.match(/\/mail\/write\/(.*?)\//)) {
+		obj.mailer = true;
+		return obj;
 	}
 	
 	// страница с топиками определенного тега
