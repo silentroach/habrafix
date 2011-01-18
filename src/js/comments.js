@@ -241,7 +241,10 @@
 		}
 	}
 
+	// скрываем комментарии чтобы быстрее их обработать
+	h.utils.hide(commentsElement);
 	prepareCommentsTree(commentsElement, false);
+	h.utils.show(commentsElement);
 	
 	// функция для раскрытия комментария, если мы переходим к нему по хэшу
 	var hashExpand = function() {
@@ -249,17 +252,22 @@
 			hash = location.hash,
 			tmp = hash.match(/(\d+)/g);
 		
-		if (!tmp) {
+		// если хеша нет - извините
+		if (hash == '') {
 			return;
 		}
 		
-		var id = tmp[0];
-		
-		if (id in commentParents) {
-			expandCommentsNode(commentParents[id]);
+		// если в хеше идентификатор топика - надо его сначала развернуть
+		if (tmp) {
+			var id = tmp[0];
+			
+			if (id in commentParents) {
+				expandCommentsNode(commentParents[id]);
+			}
 		}
 		
-		// передергиваем location для того чтобы перейти к комментарию
+		// передергиваем location для того чтобы перейти к комментарию 
+		// или к их началу если идентификатора нет
 		// с небольшой вынужденной задержкой
 		setTimeout( function() {
 			location = location;
