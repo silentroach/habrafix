@@ -1,7 +1,7 @@
 #!/usr/bin/env php
 <?php
 
-// FIXME как-то упорядочить эту тонну говнокода
+// FIXME РєР°Рє-С‚Рѕ СѓРїРѕСЂСЏРґРѕС‡РёС‚СЊ СЌС‚Сѓ С‚РѕРЅРЅСѓ РіРѕРІРЅРѕРєРѕРґР°
 
 define('DS', DIRECTORY_SEPARATOR);
 $root = dirname(__FILE__) . DS . 'src' . DS;
