@@ -9,6 +9,7 @@
 		"../js/dom.js",
 		"../js/user.js",
 		"../js/location.js",
+		"../js/utils.js",		
 		"../js/adblock.js",
 		"../js/cleaner.js",
 		"../js/comments.js",

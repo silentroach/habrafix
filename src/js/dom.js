@@ -23,7 +23,7 @@ habrafix.dom = (function() {
 		 * @param {?HTMLElement} context Контекст поиска
 		 * @return {Object}
 		 */
-		init: function(selector, context) {		
+		init: function(selector, context) {
 			var 
 				doc = context || document,
 				i = j = 0;
@@ -33,7 +33,7 @@ habrafix.dom = (function() {
 				this.length = 1;
 				return this;
 			}
-				
+			
 			var
 				matches = idExpr.exec(selector),
 				elements = (!matches) ? (doc.querySelectorAll(selector) || []) : [];
@@ -51,7 +51,7 @@ habrafix.dom = (function() {
 			}
 				
 			this.length = i;
-					
+			
 			return this;
 		},
 		
