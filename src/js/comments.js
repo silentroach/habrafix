@@ -177,7 +177,7 @@
 			var metaElement = h.dom('.msg-meta', element).first();
 			
 			if (metaElement) {
-				if (h.dom('.nickname a').html() === author) {
+				if (h.dom('.nickname a', metaElement).html() === author) {
 					h.utils.addClass(metaElement, 'hf_author_reply');
 				}
 			}

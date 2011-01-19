@@ -114,9 +114,7 @@
 			h.dom('#hf_taglist').remove();
 		
 			// в остальных местах убираем выделяющий класс
-			h.utils.seekAndCallback('.' + subscribedClassName, function(element) {
-				h.utils.removeClass(element, subscribedClassName);
-			} );
+			h.dom('.' + subscribedClassName).removeClass(subscribedClassName);
 			
 			// ну и заново поехали
 			processTags();
