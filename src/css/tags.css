@@ -15,6 +15,11 @@ a[rel=tag].hf_tag {
 	border-left: 2px solid #d1f4b7;
 	margin-left: -2px;
 	}
+
+body.profile .hentry.hf_subscribed {
+	padding-left: 35px;
+	margin-left: -35px;
+	}
 	
 .hf_taglist li {
 	display: inline-block;
