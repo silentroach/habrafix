@@ -8,6 +8,7 @@ habrafix.location = ( function(h) {
 		m,
 		l = window.location,
 		obj = {
+			/** @type {string}         */ pathname: l.pathname,
 			/** @type {string|boolean} */ tag: false,
 			/** @type {string|boolean} */ profile: false,
 			/** @type {boolean}        */ topic: false,

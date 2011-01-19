@@ -15,7 +15,7 @@
 	 * @return {string}
 	 */
 	var storagePath = function(element) {
-		return 'backup_' + window.location.pathname + '#' + element.name;
+		return 'backup_' + h.location.pathname + '#' + element.name;
 	}
 	
 	for (var i = 0; i < textareas.length; i++) {
