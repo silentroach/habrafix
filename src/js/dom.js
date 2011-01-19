@@ -86,6 +86,14 @@ habrafix.dom = (function() {
 		html: function() {
 			return this[0] && this[0].nodeType === 1 ? this[0].innerHTML : null;
 		},
+
+		/**
+		 * Содержимое тега в текстовом виде
+		 * @return {?string}
+		 */		
+		text: function() {
+				return this[0] && this[0].nodeType === 1 ? this[0].innerText : null;
+		},
 		
 		/**
 		 * Получаем значение атрибута

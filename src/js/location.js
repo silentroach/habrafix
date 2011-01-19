@@ -13,7 +13,8 @@ habrafix.location = ( function(h) {
 			/** @type {string|boolean} */ profile: false,
 			/** @type {boolean}        */ topic: false,
 			/** @type {boolean}        */ mailer: false,
-			/** @type {boolean}        */ qaq: false
+			/** @type {boolean}        */ qaq: false,
+			/** @type {boolean}        */ sandtopic: false
 		};
 	
 	// топик
@@ -26,7 +27,13 @@ habrafix.location = ( function(h) {
 	if (l.pathname.match(/\/qa\/(\d+)\/$/)) {
 		obj.qaq = true;
 		return obj;
-	}	
+	}
+
+	// топик из песочницы
+	if (l.pathname.match(/\/sandbox\/(\d+)\/$/)) {
+		obj.sandtopic = true;
+		return obj;
+	}
 	
 	// страница профиля
 	if (l.pathname == '/') {
