@@ -201,7 +201,7 @@
 				return;
 			}
 			
-			preply = preplyBase.cloneNode();
+			preply = preplyBase.cloneNode(true);
 			ec.appendChild(preply);
 		}
 
@@ -220,7 +220,7 @@
 		}
 
 		if (element != commentsElement) {
-			var expanderElement = expanderElementBase.cloneNode();
+			var expanderElement = expanderElementBase.cloneNode(true);
 			
 			expanderElement.innerText = '+ развернуть ' + commentCount + ' ' + 
 				h.utils.getPluralForm(commentCount, ['ответ', 'ответа', 'ответов']);

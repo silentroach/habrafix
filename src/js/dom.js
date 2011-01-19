@@ -161,9 +161,9 @@ habrafix.dom = (function() {
 			this.each( function() {
 				var
 					element = this,
-					elementClass = (' ' + element.className + ' ').replace(' ' + className + ' ', ' ');
+					elementClass = (' ' + element.className + ' ');
 					
-				element.className = elementClass.trim();
+				element.className = elementClass.replace(' ' + className + ' ', ' ')['trim'](); // closure compiler не ололо про trim
 			} );
 			
 			return this;

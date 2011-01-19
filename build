@@ -6,7 +6,7 @@
 define('DS', DIRECTORY_SEPARATOR);
 $root = dirname(__FILE__) . DS . 'src' . DS;
 $operaPath = $root . DS . 'opera' . DS;
-$toolspath = dirname($root) . DS . 'tools' . DS;
+$toolspath = dirname(__FILE__) . DS . 'tools' . DS;
 
 $externs = explode("\n", trim(shell_exec('find ' . escapeshellarg($toolspath . 'externs' . DS) . ' -name *.js')));
 
@@ -174,9 +174,9 @@ $tmp = array_shift($jsFiles);
 array_unshift($jsFiles, $tempJSFile);
 array_unshift($jsFiles, $tmp);
 
-$compiler = 'java -jar ' . $path_gcc . ' ' . //' --compilation_level ADVANCED_OPTIMIZATIONS ' .
+$compiler = 'java -jar ' . $path_gcc . ' --compilation_level ADVANCED_OPTIMIZATIONS ' .
 	'--warning_level QUIET';
-
+	
 foreach($jsFiles as $js) {
 	if ($js == 'js/debug.js') {
 		continue;
@@ -194,7 +194,10 @@ foreach($externs as $extern) {
 echo "Compressing .js\n";
 $js = shell_exec($compiler);
 
-$js = $userJS . $js;
+$js = $userJS . '
+document.addEventListener(\'DOMContentLoaded\', function() {
+' . $js . '
+}, false );';
 
 shell_exec('rm ' . escapeshellarg($tmppath) . '*');
 

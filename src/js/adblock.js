@@ -43,7 +43,7 @@
 			embed.size() > 0
 			&& embed.attr('src').match(/http:\/\/pink.habralab/)
 		) {
-			h.utils.removeElement(obj);
+			h.dom(obj).remove();
 		} else {
 			h.utils.show(obj);
 		}
