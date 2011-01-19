@@ -3,7 +3,7 @@
  * Creative Commons Attribution-NonCommercial-ShareAlike 3.0 Unported
  */
  
-// в расширениях для Opera нельзя пользовать файлы скриптов, поэтому внедряем прямо в документ
+// в расширениях для Opera нельзя пользовать файлы со стилями, поэтому внедряем прямо через javascript
 var 
 	parent = document.getElementsByTagName('head')[0] || document.documentElement,
 	style  = document.createElement('style');
