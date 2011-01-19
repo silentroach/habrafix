@@ -5,6 +5,7 @@
 ( function(h) {
 
 	var 
+		storage = localStorage,
 		textareas = document.querySelectorAll('textarea[name]'),
 		tforms = [];
 
@@ -24,7 +25,7 @@
 			continue;
 		}
 		
-		var value = localStorage.getItem(storagePath(element));
+		var value = storage.getItem(storagePath(element));
 		
 		if (
 			element.value == ''
@@ -34,7 +35,7 @@
 		}
 		
 		element.addEventListener('keyup', function(e) {
-			localStorage.setItem(storagePath(e.target), e.target.value);
+			storage.setItem(storagePath(e.target), e.target.value);
 		}, false );
 		
 		if (tforms.indexOf(element.form) < 0) {
@@ -43,7 +44,7 @@
 					var ta = textareas[i];
 					
 					if (ta.form == e.target) {
-						localStorage.removeItem(storagePath(ta));
+						storage.removeItem(storagePath(ta));
 					}
 				}
 			}, false );
