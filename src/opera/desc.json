@@ -1,8 +1,18 @@
 {
 	"css": [
-		"../css/main.css"
+		"../css/main.css",
+		"../css/comments.css",
+		"../css/print.css"
 	],
 	"js": [
-		"../js/init.js"
+		"../js/init.js",
+		"../js/dom.js",
+		"../js/user.js",
+		"../js/location.js",
+		"../js/adblock.js",
+		"../js/cleaner.js",
+		"../js/comments.js",
+		"../js/backup.js",
+		"../js/print.js"
 	]
 }

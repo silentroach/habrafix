@@ -3,6 +3,7 @@
 
 define('DS', DIRECTORY_SEPARATOR);
 $root = dirname(__FILE__) . DS . 'src' . DS;
+$operaPath = $root . DS . 'opera' . DS;
 $toolspath = dirname($root) . DS . 'tools' . DS;
 
 $externs = explode("\n", trim(shell_exec('find ' . escapeshellarg($toolspath . 'externs' . DS) . ' -name *.js')));
@@ -22,10 +23,22 @@ if ('' == exec('find ' . escapeshellarg($toolspath) . ' -name gcc.jar')) {
 $path_gcc    = escapeshellarg(trim(`find ./ -name 'gcc.jar'`));
 $path_yui    = escapeshellarg(trim(`find ./ -name 'yui.jar'`));
 
-echo "Parsing manifest.json\n";
+echo "manifest.json\n=============\n";
 $manifest = file_get_contents($root . 'manifest.json');
 
 $manifestObject = json_decode($manifest, true);
+
+$version = $manifestObject['version'];
+echo 'Version: ' . $version . "\n";
+
+$urls = $manifestObject['content_scripts'][0]['matches'];
+echo "Extension will work on these urls:\n";
+
+foreach($urls as $url) {
+	echo '  ' . $url . "\n";
+}
+
+echo "\nBuilding Chrome extension...\n============================\n";
 
 $scripts =& $manifestObject['content_scripts'][0];
 
@@ -111,3 +124,99 @@ chdir($cwd);
 shell_exec('rm -rf ' . escapeshellarg($tmppath));
 
 echo "Done\n";
+
+echo "\nBuilding Opera extension...\n===========================\n";
+
+$tmppath = sys_get_temp_dir() . DS . 'habrafix' . DS;
+mkdir($tmppath);
+
+$desc = json_decode(file_get_contents($operaPath . 'desc.json'), true);
+
+$compiler = 'java -jar ' . $path_yui;
+
+$cssContent = '';
+foreach($desc['css'] as $css) {
+	$cssContent .= file_get_contents($operaPath . $css);
+}
+
+file_put_contents($tmppath . 'temp.css', $cssContent);
+
+$compiler .= ' ' . escapeshellarg($tmppath . 'temp.css');
+
+echo "Compressing .css\n";
+$css = shell_exec($compiler);
+
+unlink($tmppath . 'temp.css');
+
+$cssjs = file_get_contents($operaPath . 'css.js');
+
+$cssjs = str_replace('%CSS%', $css, $cssjs);
+
+$tempJSFile = $tmppath . 'css.js';
+file_put_contents($tempJSFile, $cssjs);
+
+$userJS = '// ==UserScript==';
+
+foreach($urls as $url) {
+	$userJS .= '
+// @include ' . $url;
+}
+
+$userJS .= '
+// ==/UserScript==
+';
+
+$jsFiles = $desc['js'];
+
+$tmp = array_shift($jsFiles);
+array_unshift($jsFiles, $tempJSFile);
+array_unshift($jsFiles, $tmp);
+
+$compiler = 'java -jar ' . $path_gcc . ' --compilation_level ADVANCED_OPTIMIZATIONS ' .
+	'--warning_level QUIET';
+
+foreach($jsFiles as $js) {
+	if ($js == 'js/debug.js') {
+		continue;
+	}
+	
+	$js = str_replace('..', dirname($operaPath), $js);
+
+	$compiler .= ' --js ' . escapeshellarg($js);
+}
+
+foreach($externs as $extern) {
+	$compiler .= ' --externs ' . escapeshellarg($extern);
+}
+
+echo "Compressing .js\n";
+$js = shell_exec($compiler);
+
+$js = $userJS . $js;
+
+shell_exec('rm ' . escapeshellarg($tmppath) . '*');
+
+mkdir($tmppath . 'includes'); 
+
+file_put_contents($tmppath . 'includes' . DS . 'script.js', $js);
+
+$config = file_get_contents($operaPath . 'config.xml');
+$config = str_replace('%VER%', $version, $config);
+
+file_put_contents($tmppath . 'config.xml', $config);
+
+copy($root . 'icons' . DS . '64.png', $tmppath . 'icon.png');
+
+$cwd = getcwd();
+
+chdir($tmppath);
+
+echo "Compressing extension\n";
+$cmd = 'zip -9 -r ' . escapeshellarg($cwd . DS . 'ext.oex') . ' ./';
+shell_exec($cmd);
+
+chdir($cwd);
+
+echo "Done\n";
+
+shell_exec('rm -rf ' . escapeshellarg($tmppath));

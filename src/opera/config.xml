@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="utf-8"?>
+<widget xmlns="http://www.w3.org/ns/widgets" version="%VER%">
+	<name>Habrafix</name>
+	<description>Хабрахабр, только чуть лучше</description>
+	<author href="http://silentroach.ru" email="igor.kalashnikov@gmail.com">Kalashnikov Igor</author>
+	<icon src="icon.png" />
+</widget>
