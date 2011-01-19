@@ -181,6 +181,35 @@ habrafix.dom = (function() {
 			}
 			
 			return this;
+		},
+		
+		/**
+		 * CSS
+		 * @param {string} key
+		 * @param {string} value
+		 */
+		css: function(key, value) {
+			this.each( function() {
+				var element = this;
+				
+				element.style[key] = value;
+			} );
+			
+			return this;
+		},
+		
+		/**
+		 * Показываем элемент
+		 */
+		show: function() {
+			this.css('display', '');
+		},
+		
+		/**
+		 * Скрываем элемент
+		 */
+		hide: function() {
+			this.css('display', 'none');
 		}
 	};
 	

@@ -25,7 +25,7 @@
 		var link = this;
 	
 		if (!link.href.match(/http:\/\/pink.habralab/)) {
-			h.utils.show(link);
+			h.dom(link).show();
 		} else {
 			h.dom(link).remove();
 		}	
@@ -45,7 +45,7 @@
 		) {
 			h.dom(obj).remove();
 		} else {
-			h.utils.show(obj);
+			h.dom(obj).show();
 		}
 	} );
 

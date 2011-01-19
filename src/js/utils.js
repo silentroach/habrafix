@@ -4,28 +4,8 @@
  */
 habrafix.utils = ( function() {
 
-	// closure tools не понимают что у элемента есть .classList
-	var classList = function(element) {
-		return element['classList'];
-	};
-
 	return {
-		/**
-		 * Скрываем элемент
-		 * @param {HTMLElement} element HTML элемент
-		 */
-		hide: function(element) {
-			element.style.display = 'none';
-		},
-		
-		/**
-		 * Показываем элемент
-		 * @param {HTMLElement} element HTML элемент
-		 */
-		show: function(element) {
-			element.style.display = 'block';
-		},
-		
+	
 		/**
 		 * Склоняем в зависимости от числа спереди
 		 * @param {number} number Число

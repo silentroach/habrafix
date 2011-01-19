@@ -235,9 +235,9 @@
 	}
 
 	// скрываем комментарии чтобы быстрее их обработать
-	h.utils.hide(commentsElement);
+	h.dom(commentsElement).hide();
 	prepareCommentsTree(commentsElement, false);
-	commentsElement.style.display = '';
+	h.dom(commentsElement).show();
 	
 	// функция для раскрытия комментария, если мы переходим к нему по хэшу
 	var hashExpand = function() {
