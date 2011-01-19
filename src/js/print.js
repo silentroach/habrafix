@@ -5,13 +5,18 @@
 ( function(h) {
 
 	// функция печати должна быть доступна только из топика
-	if (!h.location.topic) {
+	if (
+		!h.location.topic
+		&& !h.location.sandtopic
+	) {
 		return;
 	}
 
 	var
 		body  = h.dom('body'),
-		place = h.dom('.entry-info .twitter').first();
+		place = 
+			h.dom('.entry-info .twitter').first() ||
+			h.dom('.entry-info .author').first();
 		
 	if (!place) {
 		return;
@@ -45,16 +50,20 @@
 		togglePrintMode(false);
 	};
 	
-	var printWithCommentsLink = document.createElement('a');
-	printWithCommentsLink.innerText = '+ комментарии';
-	printWithCommentsLink.title = 'распечатать с комментариями';
-	printWithCommentsLink.onclick = function(e) {
-		e.stopPropagation();
-		togglePrintMode(true);
-	};
-	h.dom(printWithCommentsLink).addClass('hf_print_comments');
+	// функция печати с комментариями доступна только в обычных 
+	// топиках, не в топиках из песочницы
+	if (!h.location.sandtopic) {
+		var printWithCommentsLink = document.createElement('a');
+		printWithCommentsLink.innerText = '+ комментарии';
+		printWithCommentsLink.title = 'распечатать с комментариями';
+		printWithCommentsLink.onclick = function(e) {
+			e.stopPropagation();
+			togglePrintMode(true);
+		};
+		h.dom(printWithCommentsLink).addClass('hf_print_comments');
 
-	printLink.appendChild(printWithCommentsLink);
+		printLink.appendChild(printWithCommentsLink);
+	}
 	
 	printDiv.appendChild(printLink);
 

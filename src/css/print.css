@@ -88,7 +88,15 @@ body.hf_printmode.hf_printmode_comments #comments ul.hentry.hf_collapsed {
 	}
 	
 	.hf_print:hover {
-		width: auto
+		width: auto;
+		/* иначе в sandbox без вложенной ссылки с комментариями будет плохо */
+		min-width: 12px;
+		}
+		
+	body.sandbox .hf_print:hover {
+		/* иначе в sandbox без вложенной ссылки с комментариями будет плохо */
+		min-width: 16px;
+		padding-right: 1px;	
 		}
 		
 		.hf_print:hover a {
@@ -99,4 +107,5 @@ body.hf_printmode.hf_printmode_comments #comments ul.hentry.hf_collapsed {
 				background: transparent;
 				margin-left: 24px;
 				display: inline-block;
+				font-weight: normal;
 				}

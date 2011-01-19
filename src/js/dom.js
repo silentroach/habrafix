@@ -92,7 +92,7 @@ habrafix.dom = (function() {
 		 * @return {?string}
 		 */		
 		text: function() {
-				return this[0] && this[0].nodeType === 1 ? this[0].innerText : null;
+			return this[0] && this[0].nodeType === 1 ? this[0].innerText : null;
 		},
 		
 		/**
