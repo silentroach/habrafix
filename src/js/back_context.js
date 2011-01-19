@@ -45,7 +45,8 @@
 		],
 		'targetUrlPatterns': [
 			'http://*.habrahabr.ru/tag/*',
-			'http://habrahabr.ru/tag/*'
+			'http://habrahabr.ru/tag/*',
+			'http://habrahabr.ru/qa/tag/*'
 		]
 	} );
 

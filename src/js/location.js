@@ -9,8 +9,9 @@ habrafix.location = ( function(h) {
 		obj = {
 			/** @type {string|boolean} */ tag: false,
 			/** @type {string|boolean} */ profile: false,
-			/** @type {boolean} */ topic: false,
-			/** @type {boolean} */ mailer: false
+			/** @type {boolean}        */ topic: false,
+			/** @type {boolean}        */ mailer: false,
+			/** @type {boolean}        */ qaq: false
 		};
 	
 	// топик
@@ -18,6 +19,12 @@ habrafix.location = ( function(h) {
 		obj.topic = true;
 		return obj;
 	}
+	
+	// qa-вопрос
+	if (location.pathname.match(/\/qa\/(\d+)\/$/)) {
+		obj.qaq = true;
+		return obj;
+	}	
 	
 	// страница профиля
 	if (location.pathname == '/') {

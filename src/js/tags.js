@@ -90,7 +90,10 @@
 							h.dom(element).addClass(subscribedClassName);
 						
 							// если мы находимся в списке топиков, то подсвечиваем его
-							if (!h.location.topic) {
+							if (
+								!h.location.topic
+								&& !h.location.qaq
+							) {
 								h.dom(entry).addClass(subscribedClassName);
 							}
 						}
