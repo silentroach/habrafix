@@ -28,8 +28,8 @@
 		var value = storage.getItem(storagePath(element));
 		
 		if (
-			element.value == ''
-			&& value
+			value
+			&& element.value == ''
 		) {
 			element.value = value;
 		}
