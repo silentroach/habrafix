@@ -1,0 +1,8 @@
+{
+	"css": [
+		"../css/main.css"
+	],
+	"js": [
+		"../js/init.js"
+	]
+}
