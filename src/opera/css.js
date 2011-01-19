@@ -4,19 +4,15 @@
  */
  
 // в расширениях для Opera нельзя пользовать файлы скриптов, поэтому внедряем прямо в документ
-( function(css) {
-
-	var 
-		parent = document.getElementsByTagName('head')[0] || document.documentElement,
-		style  = document.createElement('style');
-		
-	style.type = 'text/css';
-
-	var cssText = document.createTextNode(css);
+var 
+	parent = document.getElementsByTagName('head')[0] || document.documentElement,
+	style  = document.createElement('style');
 	
-	style.appendChild(cssText);
-	
-	parent.appendChild(style);
+style.type = 'text/css';
 
+// переменная подставляется билдером
+var cssText = document.createTextNode('%CSS%');
 
-} )('%CSS%'); // переменная подставляется билдером
+style.appendChild(cssText);
+
+parent.appendChild(style);

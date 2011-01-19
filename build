@@ -170,10 +170,6 @@ $userJS .= '
 
 $jsFiles = $desc['js'];
 
-$tmp = array_shift($jsFiles);
-array_unshift($jsFiles, $tempJSFile);
-array_unshift($jsFiles, $tmp);
-
 $compiler = 'java -jar ' . $path_gcc . ' --compilation_level ADVANCED_OPTIMIZATIONS ' .
 	'--warning_level QUIET';
 	
@@ -198,6 +194,11 @@ $js = $userJS . '
 document.addEventListener(\'DOMContentLoaded\', function() {
 ' . $js . '
 }, false );';
+
+$compiler = 'java -jar ' . $path_gcc . ' --compilation_level ADVANCED_OPTIMIZATIONS ' .
+	'--warning_level QUIET --js ' . escapeshellarg($tempJSFile);
+	
+$js .= '( function() { ' . shell_exec($compiler) . ' } )()';
 
 shell_exec('rm ' . escapeshellarg($tmppath) . '*');
 
