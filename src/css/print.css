@@ -1,14 +1,18 @@
-/* режим печати */
-body.hf_printmode .header,
-body.hf_printmode .page-navigation,
-body.hf_printmode .yandex-direct,
-body.hf_printmode #viva-la-w3c,
-body.hf_printmode #xsidebar,
-body.hf_printmode ul.tags, 
-body.hf_printmode .entry-info,
-body.hf_printmode #comments,
-body.hf_printmode #footer,
-body.hf_printmode .profile-header {
+/* -------------------------
+ * режим печати 
+ * ------------------------- */
+
+/* заголовок              */ body.hf_printmode .header,
+/* номера страниц         */ body.hf_printmode .page-navigation,
+/* реклама Яндекса        */ body.hf_printmode .yandex-direct,
+/* заголовок топика?      */ body.hf_printmode #viva-la-w3c,
+/* сайдбар с обновлениями */ body.hf_printmode #xsidebar,
+/* список тегов топика    */ body.hf_printmode ul.tags, 
+/* ???                    */ body.hf_printmode .entry-info,
+/* комментарии            */ body.hf_printmode #comments,
+/* футер                  */ body.hf_printmode #footer,
+/* ???                    */ body.hf_printmode .profile-header,
+/* кнопки голосования     */ body.hf_printmode .poll-item input[type=button] {
 	display: none;
 	}
 
@@ -32,7 +36,9 @@ body.hf_printmode .hentry {
 		margin-left: 0px !important;
 		}
 		
-/* печать с комментариями */
+/* -------------------------
+ * печать с комментариями 
+ * ------------------------- */
 body.hf_printmode.hf_printmode_comments #comments {
 	display: block;
 	padding-left: 1em;
@@ -56,6 +62,10 @@ body.hf_printmode.hf_printmode_comments #comments .add-comment {
 body.hf_printmode.hf_printmode_comments #comments ul.hentry.hf_collapsed {
 	display: block;
 	}
+
+/* -------------------------
+ * вспомогательное
+ * ------------------------- */
 
 /* значок */
 .entry-info .hf_print {
