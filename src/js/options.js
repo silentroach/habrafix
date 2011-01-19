@@ -12,11 +12,11 @@ habrafix.options = ( function() {
 		var tr = this;
 
 		tr.setValue = function(value) {
-			localStorage.setItem(optionPath(path), value ? 1 : 0);
+			window.localStorage.setItem(optionPath(path), value ? 1 : 0);
 		};
 
 		tr.value = function() {
-			var tmp = localStorage.getItem(optionPath(path));
+			var tmp = window.localStorage.getItem(optionPath(path));
 			
 			if (!tmp) {
 				tmp = defaultValue;

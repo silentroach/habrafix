@@ -242,7 +242,7 @@
 	// функция для раскрытия комментария, если мы переходим к нему по хэшу
 	var hashExpand = function() {
 		var 
-			hash = location.hash,
+			hash = window.location.hash,
 			tmp = hash.match(/(\d+)/g);
 		
 		// если хеша нет - извините
@@ -263,7 +263,7 @@
 		// или к их началу если идентификатора нет
 		// с небольшой вынужденной задержкой
 		setTimeout( function() {
-			location = location;
+			window.location = window.location;
 		}, 100);
 	}
 	

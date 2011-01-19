@@ -6,6 +6,7 @@ habrafix.location = ( function(h) {
 
 	var 
 		m,
+		l = window.location,
 		obj = {
 			/** @type {string|boolean} */ tag: false,
 			/** @type {string|boolean} */ profile: false,
@@ -15,20 +16,20 @@ habrafix.location = ( function(h) {
 		};
 	
 	// топик
-	if (location.pathname.match(/\/blog[\/|s\/][^$]/)) {
+	if (l.pathname.match(/\/blog[\/|s\/][^$]/)) {
 		obj.topic = true;
 		return obj;
 	}
 	
 	// qa-вопрос
-	if (location.pathname.match(/\/qa\/(\d+)\/$/)) {
+	if (l.pathname.match(/\/qa\/(\d+)\/$/)) {
 		obj.qaq = true;
 		return obj;
 	}	
 	
 	// страница профиля
-	if (location.pathname == '/') {
-		m = location.host.match(/(.*?).habrahabr.ru/)
+	if (l.pathname == '/') {
+		m = l.host.match(/(.*?).habrahabr.ru/)
 
 		if (m) {
 			obj.profile = m.pop();
@@ -37,13 +38,13 @@ habrafix.location = ( function(h) {
 	}
 	
 	// почтовик
-	if (location.pathname.match(/\/mail\/write\/(.*?)\//)) {
+	if (l.pathname.match(/\/mail\/write\/(.*?)\//)) {
 		obj.mailer = true;
 		return obj;
 	}
 	
 	// страница с топиками определенного тега
-	m = location.pathname.match(/\/tag\/(.*?)\//);
+	m = l.pathname.match(/\/tag\/(.*?)\//);
 	if (m) {
 		obj.tag = m.pop();
 		return obj;

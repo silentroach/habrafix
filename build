@@ -1,6 +1,8 @@
 #!/usr/bin/env php
 <?php
 
+// FIXME как-то упорядочить эту тонну говнокода
+
 define('DS', DIRECTORY_SEPARATOR);
 $root = dirname(__FILE__) . DS . 'src' . DS;
 $operaPath = $root . DS . 'opera' . DS;
@@ -172,7 +174,7 @@ $tmp = array_shift($jsFiles);
 array_unshift($jsFiles, $tempJSFile);
 array_unshift($jsFiles, $tmp);
 
-$compiler = 'java -jar ' . $path_gcc . ' --compilation_level ADVANCED_OPTIMIZATIONS ' .
+$compiler = 'java -jar ' . $path_gcc . ' ' . //' --compilation_level ADVANCED_OPTIMIZATIONS ' .
 	'--warning_level QUIET';
 
 foreach($jsFiles as $js) {
@@ -206,6 +208,7 @@ $config = str_replace('%VER%', $version, $config);
 file_put_contents($tmppath . 'config.xml', $config);
 
 copy($root . 'icons' . DS . '64.png', $tmppath . 'icon.png');
+copy($operaPath . 'index.html', $tmppath . 'index.html');
 
 $cwd = getcwd();
 

@@ -7,7 +7,7 @@
 	h.user = h.dom('.panel-personal a.habrauser').html() || false;
 
 	if (h.user) {
-		localStorage.setItem('user', h.user);
+		window.localStorage.setItem('user', h.user);
 	}
 
 } )(habrafix);

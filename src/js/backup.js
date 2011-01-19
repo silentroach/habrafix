@@ -5,7 +5,7 @@
 ( function(h) {
 
 	var 
-		storage = localStorage,
+		storage = window.localStorage,
 		textareas = document.querySelectorAll('textarea[name]'),
 		tforms = [];
 
@@ -15,7 +15,7 @@
 	 * @return {string}
 	 */
 	var storagePath = function(element) {
-		return 'backup_' + location.pathname + '#' + element.name;
+		return 'backup_' + window.location.pathname + '#' + element.name;
 	}
 	
 	for (var i = 0; i < textareas.length; i++) {

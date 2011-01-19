@@ -12,6 +12,10 @@
 	var
 		body  = h.dom('body'),
 		place = h.dom('.entry-info .twitter').first();
+		
+	if (!place) {
+		return;
+	}
 
 	/**
 	 * Переключиться в/из режима печати
