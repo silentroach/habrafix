@@ -19,15 +19,23 @@ habrafix.dom = (function() {
 	
 	dom.fn = dom.prototype = {
 		/**
-		 * @param {string} selector Селектор или элемент
+		 * @param {string|HTMLElement} selector Селектор или элемент
 		 * @param {?HTMLElement} context Контекст поиска
 		 * @return {Object}
 		 */
 		init: function(selector, context) {		
 			var 
 				doc = context || document,
+				i = j = 0;
+				
+			if (selector.nodeType) {
+				this[0] = selector;
+				this.length = 1;
+				return this;
+			}
+				
+			var
 				matches = idExpr.exec(selector),
-				i = j = 0,
 				elements = (!matches) ? (doc.querySelectorAll(selector) || []) : [];
 				
 			if (matches) {

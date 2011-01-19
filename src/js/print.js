@@ -32,7 +32,7 @@
 	};
 
 	var printDiv = document.createElement('div');
-	h.utils.addClass(printDiv, 'hf_print');
+	h.dom(printDiv).addClass('hf_print');
 
 	var printLink = document.createElement('a');
 	printLink.title = 'распечатать';
@@ -48,7 +48,7 @@
 		e.stopPropagation();
 		togglePrintMode(true);
 	};
-	h.utils.addClass(printWithCommentsLink, 'hf_print_comments');
+	h.dom(printWithCommentsLink).addClass('hf_print_comments');
 
 	printLink.appendChild(printWithCommentsLink);
 	

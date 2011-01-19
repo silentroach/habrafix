@@ -41,7 +41,7 @@
 				// FIXME вот это ж лапша
 				var wrap = document.createElement('div');
 				wrap.id = 'hf_taglist';
-				h.utils.addClass(wrap, 'dl_logic_wrap');
+				h.dom(wrap).addClass('dl_logic_wrap');
 			
 				var dl = document.createElement('dl');
 			
@@ -53,7 +53,7 @@
 				var dd = document.createElement('dd');
 			
 				var ul = document.createElement('ul');
-				h.utils.addClass(ul, 'hf_taglist');
+				h.dom(ul).addClass('hf_taglist');
 			
 				for (var i = 0; i < tags.length; i++) {
 					var tag = tags[i];
@@ -65,7 +65,7 @@
 					a.href = 'http://habrahabr.ru/tag/' + encodeURIComponent(tag) + '/';
 					a.innerText = tag;
 				
-					h.utils.addClass(a, 'hf_tag');
+					h.dom(a).addClass('hf_tag');
 				
 					li.appendChild(a);
 				
@@ -87,11 +87,11 @@
 						var element = this;
 			
 						if (tags.indexOf(element.innerText.toLowerCase()) >= 0) {
-							h.utils.addClass(element, subscribedClassName);
+							h.dom(element).addClass(subscribedClassName);
 						
 							// если мы находимся в списке топиков, то подсвечиваем его
 							if (!h.location.topic) {
-								h.utils.addClass(entry, subscribedClassName);
+								h.dom(entry).addClass(subscribedClassName);
 							}
 						}
 					} );

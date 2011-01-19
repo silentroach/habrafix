@@ -10,7 +10,7 @@
 		var editor = document.createElement('div');
 		editor.contentEditable = true;
 		editor.innerHTML = '<b>test</b><br /><br />ololo <ul><li>test</li><li>323423</li></ul>';
-		h.utils.addClass(editor, 'hf_editor');
+		h.dom(editor).addClass('hf_editor');
 		
 		// fixme onblur будет достаточно, я считаю, так пока для теста
 		editor.onkeyup = function(e) {

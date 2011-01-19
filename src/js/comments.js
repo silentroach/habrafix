@@ -70,7 +70,7 @@
 		// если вложенные комментарии уже раскрыты, то все ок
 		if (
 			!list
-			|| !h.utils.hasClass(list, 'hf_collapsed')
+			|| !h.dom(list).hasClass('hf_collapsed')
 		) {
 			if (id in commentParents) {
 				delete commentParents[id];
@@ -82,11 +82,11 @@
 		var expander = h.dom('.hf_expander', element).first();
 		
 		// раскрываем список
-		h.utils.removeClass(list, 'hf_collapsed');
+		h.dom(list).removeClass('hf_collapsed');
 		
 		// удаляем разворачиватель
 		if (expander) {
-			h.utils.removeElement(expander);
+			h.dom(expander).remove();
 			--expanderCount;
 		}
 	
@@ -102,7 +102,7 @@
 			expandAllElement
 			&& expanderCount == 0
 		) {
-			h.utils.removeElement(expandAllElement);
+			h.dom(expandAllElement).remove();
 			expandAllElement = null;
 		}
 	};
@@ -126,7 +126,7 @@
 		h.dom('.hf_expander').remove();
 		
 		// скрываем ссылку для разворота
-		h.utils.removeElement(expandAllElement);
+		h.dom(expandAllElement).remove();
 		
 		// обнуляем служебное
 		expanderCount = 0;
@@ -135,7 +135,7 @@
 	
 	// создаем заранее p.reply
 	var preplyBase = document.createElement('p');
-	h.utils.addClass(preplyBase, 'reply');
+	h.dom(preplyBase).addClass('reply');
 
 	// создаем заранее разворачиватель
 	var expanderElementBase = document.createElement('a');
@@ -143,13 +143,13 @@
 	// добавляем отступ, но только для авторизированных
 	// для остальных он не нужен - слева будет пусто
 	if (h.user) {
-		h.utils.addClass(expanderElementBase, 'hf_extra_left');
+		h.dom(expanderElementBase).addClass('hf_extra_left');
 	}
 
-	h.utils.addClass(expanderElementBase, 'hf_expander');
+	h.dom(expanderElementBase).addClass('hf_expander');
 			
 	// делаем ссылку похожей на ссылку "ответить"
-	h.utils.addClass(expanderElementBase, 'js-serv');				
+	h.dom(expanderElementBase).addClass('js-serv');				
 
 	/**
 	 * Подготавливаем ветку комментариев
@@ -178,7 +178,7 @@
 			
 			if (metaElement) {
 				if (h.dom('.nickname a', metaElement).html() === author) {
-					h.utils.addClass(metaElement, 'hf_author_reply');
+					h.dom(metaElement).addClass('hf_author_reply');
 				}
 			}
 		}
@@ -230,7 +230,7 @@
 			preply.appendChild(expanderElement);
 			++expanderCount;
 
-			h.utils.addClass(clist, 'hf_collapsed');
+			h.dom(clist).addClass('hf_collapsed');
 		}
 	}
 
@@ -277,8 +277,8 @@
 		
 		if (headerElement) {
 			expandAllElement = document.createElement('a');
-			h.utils.addClass(expandAllElement, 'js-serv');
-			h.utils.addClass(expandAllElement, 'hf_extra_left');
+			h.dom(expandAllElement).addClass('js-serv');
+			h.dom(expandAllElement).addClass('hf_extra_left');
 			expandAllElement.innerText = 'развернуть все';
 			expandAllElement.onclick = expandAll;
 			

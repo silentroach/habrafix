@@ -11,53 +11,6 @@ habrafix.utils = ( function() {
 
 	return {
 		/**
-		 * Удаление элемента
-		 * @param {string} element Селектор
-		 */
-		removeElement: function(element) {
-			element.parentNode.removeChild(element);
-		},
-
-		/**
-		 * Найти и что-то сделать с элементами
-		 * @param {string} selector Селектор
-		 * @param {function(HTMLElement)} callback Callback-функция
-		 */
-		seekAndCallback: function(selector, callback) {
-			var 
-				elements = $(selector).all(),
-				element = null;
-
-			for (var i = 0; i < elements.length; i++) {
-				callback(elements[i]);
-			}			
-		},
-
-		/**
-		 * Найти и убрать элемент
-		 * @param {string} selector Селектор
-		 */
-		seekAndDestroy: function(selector) {
-			var utils = this;
-		
-			utils.seekAndCallback(selector, function(element) {
-				utils.removeElement(element);
-			} );
-		},
-		
-		/**
-		 * Найти элемент(ы) и показать
-		 * @param {string} selector Селектор
-		 */
-		seekAndShow: function(selector) {
-			var utils = this;
-		
-			utils.seekAndCallback(selector, function(element) {
-				utils.show(element);
-			} );
-		},
-		
-		/**
 		 * Скрываем элемент
 		 * @param {HTMLElement} element HTML элемент
 		 */
@@ -71,50 +24,6 @@ habrafix.utils = ( function() {
 		 */
 		show: function(element) {
 			element.style.display = 'block';
-		},
-		
-		/**
-		 * Есть ли у элемента указанный класс
-		 * @param {HTMLElement} element HTML элемент
-		 * @param {string} className Название класса
-		 */
-		hasClass: function(element, className) {
-			return classList(element).contains(className);
-		},
-
-		/**
-		 * Удалить класс, если такой присутствует у элемента
-		 * @param {HTMLElement} element HTML элемент
-		 * @param {string} className Название класса
-		 */
-		removeClass: function(element, className) {
-			if (this.hasClass(element, className)) {
-				classList(element).remove(className);
-			}
-		},
-
-		/**
-		 * Добавить класс к элементу
-		 * @param {HTMLElement} element HTML элемент
-		 * @param {string} className Название класса
-		 */
-		addClass: function(element, className) {
-			if (!this.hasClass(element, className)) {
-				classList(element).add(className);
-			}
-		},
-
-		/**
-		 * Добавить или удалить класс у элемента
-		 * @param {HTMLElement} element HTML элемент
-		 * @param {string} className Название класса
-		 */
-		toggleClass: function(element, className) {
-			if (this.hasClass(element, className)) {
-				this.removeClass(element, className);
-			} else {
-				this.addClass(element, className);
-			}
 		},
 		
 		/**

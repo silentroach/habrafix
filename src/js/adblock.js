@@ -16,7 +16,7 @@
 			return false;
 		}
 		
-		h.utils.removeElement(element);
+		h.dom(element).remove();
 	} );
 
 	// показываем ссылки, если они не на pink.habralab
@@ -27,7 +27,7 @@
 		if (!link.href.match(/http:\/\/pink.habralab/)) {
 			h.utils.show(link);
 		} else {
-			h.utils.removeElement(link);
+			h.dom(link).remove();
 		}	
 	} );
 
