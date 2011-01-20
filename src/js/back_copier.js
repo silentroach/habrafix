@@ -8,7 +8,6 @@
 	var copier = document.getElementById('copier');
 	
 	if (!copier) {
-		console.info('fail!!!');
 		return;
 	}
 

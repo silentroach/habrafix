@@ -4,14 +4,8 @@
  */
 ( function(h) {
 
-	// чистим dom от уже скрытых в css элементов
-	
-	/*
-	if (h.location.people) {
-		h.dom('#sidebar').addClass('hf_show');
-	} else {
-		h.dom('#sidebar').remove();
-	}*/
+	// закругленные уголки теперь через border-radius делаются в css
+	h.dom('.entry-info .corner').remove();
 	
 	// iframe? O.o
 	h.dom('iframe').remove();

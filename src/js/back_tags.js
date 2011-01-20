@@ -5,13 +5,22 @@
 habrafix.tags = ( function(h) {
 
 	var 
+		/**
+		 * @const
+		 * @type {string}
+		 */
 		subscriptionTitle = 'Подписки',
+		// FIXME выделить оповещения в отдельный файл
 		tagsChangedNotification = {
 			'notification': 'tagsChanged'
 		},
 		cache = [],
 		cached = false;
-		
+
+	/**
+	 * Получение списка тегов
+	 * @param {function(Array.<string>)} callback Callback-функция со списком
+	 */		
 	var tagList = function(callback) {
 		if (cached) {
 			callback(cache);
@@ -33,7 +42,11 @@ habrafix.tags = ( function(h) {
 		}
 	};
 
-	// проверяем подписку, результат идет в callback
+	/**
+	 * Проверяем подписку, результат идет в callback
+	 * @param {string} tag Тег
+	 * @param {function(boolean)}
+	 */
 	var checkSubscription = function(tag, callback) {
 		if (cached) {
 			callback(cache.indexOf(tag) >= 0);
@@ -49,7 +62,10 @@ habrafix.tags = ( function(h) {
 		} );
 	};
 	
-	// подписка
+	/**
+	 * Подписка
+	 * @param {string} tag Тег
+	 */
 	var subscribe = function(tag) {
 		if (cached) {
 			cache.push(tag);
@@ -68,7 +84,10 @@ habrafix.tags = ( function(h) {
 		} );
 	};
 	
-	// отписка
+	/**
+	 * Отписка
+	 * @param {string} tag Тег
+	 */
 	var unsubscribe = function(tag) {
 		if (cached) {
 			var i = cache.indexOf(tag);
@@ -113,13 +132,8 @@ habrafix.tags = ( function(h) {
 				}
 			} )
 		},
-		/**
-		 * Получение списка тегов
-		 * @param {function(Array.<string>)} callback Callback-функция со списком
-		 */
-		list: function(callback) {
-			tagList(callback);
-		}
+
+		list: tagList
 	};
 
 } )(habrafix);
