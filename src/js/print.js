@@ -78,5 +78,10 @@
 			togglePrintMode(true);
 		}
 	};
+	
+	var escDiv = document.createElement('div');
+	escDiv.innerText = 'для выхода из режима нажмите кнопку Esc';
+	escDiv.id = 'hf_print_esc';
+	body.first().appendChild(escDiv);
 
 } )(habrafix);

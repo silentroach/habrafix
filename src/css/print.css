@@ -17,6 +17,11 @@
 	display: none;
 	}
 	
+/* плашка с Esc */
+body.hf_printmode #hf_print_esc {
+	display: block;
+	}
+	
 body.hf_printmode {
 	height: auto !important;
 }	
@@ -75,6 +80,28 @@ body.hf_printmode.hf_printmode_comments #comments ul.hentry.hf_collapsed {
 /* -------------------------
  * вспомогательное
  * ------------------------- */
+ 
+/* плашка с Esc для выхода */
+#hf_print_esc {
+	display: none;
+	position: fixed;
+	top: 0px;
+	right: 0px;
+	text-align: right;
+	background: black;
+	color: white;
+	padding: 0px 3px 3px 7px;
+	border-bottom-left-radius: 7px;
+	opacity: .3;
+	font: 10pt Tahoma;
+	}
+	
+@media print {
+	/* при печати плашку не показываем */
+	#hf_print_esc {
+		display: none !important;
+		}
+	}
 
 /* значок */
 .entry-info .hf_print {
