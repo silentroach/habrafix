@@ -51,5 +51,18 @@
 			h.dom(obj).show();
 		}
 	} );
+	
+	// возвращаем sidebar если он не пустой
+	
+	var sidebar = h.dom('#sidebar').first();
+	
+	if (
+		sidebar
+		&& sidebar.children.length != 0
+	) {
+		h.dom(sidebar).addClass('hf_show');
+	} else {
+		h.dom('#wrapper').addClass('hf_wo_sidebar');	
+	}
 
 } )(habrafix);

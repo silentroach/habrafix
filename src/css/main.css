@@ -7,45 +7,44 @@ object {
 a[target=_top] {
 	display: none;
 	}
+	
+iframe {
+	display: none;
+	}	
 
 /* поднимаем логотип */
 .header .logo {
 	margin-top: -50px !important;
 	}
 
-/* убираем сайдбар 
-#sidebar {
-	display: none;
-	}
-	
-	#sidebar.hf_show {
-	display: block;
-	}
-*/
 
 /* расширяем контент 
 #viva-la-w3c {
 	width: auto !important;
 	}
+*/
 
-.profile-header {
+#wrapper.hf_wo_sidebar .profile-header {
 	width: 90% !important;
 	}
 
-#main-content {
+#wrapper.hf_wo_sidebar #main-content {
 	width: 95% !important;
 	}
-*/
-
-iframe {
+	
+#sidebar {
 	display: none;
-}
+	}
+	
+	#sidebar .banner {
+		height: auto;
+		margin-bottom: 0px;
+		}
 
-#sidebar .banner {
-	height: auto;
-	margin-bottom: 0px;
-}
-
+#sidebar.hf_show {
+	display: block;
+	}
+		
 /* нет больше минусам */
 .vote_minus {
 	display: none !important;

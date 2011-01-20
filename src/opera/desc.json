@@ -9,9 +9,9 @@
 		"../js/dom.js",
 		"../js/user.js",
 		"../js/location.js",
-		"../js/utils.js",		
-		"../js/adblock.js",
+		"../js/utils.js",
 		"../js/cleaner.js",
+		"../js/adblock.js",
 		"../js/comments.js",
 		"../js/backup.js",
 		"../js/print.js"
