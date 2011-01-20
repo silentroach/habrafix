@@ -21,7 +21,8 @@
 			"css/main.css",
 			"css/comments.css",
 			"css/print.css",
-			"css/tags.css"
+			"css/tags.css",
+			"css/copier.css"
 		],
 		"js" : [
 			"js/init.js",
@@ -37,6 +38,7 @@
 			"js/print.js",
 			"js/sandtags.js",			
 			"js/tags.js",
+			"js/copy.js",
 			"js/debug.js"
 		]
 	} ],
