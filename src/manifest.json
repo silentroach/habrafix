@@ -35,6 +35,7 @@
 			"js/comments.js",
 			"js/backup.js",
 			"js/print.js",
+			"js/sandtags.js",			
 			"js/tags.js",
 			"js/debug.js"
 		]
