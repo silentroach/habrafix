@@ -3,6 +3,7 @@
  * ------------------------- */
 
 /* заголовок              */ body.hf_printmode .header,
+/* сайдбар                */ body.hf_printmode #sidebar,
 /* номера страниц         */ body.hf_printmode .page-navigation,
 /* реклама Яндекса        */ body.hf_printmode .yandex-direct,
 /* заголовок топика?      */ body.hf_printmode #viva-la-w3c,
@@ -15,6 +16,10 @@
 /* кнопки голосования     */ body.hf_printmode .poll-item input[type=button] {
 	display: none;
 	}
+	
+body.hf_printmode {
+	height: auto !important;
+}	
 
 body.hf_printmode h2.entry-title,
 body.hf_printmode h2.single-entry-title {
@@ -25,6 +30,10 @@ body.hf_printmode h2.single-entry-title {
 body.hf_printmode #wrapper {
 	width: 100% !important;
 	}
+	
+body.hf_printmode #main-content {
+	width: 98% !important;
+	}	
 
 body.hf_printmode .hentry {
 	margin-bottom: 1em !important;

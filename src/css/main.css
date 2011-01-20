@@ -13,12 +13,17 @@ a[target=_top] {
 	margin-top: -50px !important;
 	}
 
-/* убираем сайдбар */
+/* убираем сайдбар 
 #sidebar {
 	display: none;
 	}
+	
+	#sidebar.hf_show {
+	display: block;
+	}
+*/
 
-/* расширяем контент */
+/* расширяем контент 
 #viva-la-w3c {
 	width: auto !important;
 	}
@@ -30,6 +35,16 @@ a[target=_top] {
 #main-content {
 	width: 95% !important;
 	}
+*/
+
+iframe {
+	display: none;
+}
+
+#sidebar .banner {
+	height: auto;
+	margin-bottom: 0px;
+}
 
 /* нет больше минусам */
 .vote_minus {

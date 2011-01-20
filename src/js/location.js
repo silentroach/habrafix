@@ -14,8 +14,15 @@ habrafix.location = ( function(h) {
 			/** @type {boolean}        */ topic: false,
 			/** @type {boolean}        */ mailer: false,
 			/** @type {boolean}        */ qaq: false,
-			/** @type {boolean}        */ sandtopic: false
+			/** @type {boolean}        */ sandtopic: false,
+			/** @type {boolean}        */ people: false
 		};
+		
+	// список людей
+	if (l.pathname == '/people/') {
+		obj.people = true;
+		return obj;
+	}
 	
 	// топик
 	if (l.pathname.match(/\/blog[\/|s\/][^$]/)) {
