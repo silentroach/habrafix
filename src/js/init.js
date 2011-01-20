@@ -8,5 +8,11 @@ var habrafix = {
 	 * @const 
 	 * @type {string}
 	 */
-	name: 'habrafix'
+	name: 'habrafix',
+	
+	/**
+	 * @const
+	 * @type {string}
+	 */
+	url: 'https://github.com/silentroach/habrafix'
 };

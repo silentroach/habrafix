@@ -39,6 +39,7 @@
 			"js/sandtags.js",			
 			"js/tags.js",
 			"js/copier.js",
+			"js/about.js",
 			"js/debug.js"
 		]
 	} ],

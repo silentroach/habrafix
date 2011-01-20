@@ -17,13 +17,6 @@ iframe {
 	margin-top: -50px !important;
 	}
 
-
-/* расширяем контент 
-#viva-la-w3c {
-	width: auto !important;
-	}
-*/
-
 #wrapper.hf_wo_sidebar .profile-header {
 	width: 90% !important;
 	}
@@ -57,4 +50,10 @@ iframe {
 	
 .hf_extra_left {
 	margin-left: 1em;
-}
+	}
+
+/* about */
+#about .hf {
+	margin-left: -5px;
+	margin-top: 10px;
+	}
