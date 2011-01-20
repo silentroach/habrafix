@@ -5,6 +5,11 @@
  
 ( function(h) {
 
+	// это нужно только на странице с топиком
+	if (!h.location.topic) {
+		return;
+	}
+
 	h.dom('#main-content code').each( function() {
 		var 
 			element = this.parentNode.nodeName == 'BLOCKQUOTE' ? this.parentNode : this,
