@@ -38,7 +38,7 @@
 			"js/print.js",
 			"js/sandtags.js",			
 			"js/tags.js",
-			"js/copy.js",
+			"js/copier.js",
 			"js/debug.js"
 		]
 	} ],

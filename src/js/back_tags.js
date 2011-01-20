@@ -90,6 +90,12 @@ habrafix.tags = ( function(h) {
 			} );
 		} );
 	};
+	
+	h.requests.addListener('getTags', function(request, sendResponse) {
+		h.tags.list( function(list) {
+			sendResponse(list);
+		} );
+	} );
 
 	return {
 		/**

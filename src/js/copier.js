@@ -5,16 +5,6 @@
  
 ( function(h) {
 
-	var proxy = document.createElement('textarea');
-	proxy.contentEditable = true;
-	
-	var copyCode = function(element) {
-		proxy.value = element.innerText;
-		proxy.value = element.innerText;
-		proxy.select();
-		document.execCommand('cut');
-	};
-
 	h.dom('#main-content code').each( function() {
 		var 
 			element = this.parentNode.nodeName == 'BLOCKQUOTE' ? this.parentNode : this,
@@ -25,7 +15,18 @@
 		element.parentNode.insertBefore(copier, element);
 		
 		copier.onclick = function() {
-			copyCode(element);
+			chrome.extension.sendRequest( {
+				'method' : 'copy',
+				'data'   : element.innerText
+			}, function(reply) {
+				if (reply) {
+					h.dom(copier).addClass('copied');
+					
+					setTimeout( function() {
+						h.dom(copier).removeClass('copied');
+					}, 1000);
+				}
+			} );
 		}
 	} );
 

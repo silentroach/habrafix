@@ -4,15 +4,23 @@
  */
 habrafix.requests = ( function(h) {
 
+	var methods = {};
+
 	chrome.extension.onRequest.addListener( function(request, sender, sendResponse) {	
-		if (request['method'] == 'getTags') {
-			h.tags.list( function(list) {
-				sendResponse(list);
-			} );
+		if (
+			'method' in request
+			&& request['method'] in methods
+		) {
+			methods[request['method']](request, sendResponse);
 		}
 	} );
 
 	return {
+		
+		addListener: function(method, callback) {
+			methods[method] = callback;
+		},
+		
 		broadcast: function(obj) {
 			chrome.windows.getAll( {
 				'populate': true
@@ -27,13 +35,12 @@ habrafix.requests = ( function(h) {
 							continue;
 						}
 
-						chrome.tabs.sendRequest(tab.id, obj, function(response) {
-
-						} );
+						chrome.tabs.sendRequest(tab.id, obj, function(response) { } );
 					}
 				}
 			} );
 		}
+		
 	};
 
 } )(habrafix);

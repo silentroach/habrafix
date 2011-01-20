@@ -5,3 +5,8 @@
 	font: 8pt Tahoma;
 	cursor: pointer;
 	}
+	
+	.hf_copier.copied {
+		cursor: default;
+		color: black;
+		}
