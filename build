@@ -149,15 +149,19 @@ echo "Preparing background page\n";
 $backgroundPage = $manifestObject['background_page'];
 $background = file_get_contents($rootpath . $backgroundPage);
 
-if (preg_match_all('@script src="(.*?)"@', $background, $matches)) {
+if (preg_match_all('@<script src="(.*?)"></script>@', $background, $matches)) {
 	$cm = array_pop($matches);
-	
-	$compiler = 'java -jar ' . $path_gcc . ' --compilation_level ADVANCED_OPTIMIZATIONS ' .
-		'--warning_level QUIET';
-		
+	$replace = array_pop($matches);
+
 	$backjs = compressJS($path_gcc, $cm, $rootpath, $externs);
 
-	$background = '<html><body><script>' . $backjs . '</script></body></html>';
+	$tmp = array_pop($replace);
+	
+	$background = str_replace($tmp, '<script>' . $backjs . '</script>', $background);
+
+	foreach($replace as $rep) {
+		$background = str_replace($rep, '', $background);
+	}
 	
 	file_put_contents($tmppath . $backgroundPage, $background);
 }
