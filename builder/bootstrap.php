@@ -14,3 +14,6 @@ if ('' == exec('find ' . escapeshellarg(PATH_TOOLS) . ' -name gcc.jar')) {
 	system('./prepare');
 	chdir($cwd);
 }
+
+define('PATH_GCC', escapeshellarg(trim(`find ./ -name 'gcc.jar'`)));
+define('PATH_YUI', escapeshellarg(trim(`find ./ -name 'yui.jar'`)));

@@ -1,7 +1,7 @@
 <?php
 
-function compressJS($path_gcc, $files = array(), $rootpath = '.', $externs = array()) {
-	$compiler = 'java -jar ' . $path_gcc . ' --compilation_level ADVANCED_OPTIMIZATIONS ' .
+function compressJS($files = array(), $rootpath = '.') {
+	$compiler = 'java -jar ' . PATH_GCC . ' --compilation_level ADVANCED_OPTIMIZATIONS ' .
 		'--warning_level QUIET';
 		
 	echo "Compressing .js...\n  ";
@@ -20,6 +20,8 @@ function compressJS($path_gcc, $files = array(), $rootpath = '.', $externs = arr
 	}
 	
 	echo "\n";
+	
+	$externs = explode("\n", trim(shell_exec('find ' . escapeshellarg(PATH_TOOLS . 'externs' . DS) . ' -name *.js')));
 
 	foreach($externs as $extern) {
 		$compiler .= ' --externs ' . escapeshellarg($extern);
@@ -51,8 +53,8 @@ function combineJS($files = array(), $rootpath = '.') {
 	return $result;
 }
 
-function compressCSS($path_yui, $files = array(), $rootpath = '.') {
-	$compiler = 'java -jar ' . $path_yui . ' ';
+function compressCSS($files = array(), $rootpath = '.') {
+	$compiler = 'java -jar ' . PATH_YUI . ' ';
 		
 	echo "Compressing .css...\n  ";
 	

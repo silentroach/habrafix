@@ -13,11 +13,6 @@ $rootpath  = dirname(__FILE__) . DS . 'src' . DS;
 $operapath = $rootpath . 'opera' . DS;
 $toolspath = dirname(__FILE__) . DS . 'tools' . DS;
 
-$externs = explode("\n", trim(shell_exec('find ' . escapeshellarg($toolspath . 'externs' . DS) . ' -name *.js')));
-
-$path_gcc    = escapeshellarg(trim(`find ./ -name 'gcc.jar'`));
-$path_yui    = escapeshellarg(trim(`find ./ -name 'yui.jar'`));
-
 // создаем временную папку для расширения
 
 $tmppath = sys_get_temp_dir() . DS . 'habrafix' . DS;
@@ -44,10 +39,10 @@ echo "\nBuilding Chrome extension...\n============================\n";
 
 $scripts =& $manifestObject['content_scripts'][0];
 
-$css = compressCSS($path_yui, $scripts['css'], $rootpath);
+$css = compressCSS($scripts['css'], $rootpath);
 file_put_contents($tmppath . 'habrafix.css', $css);
 
-$js  = compressJS($path_gcc,  $scripts['js'],  $rootpath, $externs);
+$js  = compressJS($scripts['js'],  $rootpath);
 file_put_contents($tmppath . 'habrafix.js', $js);
 
 $scripts['js']  = array('habrafix.js');
@@ -61,7 +56,7 @@ if (preg_match_all('@<script src="(.*?)"></script>@', $background, $matches)) {
 	$cm = array_pop($matches);
 	$replace = array_pop($matches);
 
-	$backjs = compressJS($path_gcc, $cm, $rootpath, $externs);
+	$backjs = compressJS($cm, $rootpath);
 
 	$tmp = array_pop($replace);
 	
@@ -104,7 +99,7 @@ $desc = json_decode(file_get_contents($operapath . 'desc.json'), true);
 
 $cssjs = file_get_contents($operapath . 'css.js');
 
-$css = compressCSS($path_yui, $desc['css'], $operapath);
+$css = compressCSS($desc['css'], $operapath);
 $cssjs = str_replace('%CSS%', $css, $cssjs);
 
 $tempJSFile = $tmppath . 'css.js';
@@ -124,7 +119,7 @@ $userJS .= '
 $jsFiles = $desc['js'];
 
 
-$js         = compressJS($path_gcc,  $jsFiles,  $operapath, $externs);
+$js         = compressJS($jsFiles,  $operapath);
 $jsOperaMod = combineJS($jsFiles, $operapath);
 	
 $js = $userJS . '
@@ -137,7 +132,7 @@ document.addEventListener(\'DOMContentLoaded\', function() {
 ' . $jsOperaMod . '
 }, false );';
 
-$js .= '( function() { ' . compressJS($path_gcc, array($tempJSFile), '', $externs) . ' } )()';
+$js .= '( function() { ' . compressJS(array($tempJSFile), '') . ' } )()';
 
 $jsOperaMod .= "\n
 ( function() { " . file_get_contents($tempJSFile) . ' } )()';
