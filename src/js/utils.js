@@ -5,7 +5,7 @@
 habrafix.utils = ( function() {
 
 	return {
-	
+
 		/**
 		 * Склоняем в зависимости от числа спереди
 		 * @param {number} number Число

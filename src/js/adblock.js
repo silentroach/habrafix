@@ -4,20 +4,8 @@
  */
 ( function(h) {
 
-	// удаляем все элементы в #main-page до div.header
-
-	h.dom('#main-page > *').each( function() {
-		var element = this;
-		
-		if (
-			element.nodeName == 'DIV'
-			&& element.className == 'header'
-		) {
-			return false;
-		}
-		
-		h.dom(element).remove();
-	} );
+	// iframe? O.o
+	h.dom('iframe').remove();
 
 	// показываем ссылки, если они не на pink.habralab
 
@@ -64,5 +52,20 @@
 	} else {
 		h.dom('#wrapper').addClass('hf_wo_sidebar');	
 	}
+	
+	// удаляем все элементы в #main-page до div.header
+
+	h.dom('#main-page > *').each( function() {
+		var element = this;
+		
+		if (
+			element.nodeName == 'DIV'
+			&& element.className == 'header'
+		) {
+			return false;
+		}
+		
+		h.dom(element).remove();
+	} );	
 
 } )(habrafix);
