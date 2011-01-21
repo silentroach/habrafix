@@ -22,7 +22,7 @@
 		var element = this;
 		
 		if (!element.form) {
-			continue;
+			return;
 		}
 		
 		// пытаемся получить значение поля
