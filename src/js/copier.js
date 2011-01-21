@@ -6,7 +6,10 @@
 ( function(h) {
 
 	// это нужно только на странице с топиком
-	if (!h.location.topic) {
+	if (
+		!h.location.topic
+		&& !h.location.sandtopic
+	) {
 		return;
 	}
 
