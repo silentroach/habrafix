@@ -4,7 +4,11 @@
  */
 ( function(h) {
 
-	// не за чем тут h.dom, сделаем обычным getElementById
+	// почему в background? потому что если создать на странице с content_script,
+	// то execCommand не срабатывает и возвращает false, понятия не имею почему
+	// скорее всего какие-то ограничения хитрые
+
+	// не за чем тащить за собой h.dom, сделаем обычным getElementById
 	var copier = document.getElementById('copier');
 	
 	if (!copier) {
