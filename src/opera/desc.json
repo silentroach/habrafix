@@ -16,6 +16,6 @@
 		"../js/backup.js",
 		"../js/print.js",
 		"../js/sandtags.js",
-		"../js/about.js"
+		"../js/config.js"
 	]
 }

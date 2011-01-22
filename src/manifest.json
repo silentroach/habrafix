@@ -19,6 +19,7 @@
 		],
 		"css" : [
 			"css/main.css",
+			"css/config.css",
 			"css/comments.css",
 			"css/print.css",
 			"css/tags.css",
@@ -39,7 +40,7 @@
 			"js/sandtags.js",			
 			"js/tags.js",
 			"js/copier.js",
-			"js/about.js",
+			"js/config.js",
 			"js/debug.js"
 		]
 	} ],

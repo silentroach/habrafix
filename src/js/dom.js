@@ -210,7 +210,7 @@ habrafix.dom = (function() {
 		 * Показываем элемент
 		 */
 		show: function() {
-			this.css('display', '');
+			this.css('display', 'block');
 		},
 		
 		/**
