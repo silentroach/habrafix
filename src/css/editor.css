@@ -28,7 +28,7 @@
 	border-top: 1px solid silver;
 	border-top-left-radius: 3px;
 	border-top-right-radius: 3px;
-	width: 180px;
+	width: 190px;
 	padding: 2px;
 	}
 	
@@ -54,3 +54,28 @@
 		.hf_etoolbar li a {
 			cursor: pointer;
 			}
+
+		.hf_etoolbar img {
+			border: 1px solid transparent;
+			width: 20px;
+			height: 20px;
+			}
+
+			.hf_etoolbar img:hover,
+			.hf_etoolbar img:active {
+				border-radius: 3px;
+				}
+
+			.hf_etoolbar img:hover {
+				border-right: 1px solid silver;
+				border-bottom: 1px solid silver;
+				border-left: 1px solid white;
+				border-top: 1px solid white;
+				}
+
+			.hf_etoolbar img:active {
+				border-right: 1px solid white;
+				border-bottom: 1px solid white;
+				border-left: 1px solid silver;
+				border-top: 1px solid silver;
+				}
