@@ -4,7 +4,7 @@
  */
 ( function(h) {
 
-	if (!h.options.hideads.value()) {
+	if (!h.config.hideads.value()) {
 	
 		h.dom('a[target=_top]').show();
 		h.dom('object').show();

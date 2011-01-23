@@ -10,8 +10,8 @@
 	}
 	
 	var 
-		reallyTree   = h.options.treecomments.value(),
-		reallyAuthor = h.options.showauthor.value();
+		reallyTree   = h.config.treecomments.value(),
+		reallyAuthor = h.config.showauthor.value();
 		
 	if (
 		!reallyTree

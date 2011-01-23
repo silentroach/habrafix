@@ -4,7 +4,7 @@
  */
 ( function(h) {
 
-	if (!h.options.etoolbar.value()) {
+	if (!h.config.etoolbar.value()) {
 		return;
 	}
 

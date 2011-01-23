@@ -12,7 +12,7 @@
 		return;
 	}
 
-	if (!h.options.print.value()) {
+	if (!h.config.print.value()) {
 		return;
 	}
 

@@ -25,7 +25,7 @@
 	aboutLabel.appendChild(configLabel);
 
 	var changeConfigValue = function(e) {
-		h.options[e.target.id.replace(prefix, '')].setValue(e.target.checked);
+		h.config[e.target.id.replace(prefix, '')].setValue(e.target.checked);
 	};
 
 	var configForm = null;
@@ -49,18 +49,18 @@
 		var optionList = document.createElement('ul');
 		configForm.appendChild(optionList);
 
-		for (var item in h.options) {
+		for (var item in h.config) {
 			var 
 				listItem       = document.createElement('li'),
 				checkboxOption = document.createElement('input'),
 				labelOption    = document.createElement('label');
 
-			labelOption.innerText = h.options[item].caption();
+			labelOption.innerText = h.config[item].caption();
 
 			checkboxOption.type = 'checkbox';
 			checkboxOption.id = prefix + item;
 
-			if (h.options[item].value()) {
+			if (h.config[item].value()) {
 				checkboxOption.checked = true;
 			}
 
