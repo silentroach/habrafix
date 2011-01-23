@@ -4,10 +4,16 @@
  */
 ( function(h) {
 
+	if (
+		!h.location.writer
+		&& !h.location.mailer
+		&& !h.location.topic
+	) {
+		return;
+	}
+
 	var 
-		storage = window.localStorage,
-		textareas = h.dom('textarea[name]'),
-		tforms = [];
+		storage = window.localStorage;
 
 	/**
 	 * Название элемента в localStorage
@@ -18,16 +24,23 @@
 		return 'backup_' + h.location.pathname + '#' + element.name;
 	}
 	
-	textareas.each( function() {
-		var element = this;
+	var handleTextarea = function(textareaSelector, clearerSelector) {
+		var element = h.dom(textareaSelector).first();
 		
-		if (!element.form) {
+		if (!element) {
 			return;
 		}
 		
-		// пытаемся получить значение поля
-		var value = storage.getItem(storagePath(element));
+		var clearElement = h.dom(clearerSelector);
 		
+		if (clearElement.size() == 0) {
+			return false;
+		}
+		
+		var 
+			path  = storagePath(element),
+			value = storage.getItem(path);
+
 		if (
 			value
 			&& element.value == ''
@@ -38,26 +51,30 @@
 		
 		// по нажатии на кнопку внутри textarea сохраняем его содержимое
 		element.addEventListener('keyup', function(e) {
-			storage.setItem(storagePath(e.target), e.target.value);
+			storage.setItem(path, e.target.value);
 		}, false );
 		
-		if (tforms.indexOf(element.form) < 0) {
-			// вешаем на каждую форму обработчик сабмита
-			element.form.addEventListener('submit', function(e) {
-				textareas.each( function() {
-					var ta = this;
-					
-					if (ta.form == e.target) {
-						// чтобы удалить сохраненное сообщение из хранилища
-						storage.removeItem(storagePath(ta));
-					}
-				} );
-			}, false );
-			
-			tforms.push(element.form);
-		}
-	} );
+		// очищаем при сабмите
+		element.form.addEventListener('submit', function(e) {
+			storage.removeItem(path);
+		} );
+		
+		// и на всякий на клике
+		clearElement.each( function() {
+			this.addEventListener('click', function(e) {
+				storage.removeItem(path);
+			} );
+		} );
+	}
 	
-	delete tforms;
+	if (h.location.mailer) {
+		handleTextarea('#htmlarea', '#send');
+	} else 
+	if (h.location.writer) {
+		handleTextarea('#topic-message', 'input[name=publish],input[name=draft]');
+	} else
+	if (h.location.topic) {
+		handleTextarea('#js-field-comment', 'input[name=write_comment]');
+	}
 
 } )(habrafix);

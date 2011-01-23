@@ -15,12 +15,19 @@ habrafix.location = ( function(h) {
 			/** @type {boolean}        */ mailer: false,
 			/** @type {boolean}        */ qaq: false,
 			/** @type {boolean}        */ sandtopic: false,
-			/** @type {boolean}        */ people: false
+			/** @type {boolean}        */ people: false,
+			/** @type {boolean}        */ writer: false
 		};
 		
 	// список людей
 	if (l.pathname == '/people/') {
 		obj.people = true;
+		return obj;
+	}
+
+	// создание чего-то
+	if (l.pathname.match(/^\/add\/(.*?)\//g)) {
+		obj.writer = true;
 		return obj;
 	}
 	
