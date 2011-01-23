@@ -12,6 +12,10 @@
 		return;
 	}
 
+	if (!h.options.print.value()) {
+		return;
+	}
+
 	var
 		body  = h.dom('body'),
 		place = 

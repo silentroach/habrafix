@@ -4,6 +4,10 @@
  */
 ( function(h) {
 
+	if (!h.options.etoolbar.value()) {
+		return;
+	}
+
 	var makeEditor = function() {
 		var 
 			textarea = this,

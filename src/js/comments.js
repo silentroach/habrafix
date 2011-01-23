@@ -8,6 +8,17 @@
 	if (!h.location.topic) {
 		return;
 	}
+	
+	var 
+		reallyTree   = h.options.treecomments.value(),
+		reallyAuthor = h.options.showauthor.value();
+		
+	if (
+		!reallyTree
+		&& !reallyAuthor
+	) {
+		return;
+	}
 
 	var 
 		commentsElement = h.dom('#comments').first(),
@@ -39,7 +50,7 @@
 		// ищем автора топика для подсветки его комментариев
 		author = h.dom('.vcard.author a span').html() || false,
 		// проверять ли комментарии на авторство (если мы - автор, то не за чем)
-		checkAuthor = author && author !== h.user,
+		checkAuthor = reallyAuthor && author && author !== h.user,
 		// предки комментариев
 		commentParents = {};
 
@@ -190,19 +201,21 @@
 			return;
 		}
 
-		// пробуем найти абзац с кнопкой "ответить"
-		var preply = h.dom('p.reply', element).first();
+		if (reallyTree) {
+			// пробуем найти абзац с кнопкой "ответить"
+			var preply = h.dom('p.reply', element).first();
 
-		if (!preply) {			
-			// так что придется создать лишний блок в .entry-content
-			var ec = h.dom('div.entry-content', element).first();
+			if (!preply) {			
+				// так что придется создать лишний блок в .entry-content
+				var ec = h.dom('div.entry-content', element).first();
 
-			if (!ec) {
-				return;
-			}
+				if (!ec) {
+					return;
+				}
 			
-			preply = preplyBase.cloneNode(true);
-			ec.appendChild(preply);
+				preply = preplyBase.cloneNode(true);
+				ec.appendChild(preply);
+			}
 		}
 
 		// счетчик вложенных комментариев
@@ -219,7 +232,10 @@
 			}
 		}
 
-		if (element != commentsElement) {
+		if (
+			reallyTree
+			&& element != commentsElement
+		) {
 			var expanderElement = expanderElementBase.cloneNode(true);
 			
 			expanderElement.innerText = '+ развернуть ' + commentCount + ' ' + 
@@ -267,12 +283,17 @@
 		}, 100);
 	}
 	
-	hashExpand();
+	if (reallyTree) {
+		hashExpand();
+	}
 	
 	//window.onhashchange = hashExpand;	
 	
 	// есть сложенные комментарии? тогда покажем ссылку "развернуть все"
-	if (expanderCount > 0) {
+	if (
+		reallyTree
+		&& expanderCount > 0
+	) {
 		var headerElement = h.dom('.comments-header', commentsElement).first();
 		
 		if (headerElement) {

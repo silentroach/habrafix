@@ -4,19 +4,25 @@
  */
 habrafix.options = ( function() {
 
+	var ls = window.localStorage;
+
 	var optionPath = function(path) {
 		return 'option_' + path;
 	};
 
-	var trigger = function(path, defaultValue) {
+	var trigger = function(path, defaultValue, caption) {
 		var tr = this;
 
+		tr.caption = function() {
+			return caption;
+		};
+
 		tr.setValue = function(value) {
-			window.localStorage.setItem(optionPath(path), value ? 1 : 0);
+			ls.setItem(optionPath(path), value ? 1 : 0);
 		};
 
 		tr.value = function() {
-			var tmp = window.localStorage.getItem(optionPath(path));
+			var tmp = ls.getItem(optionPath(path));
 			
 			if (!tmp) {
 				tmp = defaultValue;
@@ -31,7 +37,11 @@ habrafix.options = ( function() {
 	};
 
 	return opts = {
-
+		hideads: new trigger('hideads', false, 'Скрывать самую назойливую (сверху) рекламу'),
+		treecomments: new trigger('treecomments', true, 'Древовидные комментарии'),
+		showauthor: new trigger('showauthor', true, 'Выделять комментарии автора топика'),
+		print: new trigger('print', true, 'Кнопка печати в топике'),
+		etoolbar: new trigger('etoolbar', true, 'Показывать панель инструментов в редакторах')
 	};
 
 } )();

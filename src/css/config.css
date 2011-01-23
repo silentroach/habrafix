@@ -4,6 +4,10 @@
 	margin-top: 10px;
 	}
 
+	#about .hf a {
+		display: inline;
+		}
+
 #about .hf_config {
 	display: block;
 	margin-left: 11px;
@@ -13,22 +17,43 @@
 /* окно настроек */
 #hf_config {
 	position: fixed;
-	left: 20%;
-	top: 20%;
-	width: 60%;
-	height: 60%;
-	background: white;
-	border: 1px solid gray;
+	left: 30%;
+	top: 30%;
+	width: 40%;
+	height: auto;
+	background-color: #f0f0e7;
+	border: 5px solid #999;
 	border-radius: 5px;
 	z-index: 50;
+	opacity: .95;
 	}
 
-#hf_config .hf_title {
-	background: silver;
-	border-bottom: 1px solid gray;
-	color: black;
-	padding: 5px 0px;
-	text-align: center;
-	text-shadow: white 1px 1px 1px;
-	width: 100%;
-	}
+	#hf_config .hf_title {
+		background: #d3e2f0;
+		border-bottom: 1px solid #999;
+		color: black;
+		padding: 5px 0px;
+		text-align: center;
+		font-weight: bold;
+		width: 100%;
+		}
+
+	#hf_config input[type=button] {
+		float: right;
+		margin: .5em;
+		}
+
+	#hf_config ul {
+		margin: 1em 1em 0;
+		}
+
+		#hf_config ul li {
+			margin-bottom: 1em;
+			}
+			
+	#hf_config span {
+		float: left;
+		color: grey;
+		font-size: 8pt;
+		margin: .7em 0px 0px 1.5em;
+		}
