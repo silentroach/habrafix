@@ -14,18 +14,22 @@
 		 * @param {string} imageSource Адрес картинки кнопки
 		 * @param {string} title Выводится при наведении курсора на кнопку
 		 * @param {function} callback Callback
+		 * @param {string} accesskey Alt + ? - шорткат
 		 * @return {HTMLElement}
 		 */
-		var createButton = function(imageSource, title, callback) {
+		var createButton = function(imageSource, title, callback, accesskey) {
 				var 
 					li  = document.createElement('li'),
 					a   = document.createElement('a'),
 					img = document.createElement('img');
 					
 				img.src = '/i/panel/' + imageSource + '.gif';
-				a.title = title;
+				a.title = title + (accesskey ? ' (alt + ' + accesskey + ')' : '');
 				
 				a.onclick = callback;
+				if (accesskey) {
+					a.accessKey = accesskey;
+				}
 				
 				a.appendChild(img);
 				li.appendChild(a);
@@ -61,19 +65,19 @@
 			
 		createButton('bold_ru', 'жирный', function() {
 			insertTag('<b>', '</b>');
-		} );
+		}, 'b' );
 		
 		createButton('italic_ru', 'курсив', function() {
 			insertTag('<i>', '</i>');
-		} );
+		}, 'i' );
 		
 		createButton('underline_ru', 'подчеркнутый', function() {
 			insertTag('<u>', '</u>');
-		} );
+		}, 'u' );
 		
 		var tmp = createButton('strikethrough', 'зачеркнутый', function() {
 			insertTag('<s>', '</s>');
-		} );
+		}, 's' );
 		
 		h.dom(tmp).addClass('hf_space');
 
