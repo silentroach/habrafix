@@ -40,19 +40,6 @@
 		}
 	} );
 	
-	// возвращаем sidebar если он не пустой
-	
-	var sidebar = h.dom('#sidebar').first();
-	
-	if (
-		sidebar
-		&& sidebar.children.length != 0
-	) {
-		h.dom(sidebar).addClass('hf_show');
-	} else {
-		h.dom('#wrapper').addClass('hf_wo_sidebar');	
-	}
-	
 	// удаляем все элементы в #main-page до div.header
 
 	h.dom('#main-page > *').each( function() {

@@ -17,27 +17,11 @@ iframe {
 	margin-top: -50px !important;
 	}
 
-#wrapper.hf_wo_sidebar .profile-header {
-	width: 90% !important;
+#sidebar .banner {
+	height: auto;
+	margin-bottom: 0px;
 	}
 
-#wrapper.hf_wo_sidebar #main-content {
-	width: 95% !important;
-	}
-	
-#sidebar {
-	display: none;
-	}
-	
-	#sidebar .banner {
-		height: auto;
-		margin-bottom: 0px;
-		}
-
-#sidebar.hf_show {
-	display: block;
-	}
-		
 /* нет больше минусам */
 .vote_minus {
 	display: none !important;
