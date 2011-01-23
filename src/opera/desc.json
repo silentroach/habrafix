@@ -2,7 +2,8 @@
 	"css": [
 		"../css/main.css",
 		"../css/comments.css",
-		"../css/print.css"
+		"../css/print.css",
+		"../css/config.css"
 	],
 	"js": [
 		"../js/init.js",

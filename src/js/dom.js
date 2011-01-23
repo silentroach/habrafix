@@ -218,6 +218,11 @@ habrafix.dom = (function() {
 		 */
 		hide: function() {
 			this.css('display', 'none');
+		},
+
+		// FIXME говно
+		unhide: function() {
+			this.css('display', '');
 		}
 	};
 	
