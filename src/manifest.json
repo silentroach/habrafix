@@ -1,7 +1,7 @@
 {
 	"name" : "Habrafix",
 	"description" : "Хабрахабр, только немного лучше",
-	"version" : "0.292",
+	"version" : "0.293",
 	"update_url" : "http://clients2.google.com/service/update2/crx",	
 	"icons" : {
 		"128" : "icons/128.png",
@@ -23,7 +23,8 @@
 			"css/comments.css",
 			"css/print.css",
 			"css/tags.css",
-			"css/copier.css"
+			"css/copier.css",
+			"css/editor.css"
 		],
 		"js" : [
 			"js/init.js",
@@ -40,6 +41,7 @@
 			"js/sandtags.js",			
 			"js/tags.js",
 			"js/copier.js",
+			"js/editor.js",
 			"js/config.js",
 			"js/debug.js"
 		]

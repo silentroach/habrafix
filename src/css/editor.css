@@ -1,3 +1,4 @@
+/* визуальный редактор
 .hf_editor {
 	border: 1px solid black;
 	min-height: 5em;
@@ -12,3 +13,44 @@
 		padding: auto !important;
 		margin: auto !important;
 		}
+*/
+
+/* убираем "можно использовать html" */
+#js-field-holder-with-help .comment-help {
+	display: none;
+	}
+	
+.hf_etoolbar {
+	background-color: #eaecea;
+	margin-bottom: -2px;
+	border-left: 1px solid silver;
+	border-right: 1px solid silver;
+	border-top: 1px solid silver;
+	border-top-left-radius: 3px;
+	border-top-right-radius: 3px;
+	width: 180px;
+	padding: 2px;
+	}
+	
+	.hf_etoolbar.hf_mailer {
+		margin-bottom: -5px;
+		margin-top: 5px;
+		}
+	
+	.hf_etoolbar li {
+		display: inline;
+		margin-right: 3px;
+		opacity: .8;
+		}
+
+		.hf_etoolbar li:hover {
+			opacity: 1;
+			}			
+
+		.hf_etoolbar li.hf_space {
+			margin-right: 15px;
+			}
+		
+		.hf_etoolbar li a {
+			cursor: pointer;
+			}
