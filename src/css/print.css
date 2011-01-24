@@ -13,7 +13,8 @@
 /* комментарии            */ body.hf_printmode #comments,
 /* футер                  */ body.hf_printmode #footer,
 /* ???                    */ body.hf_printmode .profile-header,
-/* кнопки голосования     */ body.hf_printmode .poll-item input[type=button] {
+/* кнопки голосования     */ body.hf_printmode .poll-item input[type=button],
+/* ссылка на копирование  */ body.hf_printmode .hf_copier {
 	display: none;
 	}
 	
