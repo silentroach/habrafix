@@ -4,6 +4,12 @@
  */
 ( function(h) {
 
+	h.config.sandtags = new h.configOption('sandtags', true, 'Сделать теги в песочнице кликабельными');
+	
+	if (!h.config.sandtags.value()) {
+		return;
+	}
+
 	// специально для песочницы, где теги строкой
 	h.dom('#main-page.sandbox ul.tags li').each( function() {
 		var 

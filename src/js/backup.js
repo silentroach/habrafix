@@ -4,6 +4,12 @@
  */
 ( function(h) {
 
+	h.config.backup = new h.configOption('backup', false, 'Резервное хранение полей для ввода комментариев, топиков и писем (бета)');
+	
+	if (!h.config.backup.value()) {
+		return;
+	}
+
 	if (
 		!h.location.writer
 		&& !h.location.mailer

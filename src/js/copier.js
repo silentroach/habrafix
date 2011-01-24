@@ -5,6 +5,12 @@
  
 ( function(h) {
 
+	h.config.copier = new h.configOption('copier', true, 'Возможность копирования в буфер выделенных исходных текстов в топиках');
+	
+	if (!h.config.copier.value()) {
+		return;
+	}
+
 	// это нужно только на странице с топиком
 	if (
 		!h.location.topic
