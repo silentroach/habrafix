@@ -4,6 +4,8 @@
  */
 ( function(h) {
 
+	h.config.hideads = new h.configOption('hideads', false, 'Скрывать самую назойливую (сверху) рекламу');
+
 	if (!h.config.hideads.value()) {
 	
 		h.dom('a[target=_top]').show();

@@ -4,6 +4,9 @@
  */
 ( function(h) {
 
+	h.config.treecomments = new h.configOption('treecomments', true, 'Древовидные комментарии');
+	h.config.showauthor   = new h.configOption('showauthor', true, 'Выделять комментарии автора топика');
+
 	// отрабатываем только на странице с топиком
 	if (!h.location.topic) {
 		return;

@@ -4,6 +4,8 @@
  */
 ( function(h) {
 
+	h.config.print = new h.configOption('print', true, 'Кнопка печати в топике');
+
 	// функция печати должна быть доступна только из топика
 	if (
 		!h.location.topic

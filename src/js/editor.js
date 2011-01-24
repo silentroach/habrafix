@@ -4,6 +4,8 @@
  */
 ( function(h) {
 
+	h.config.etoolbar = new h.configOption('etoolbar', true, 'Показывать панель инструментов в редакторах');
+
 	if (!h.config.etoolbar.value()) {
 		return;
 	}
