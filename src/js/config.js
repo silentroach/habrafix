@@ -40,9 +40,8 @@
 
 		document.body.appendChild(configForm);
 
-		var configTitle = document.createElement('div');
+		var configTitle = document.createElement('h1');
 		configTitle.innerText = 'Настройки Habrafix';
-		h.dom(configTitle).addClass('hf_title');
 
 		configForm.appendChild(configTitle);
 
