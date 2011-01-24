@@ -75,8 +75,6 @@ function compressCSS($files = array(), $rootpath = '.', $replacements = array())
 		$content = str_replace($from, $to, $content);
 	}
 	
-	echo $content;
-	
 	$tmppath = sys_get_temp_dir() . DS . 'temp.css';
 	
 	file_put_contents($tmppath, $content);
