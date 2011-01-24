@@ -53,7 +53,7 @@ function combineJS($files = array(), $rootpath = '.') {
 	return $result;
 }
 
-function compressCSS($files = array(), $rootpath = '.') {
+function compressCSS($files = array(), $rootpath = '.', $replacements = array()) {
 	$compiler = 'java -jar ' . PATH_YUI . ' ';
 		
 	echo "Compressing .css...\n  ";
@@ -70,6 +70,12 @@ function compressCSS($files = array(), $rootpath = '.') {
 	}
 	
 	echo "\n";
+	
+	foreach($replacements as $from => $to) {
+		$content = str_replace($from, $to, $content);
+	}
+	
+	echo $content;
 	
 	$tmppath = sys_get_temp_dir() . DS . 'temp.css';
 	

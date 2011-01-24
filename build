@@ -99,7 +99,10 @@ $desc = json_decode(file_get_contents($operapath . 'desc.json'), true);
 
 $cssjs = file_get_contents($operapath . 'css.js');
 
-$css = compressCSS($desc['css'], $operapath);
+$css = compressCSS($desc['css'], $operapath, array(
+	// специально для оперы меняем префикс
+	'-webkit-' => '-o-'
+));
 $cssjs = str_replace('%CSS%', $css, $cssjs);
 
 $tempJSFile = $tmppath . 'css.js';
