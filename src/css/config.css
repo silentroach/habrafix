@@ -17,9 +17,9 @@
 /* окно настроек */
 #hf_config {
 	position: fixed;
-	left: 30%;
-	top: 30%;
-	width: 40%;
+	left: 25%;
+	top: 15%;
+	width: 50%;
 	height: auto;
 	background-color: #f0f0e7;
 	border: 1px solid #999;
@@ -40,11 +40,11 @@
 		}
 
 	#hf_config ul {
-		margin: 1em 1em 0;
+		margin: 1em;
 		}
 
 		#hf_config ul li {
-			margin-bottom: 1em;
+			margin-bottom: .5em;
 			}
 			
 	#hf_config span {
