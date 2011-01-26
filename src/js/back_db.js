@@ -36,8 +36,6 @@ habrafix.db = ( function(h) {
 	
 	var getDatabase = function() {
 		if (!database) {
-			h.notify('db', 'init');
-		
 			database = openDatabase(h.name, '', h.name, null);
 			migrate(database, database.version);
 		}
