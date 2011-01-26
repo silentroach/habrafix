@@ -145,16 +145,27 @@ habrafix.dom = (function() {
 		
 		/**
 		 * Добавляем класс к элементам
-		 * @param {string} className
+		 * @param {string|Array.<string>} className
 		 */
 		addClass: function(className) {
+			if (typeof className == 'string') {
+				className = [className];
+			}
+		
 			this.each( function() {
 				var 
 					element = this,
-					elementClass = ' ' + element.className + ' ';
+					clsName = element.className,
+					classes = clsName.split(' ');
 					
-				if (elementClass.indexOf(' ' + className + ' ') < 0) {
-					element.className += ' ' + className;
+				className.forEach( function(cls) {
+					if (classes.indexOf(cls) < 0) {
+						clsName += ' ' + cls;
+					}
+				} );
+				
+				if (clsName != element.className) {
+					element.className = clsName;
 				}
 			} );
 			

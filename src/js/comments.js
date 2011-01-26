@@ -160,10 +160,11 @@
 		h.dom(expanderElementBase).addClass('hf_extra_left');
 	}
 
-	h.dom(expanderElementBase).addClass('hf_expander');
-			
-	// делаем ссылку похожей на ссылку "ответить"
-	h.dom(expanderElementBase).addClass('js-serv');				
+	h.dom(expanderElementBase).addClass([
+		'hf_expander',
+		// делаем ссылку похожей на ссылку "ответить"
+		'js-serv'
+	]);
 
 	/**
 	 * Подготавливаем ветку комментариев
@@ -301,8 +302,7 @@
 		
 		if (headerElement) {
 			expandAllElement = document.createElement('a');
-			h.dom(expandAllElement).addClass('js-serv');
-			h.dom(expandAllElement).addClass('hf_extra_left');
+			h.dom(expandAllElement).addClass(['js-serv', 'hf_extra_left']);
 			expandAllElement.innerText = 'развернуть все';
 			expandAllElement.onclick = expandAll;
 			
