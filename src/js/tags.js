@@ -4,6 +4,11 @@
  */
 ( function(h) {
 
+	// если мы на странице с тегами - заведомо ничего не делаем
+	if (h.location.tag) {
+		return;
+	}
+	
 	/**
 	 * @const
 	 * @type {string}
@@ -11,11 +16,6 @@
 	var subscribedClassName = 'hf_subscribed';
 	
 	var processTags = function() {
-		// если мы на странице с тегами - ничего не делаем
-		if (h.location.tag) {
-			return;
-		}
-
 		// запрашиваем у background список тегов
 		chrome.extension.sendRequest( {
 			'method': 'getTags'

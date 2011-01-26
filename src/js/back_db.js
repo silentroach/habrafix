@@ -31,10 +31,35 @@ habrafix.db = ( function(h) {
 			} );
 		}
 	};
+	
+	var database = null;
+	
+	var getDatabase = function() {
+		if (!database) {
+			h.notify('db', 'init');
+		
+			database = openDatabase(h.name, '', h.name, null);
+			migrate(database, database.version);
+		}
+		
+		return database;
+	};
 
-	var database = openDatabase(h.name, '', h.name, null);
-	migrate(database, database.version);	
-
-	return database;
+	return {
+		/**
+		 * Транзакция
+		 * @param {function(SQLTransactionCallback)}
+		 */
+		transaction: function(callback) {
+			getDatabase().transaction(callback);
+		},
+		/**
+		 * Транзакция для чтения
+		 * @param {function(SQLTransactionCallback)}
+		 */
+		readTransaction: function(callback) {
+			getDatabase().readTransaction(callback);
+		}
+	};
 
 } )(habrafix);
