@@ -1,6 +1,7 @@
 {
 	"css": [
 		"../css/main.css",
+		"../css/karma.css",
 		"../css/comments.css",
 		"../css/print.css",
 		"../css/config.css",
@@ -13,6 +14,7 @@
 		"../js/location.js",
 		"../js/utils.js",
 		"../js/options.js",
+		"../js/karma.js",
 		"../js/adblock.js",
 		"../js/cleaner.js",
 		"../js/comments.js",

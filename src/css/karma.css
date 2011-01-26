@@ -1,0 +1,8 @@
+/* 
+  если убираем понижение кармы, 
+  делаем сдвиг влево для крайних элементов 
+*/
+.entry-info-wrap.hf_undown .published,
+.entry-info-wrap.hf_undown .informative {
+	margin-left: -18px !important;
+	}

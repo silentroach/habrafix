@@ -54,7 +54,7 @@
 				checkboxOption = document.createElement('input'),
 				labelOption    = document.createElement('label');
 
-			labelOption.innerText = h.config[item].caption();
+			labelOption.innerHTML = h.config[item].caption();
 
 			checkboxOption.type = 'checkbox';
 			checkboxOption.id = prefix + item;

@@ -20,6 +20,7 @@
 		"css" : [
 			"css/main.css",
 			"css/config.css",
+			"css/karma.css",
 			"css/comments.css",
 			"css/print.css",
 			"css/tags.css",
@@ -32,6 +33,7 @@
 			"js/user.js",
 			"js/location.js",
 			"js/options.js",
+			"js/karma.js",
 			"js/adblock.js",
 			"js/cleaner.js",			
 			"js/utils.js",			

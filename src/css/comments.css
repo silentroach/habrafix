@@ -1,3 +1,8 @@
+/* дополнительный отступ слева */
+.hf_extra_left {
+	margin-left: 1em;
+	}
+
 /* скрытые комментарии */
 ul.hentry.hf_collapsed {
 	display: none;

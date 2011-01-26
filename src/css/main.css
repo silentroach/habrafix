@@ -22,20 +22,6 @@ iframe {
 	margin-bottom: 0px;
 	}
 
-/* нет больше минусам */
-.vote_minus {
-	display: none !important;
-	}
-
-.entry-info-wrap .published,
-.entry-info-wrap .informative {
-	margin-left: -18px !important;
-	}
-	
-.hf_extra_left {
-	margin-left: 1em;
-	}
-
 /* закругленные углы */
 .entry-info {
 	border-radius: 5px;
