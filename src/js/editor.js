@@ -10,6 +10,9 @@
 		return;
 	}
 
+	// удаляем "можно использовать html"
+	h.dom('#js-field-holder-with-help .comment-help').remove();
+
 	var makeEditor = function() {
 		var 
 			textarea = this,

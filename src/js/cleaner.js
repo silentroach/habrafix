@@ -4,9 +4,6 @@
  */
 ( function(h) {
 
-	// удаляем "можно использовать html"
-	h.dom('#js-field-holder-with-help .comment-help').remove();
-
 	// закругленные уголки теперь через border-radius делаются в css
 	h.dom('.entry-info .corner').remove();
 	
