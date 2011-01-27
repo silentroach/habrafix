@@ -228,7 +228,10 @@
 		for (var i = 0; i < clist.childNodes.length; i++) {
 			var node = clist.childNodes[i];
 
-			if (node.nodeName === 'LI') {
+			if (
+				node.nodeType === Node.ELEMENT_NODE
+				&& node.nodeName === 'LI'
+			) {
 				++commentCount;
 
 				// рекурсия - вложенные комментарии тоже нужно сложить
