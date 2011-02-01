@@ -19,6 +19,7 @@
 		],
 		"css" : [
 			"css/main.css",
+			"css/widthfix.css",
 			"css/config.css",
 			"css/karma.css",
 			"css/comments.css",

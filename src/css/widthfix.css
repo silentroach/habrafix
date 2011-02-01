@@ -1,0 +1,7 @@
+/* снимаем ограничение на ширину контента 
+ * для широких мониторов */
+.header,
+#wrapper,
+#footer {
+	max-width: none !important;
+	}

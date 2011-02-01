@@ -229,7 +229,7 @@
 			var node = clist.childNodes[i];
 
 			if (
-				node.nodeType === Node.ELEMENT_NODE
+				node.nodeType === 1 
 				&& node.nodeName === 'LI'
 			) {
 				++commentCount;
