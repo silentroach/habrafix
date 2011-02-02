@@ -2,6 +2,7 @@
 	"css": [
 		"../css/main.css",
 		"../css/widthfix.css",
+		"../css/niceness.css",
 		"../css/karma.css",
 		"../css/comments.css",
 		"../css/print.css",

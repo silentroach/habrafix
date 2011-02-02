@@ -1,0 +1,26 @@
+/* небольшие тени в заголовках плашек */
+.live h3 {
+	text-shadow: white 1px 1px 2px;
+	}
+	
+/* внутренняя тень и закругленные уголки у поиска */
+.panel-search .in-text {
+	-webkit-box-shadow: #EEE 0px 2px 10px inset;
+	-webkit-border-radius: 3px;
+	}
+
+/* закругляем уголки autosuggest'а */
+.panel-search .js-autosuggest-output > div:last-child { 
+	-webkit-border-radius: 0 0 3px 3px; 
+	}
+
+/* скругленные уголки у фоток */
+.userinfo .photo {
+	-webkit-border-radius: 5px;
+	}
+	
+/* убираем юзеро-иконку из сайдбара, все равно одинаковая, бессмысленная */
+.live .who {
+	padding-left: 0px !important;
+	background: none !important;
+	}

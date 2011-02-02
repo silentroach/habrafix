@@ -1,20 +1,3 @@
-/* визуальный редактор
-.hf_editor {
-	border: 1px solid black;
-	min-height: 5em;
-	padding: 2px;
-	width: 100%;
-	}
-	
-	.hf_editor ul,
-	.hf_editor ol,
-	.hf_editor li {
-		list-style: disc;
-		padding: auto !important;
-		margin: auto !important;
-		}
-*/
-
 /* убираем "можно использовать html" */
 #js-field-holder-with-help .comment-help {
 	display: none;
@@ -63,7 +46,7 @@
 
 			.hf_etoolbar img:hover,
 			.hf_etoolbar img:active {
-				border-radius: 3px;
+				-webkit-border-radius: 3px;
 				}
 
 			.hf_etoolbar img:hover {
