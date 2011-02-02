@@ -24,3 +24,9 @@
 	padding-left: 0px !important;
 	background: none !important;
 	}
+
+/* уголки и тень в информации о блоге */
+.blog-about-text {
+	-webkit-box-shadow: rgba(0, 0, 0, .3) 1px 1px 3px;
+	-webkit-border-radius: 5px;
+	}
