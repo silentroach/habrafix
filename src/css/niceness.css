@@ -30,3 +30,38 @@
 	-webkit-box-shadow: rgba(0, 0, 0, .3) 1px 1px 3px;
 	-webkit-border-radius: 5px;
 	}
+
+/* меньше отступ сверху у футера */
+#footer .footer-conttent {
+	padding-top: 15px !important;
+	}
+
+/* регистрация/вход в футере - оригинально, но ни к чему, убираем */
+#footer .bottom_menu > dl:first-child {
+	display: none;
+	}
+
+#footer .bottom_menu {
+	-webkit-column-count: 2;
+	-webkit-column-gap: 10px;
+	}
+
+	#footer .bottom_menu dl {
+		clear: both;
+		display: block;
+		width: auto !important;
+		}
+
+		#footer .bottom_menu dl dt,
+		#footer .bottom_menu dl dd {
+			display: inline-block;
+			width: auto !important;
+			}
+
+		#footer .bottom_menu dl dt {
+			width: 5em !important;
+			}
+
+		#footer .bottom_menu dd:not(:last-child):after {
+			content: ','
+			}
