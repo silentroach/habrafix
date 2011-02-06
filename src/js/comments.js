@@ -261,40 +261,34 @@
 	h.dom(commentsElement).hide();
 	prepareCommentsTree(commentsElement, false);
 	h.dom(commentsElement).unhide();
-	
-	// функция для раскрытия комментария, если мы переходим к нему по хэшу
-	var hashExpand = function() {
+
+	// FIXME нужно что-то придумать с вновь прибывающими свежими комментами
+
+	if (reallyTree) {
+		// раскрываем комментарий если мы переходим к нему по хэшу
 		var 
 			hash = window.location.hash,
 			tmp = hash.match(/(\d+)/g);
 		
 		// если хеша нет - извините
-		if (hash == '') {
-			return;
-		}
-		
-		// если в хеше идентификатор топика - надо его сначала развернуть
-		if (tmp) {
-			var id = tmp[0];
+		if (hash != '') {
+			// если в хеше идентификатор коммента - надо его развернуть
+			if (tmp) {
+				var id = tmp[0];
 			
-			if (id in commentParents) {
-				expandCommentsNode(commentParents[id]);
+				if (id in commentParents) {
+					expandCommentsNode(commentParents[id]);
+				}
 			}
-		}
 		
-		// передергиваем location для того чтобы перейти к комментарию 
-		// или к их началу если идентификатора нет
-		// с небольшой вынужденной задержкой
-		setTimeout( function() {
-			window.location = window.location;
-		}, 100);
-	}
-	
-	if (reallyTree) {
-		hashExpand();
-	}
-	
-	//window.onhashchange = hashExpand;	
+			// передергиваем location для того чтобы перейти к комментарию 
+			// или к их началу если идентификатора нет
+			// с небольшой вынужденной задержкой
+			setTimeout( function() {
+				window.location = window.location;
+			}, 100);
+		}
+	}	
 	
 	// есть сложенные комментарии? тогда покажем ссылку "развернуть все"
 	if (
