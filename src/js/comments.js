@@ -175,15 +175,6 @@
 		// ищем идентификатор комментария
 		var id  = extractCommentId(element);	
 		
-		// если у нас есть идентификатор и идентификатор предка,
-		// то добавляем это дело в хэш
-		if (
-			id
-			&& parentId
-		) {
-			commentParents[id] = parentId;
-		}
-		
 		if (
 			id
 			&& checkAuthor
@@ -197,7 +188,17 @@
 				}
 			}
 		}
-	
+		
+		// если у нас есть идентификатор и идентификатор предка,
+		// то добавляем это дело в хэш
+		if (
+			reallyTree
+			&& id
+			&& parentId
+		) {
+			commentParents[id] = parentId;
+		}
+		
 		// ищем вложенные комментарии, без них нет смысла продолжать выполнение
 		var clist = h.dom('ul.hentry', element).first();
 
