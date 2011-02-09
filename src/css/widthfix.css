@@ -2,6 +2,7 @@
  * для широких мониторов */
 .header,
 #wrapper,
+#inner,
 #footer {
 	max-width: none !important;
 	}

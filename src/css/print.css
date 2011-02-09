@@ -42,6 +42,7 @@ body.hf_printmode #main-content {
 	}	
 
 body.hf_printmode .hentry {
+	padding-top: 1em;
 	margin-bottom: 1em !important;
 	padding-left: 1em !important;
 	}
