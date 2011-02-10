@@ -71,7 +71,8 @@ body.hf_printmode.hf_printmode_comments #comments li.comment_holder .entry-conte
 body.hf_printmode.hf_printmode_comments #comments li.comment_holder .msg-meta .bookmark,
 body.hf_printmode.hf_printmode_comments #comments li.comment_holder .msg-meta .to-favs,
 body.hf_printmode.hf_printmode_comments #comments li.comment_holder .msg-meta ul.vote .buttons,
-body.hf_printmode.hf_printmode_comments #comments .add-comment {
+body.hf_printmode.hf_printmode_comments #comments .add-comment,
+body.hf_printmode.hf_printmode_comments #comments .info-text {
 	display: none;
 	}
 	
