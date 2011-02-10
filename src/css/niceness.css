@@ -63,5 +63,5 @@
 			}
 
 		#footer .bottom_menu dd:not(:last-child):after {
-			content: ','
+			content: ","
 			}
