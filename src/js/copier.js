@@ -24,6 +24,11 @@
 			element = this.parentNode.nodeName == 'BLOCKQUOTE' ? this.parentNode : this,
 			copier = document.createElement('a');
 			
+		// для мелких текстов нам это все не нужно
+		if (element.innerText.lastIndexOf("\n") < 30) {
+			return;
+		}
+			
 		copier.innerText = '[ копировать в буфер обмена ]';
 		h.dom(copier).addClass('hf_copier');
 		element.parentNode.insertBefore(copier, element);
