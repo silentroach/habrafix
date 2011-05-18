@@ -1,5 +1,5 @@
 /* -------------------------
- * режим печати 
+ * режим печати
  * ------------------------- */
 
 /* заголовок              */ body.hf_printmode .header,
@@ -8,24 +8,25 @@
 /* реклама Яндекса        */ body.hf_printmode .yandex-direct,
 /* заголовок топика?      */ body.hf_printmode #viva-la-w3c,
 /* сайдбар с обновлениями */ body.hf_printmode #xsidebar,
-/* список тегов топика    */ body.hf_printmode ul.tags, 
+/* список тегов топика    */ body.hf_printmode ul.tags,
 /* ???                    */ body.hf_printmode .entry-info,
 /* комментарии            */ body.hf_printmode #comments,
 /* футер                  */ body.hf_printmode #footer,
 /* ???                    */ body.hf_printmode .profile-header,
 /* кнопки голосования     */ body.hf_printmode .poll-item input[type=button],
-/* ссылка на копирование  */ body.hf_printmode .hf_copier {
+/* ссылка на копирование  */ body.hf_printmode .hf_copier,
+/* nokia                  */ body.hf_printmode #special_nokia {
 	display: none;
 	}
-	
+
 /* плашка с Esc */
 body.hf_printmode #hf_print_esc {
 	display: block;
 	}
-	
+
 body.hf_printmode {
 	height: auto !important;
-}	
+}
 
 body.hf_printmode h2.entry-title,
 body.hf_printmode h2.single-entry-title {
@@ -36,10 +37,10 @@ body.hf_printmode h2.single-entry-title {
 body.hf_printmode #wrapper {
 	width: 100% !important;
 	}
-	
+
 body.hf_printmode #main-content {
 	width: 98% !important;
-	}	
+	}
 
 body.hf_printmode .hentry {
 	padding-top: 1em;
@@ -51,21 +52,21 @@ body.hf_printmode .hentry {
 		margin-bottom: 0px !important;
 		margin-left: 0px !important;
 		}
-		
+
 /* -------------------------
- * печать с комментариями 
+ * печать с комментариями
  * ------------------------- */
 body.hf_printmode.hf_printmode_comments #comments {
 	display: block;
 	padding-left: 1em;
 	}
-	
+
 	body.hf_printmode.hf_printmode_comments #comments .comments-header {
 		background: transparent;
 		color: black;
 		padding-left: 0px;
 		}
-		
+
 body.hf_printmode.hf_printmode_comments #comments .comments-header a,
 body.hf_printmode.hf_printmode_comments #comments li.comment_holder .entry-content p.reply,
 body.hf_printmode.hf_printmode_comments #comments li.comment_holder .msg-meta .bookmark,
@@ -75,7 +76,7 @@ body.hf_printmode.hf_printmode_comments #comments .add-comment,
 body.hf_printmode.hf_printmode_comments #comments .info-text {
 	display: none;
 	}
-	
+
 body.hf_printmode.hf_printmode_comments #comments ul.hentry.hf_collapsed {
 	display: block;
 	}
@@ -83,7 +84,7 @@ body.hf_printmode.hf_printmode_comments #comments ul.hentry.hf_collapsed {
 /* -------------------------
  * вспомогательное
  * ------------------------- */
- 
+
 /* плашка с Esc для выхода */
 #hf_print_esc {
 	display: none;
@@ -98,7 +99,7 @@ body.hf_printmode.hf_printmode_comments #comments ul.hentry.hf_collapsed {
 	opacity: .3;
 	font: 10pt Tahoma;
 	}
-	
+
 @media print {
 	/* при печати плашку не показываем */
 	#hf_print_esc {
@@ -119,29 +120,29 @@ body.hf_printmode.hf_printmode_comments #comments ul.hentry.hf_collapsed {
 		width: 16px;
 		cursor: pointer;
 		}
-		
+
 /* контролы */
 .hf_print a a.hf_print_comments {
 	display: none;
 	width: auto;
 	}
-	
+
 	.hf_print:hover {
 		width: auto;
 		/* иначе в sandbox без вложенной ссылки с комментариями будет плохо */
 		min-width: 12px;
 		}
-		
+
 	body.sandbox .hf_print:hover {
 		/* иначе в sandbox без вложенной ссылки с комментариями будет плохо */
 		min-width: 16px;
-		padding-right: 1px;	
+		padding-right: 1px;
 		}
-		
+
 		.hf_print:hover a {
 			width: 100%;
 			}
-			
+
 			.hf_print:hover a a.hf_print_comments {
 				background: transparent;
 				margin-left: 24px;
