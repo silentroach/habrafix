@@ -8,8 +8,8 @@ rm tmp.zip
 mv compiler.jar gcc.jar
 
 # yui compressor (for css)
-wget http://yuilibrary.com/downloads/yuicompressor/yuicompressor-2.4.2.zip -O ./tmp.zip
-unzip -j tmp.zip yuicompressor-2.4.2/build/yuicompressor-2.4.2.jar
+wget http://yui.zenfs.com/releases/yuicompressor/yuicompressor-2.4.6.zip -O ./tmp.zip
+unzip -j tmp.zip yuicompressor-2.4.6/build/yuicompressor-2.4.6.jar
 rm tmp.zip
 
-mv yuicompressor-2.4.2.jar yui.jar
+mv yuicompressor-2.4.6.jar yui.jar
